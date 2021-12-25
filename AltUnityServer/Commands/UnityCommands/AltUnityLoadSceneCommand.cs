@@ -3,10 +3,15 @@ namespace Assets.AltUnityTester.AltUnityServer.Commands
     class AltUnityLoadSceneCommand :AltUnityCommand
     {
         string scene;
+        UnityEngine.SceneManagement.LoadSceneMode mode;
         AltClientSocketHandler handler;
 
-        public AltUnityLoadSceneCommand (string scene, AltClientSocketHandler handler)
+        public AltUnityLoadSceneCommand (string scene, bool loadSingle, AltClientSocketHandler handler)
         {
+            mode = loadSingle 
+                ? UnityEngine.SceneManagement.LoadSceneMode.Single 
+                : UnityEngine.SceneManagement.LoadSceneMode.Additive;
+
             this.scene = scene;
             this.handler = handler;
         }
@@ -15,10 +20,10 @@ namespace Assets.AltUnityTester.AltUnityServer.Commands
         {
             AltUnityRunner._altUnityRunner.LogMessage("LoadScene " + scene);
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
-            var sceneLoadingOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene);
+
+            var sceneLoadingOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene, mode);
             sceneLoadingOperation.completed += SceneLoaded;
 
-            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
             response = "Ok";
             return response;
         }

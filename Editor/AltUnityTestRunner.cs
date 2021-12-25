@@ -401,8 +401,12 @@ public class AltUnityTestRunner
             }
         }
         var parentName = testSuite.Parent?.FullName ?? string.Empty;
-        var index = AltUnityTesterEditor.EditorConfiguration.MyTests?.FirstOrDefault(a => a.TestName.Equals(testSuite.FullName) && a.ParentName.Equals(parentName));
-        if(index == null)
+
+        AltUnityMyTest index = null;
+        if (AltUnityTesterEditor.EditorConfiguration.MyTests != null)
+            index = AltUnityTesterEditor.EditorConfiguration.MyTests.FirstOrDefault(a => a.TestName.Equals(testSuite.FullName) && a.ParentName.Equals(parentName));
+
+        if (index == null)
         {
             newMyTests.Add(new AltUnityMyTest(false, testSuite.FullName, 0, testSuite.IsSuite, testSuite.GetType(),
                 parentName, testSuite.TestCaseCount, false, null, null, 0, path));

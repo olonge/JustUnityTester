@@ -184,6 +184,15 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     void OnInspectorUpdate()
     {
         Repaint();
+        if (isTestRunResultAvailable) {
+            isTestRunResultAvailable = !UnityEditor.EditorUtility.DisplayDialog("Test Report",
+                  " Total tests:" + (reportTestFailed + reportTestPassed) + System.Environment.NewLine + " Tests passed:" +
+                  reportTestPassed + System.Environment.NewLine + " Tests failed:" + reportTestFailed + System.Environment.NewLine +
+                  " Duration:" + timeTestRan + " seconds", "Ok");
+            reportTestFailed = 0;
+            reportTestPassed = 0;
+            timeTestRan = 0;
+        }
     }
 
     private void OnGUI()
@@ -195,16 +204,6 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             Repaint();
         }
 
-        if (isTestRunResultAvailable)
-        {
-            isTestRunResultAvailable = !UnityEditor.EditorUtility.DisplayDialog("Test Report",
-                  " Total tests:" + (reportTestFailed + reportTestPassed) + System.Environment.NewLine + " Tests passed:" +
-                  reportTestPassed + System.Environment.NewLine + " Tests failed:" + reportTestFailed + System.Environment.NewLine +
-                  " Duration:" + timeTestRan + " seconds", "Ok");
-            reportTestFailed = 0;
-            reportTestPassed = 0;
-            timeTestRan = 0;
-        }
         if (UnityEngine.Application.isPlaying && !EditorConfiguration.ranInEditor)
         {
             EditorConfiguration.ranInEditor = true;
