@@ -9,9 +9,6 @@ Just-Unity-Tester will focus solely on a in-editor testing, with a preference fo
 
 ## Documentation
 
-AltUnity Tester's documentation can be found in
+AltUnity Tester's documentation can be found in [gitlab](https://altom.gitlab.io/altunity/altunitytester), alternatively more info can be found at [Altom](https://gitlab.com/altom)
 
-* [github](https://github.com/emaadgh/AltUnityTester)
-* [gitlab](https://altom.gitlab.io/altunity/altunitytester)
-
-Just-Unity-Tester can be found on [github](https://github.com/olonge/JustUnityTester).
+Just-Unity-Tester is hosted on [github](https://github.com/olonge/JustUnityTester).
