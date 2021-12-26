@@ -6,7 +6,7 @@ namespace JustUnityTester.Editor {
 
         public static bool needsRepaiting = false;
 
-        public static AltUnityEditorConfiguration EditorConfiguration;
+        public static EditorConfig EditorConfiguration;
         public static TesterEditor _window;
 
         public static NUnit.Framework.Internal.TestSuite _testSuite;
@@ -139,13 +139,13 @@ namespace JustUnityTester.Editor {
             if (UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings").Length == 0) {
                 var altUnityEditorFolderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
                 altUnityEditorFolderPath = altUnityEditorFolderPath.Substring(0, altUnityEditorFolderPath.Length - 24);
-                EditorConfiguration = CreateInstance<AltUnityEditorConfiguration>();
+                EditorConfiguration = CreateInstance<EditorConfig>();
                 EditorConfiguration.MyTests = null;
                 UnityEditor.AssetDatabase.CreateAsset(EditorConfiguration, altUnityEditorFolderPath + "/AltUnityTesterEditorSettings.asset");
                 UnityEditor.AssetDatabase.SaveAssets();
 
             } else {
-                EditorConfiguration = UnityEditor.AssetDatabase.LoadAssetAtPath<AltUnityEditorConfiguration>(
+                EditorConfiguration = UnityEditor.AssetDatabase.LoadAssetAtPath<EditorConfig>(
                     UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings")[0]));
             }
             UnityEditor.EditorUtility.SetDirty(EditorConfiguration);

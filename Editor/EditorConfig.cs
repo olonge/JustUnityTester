@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityEditorConfiguration : ScriptableObject {
+    public class EditorConfig : ScriptableObject {
 
         public bool appendToName;
         public string OutputPathName = "";
