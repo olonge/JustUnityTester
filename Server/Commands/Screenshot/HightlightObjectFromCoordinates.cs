@@ -6,10 +6,10 @@ namespace JustUnityTester.Server.Commands {
         Vector2 screenCoordinates;
         string ColorAndWidth;
         Vector2 size;
-        AltClientSocketHandler handler;
+        ClientSocket handler;
 
 
-        public HightlightObjectFromCoordinates(Vector2 screenCoordinates, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
+        public HightlightObjectFromCoordinates(Vector2 screenCoordinates, string colorAndWidth, Vector2 size, ClientSocket handler) {
             this.screenCoordinates = screenCoordinates;
             ColorAndWidth = colorAndWidth;
             this.size = size;

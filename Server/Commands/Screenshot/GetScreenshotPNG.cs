@@ -6,9 +6,9 @@ using JustUnityTester.Server;
 
 namespace JustUnityTester.Server.Commands {
     class GetScreenshotPNG : Command {
-        AltClientSocketHandler handler;
+        ClientSocket handler;
 
-        public GetScreenshotPNG(AltClientSocketHandler handler) {
+        public GetScreenshotPNG(ClientSocket handler) {
             this.handler = handler;
         }
 

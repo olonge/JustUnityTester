@@ -4,9 +4,9 @@ namespace JustUnityTester.Server.Commands {
     class LoadScene : Command {
         string scene;
         UnityEngine.SceneManagement.LoadSceneMode mode;
-        AltClientSocketHandler handler;
+        ClientSocket handler;
 
-        public LoadScene(string scene, bool loadSingle, AltClientSocketHandler handler) {
+        public LoadScene(string scene, bool loadSingle, ClientSocket handler) {
             mode = loadSingle
                 ? UnityEngine.SceneManagement.LoadSceneMode.Single
                 : UnityEngine.SceneManagement.LoadSceneMode.Additive;

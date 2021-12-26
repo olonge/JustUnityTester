@@ -5,9 +5,9 @@ namespace JustUnityTester.Server.Commands {
         int id;
         string ColorAndWidth;
         Vector2 size;
-        AltClientSocketHandler handler;
+        ClientSocket handler;
 
-        public HighlightSelectedObject(int id, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
+        public HighlightSelectedObject(int id, string colorAndWidth, Vector2 size, ClientSocket handler) {
             this.id = id;
             ColorAndWidth = colorAndWidth;
             this.size = size;

@@ -1,30 +1,30 @@
 using System.Linq;
 
 namespace JustUnityTester.Server {
-    public interface AltIClientSocketHandlerDelegate {
+    public interface ISocketDelegatable {
         // callback, will be NOT be invoked on main thread, so make sure to synchronize in Unity
-        void ClientSocketHandlerDidReadMessage(AltClientSocketHandler handler, string message);
+        void ReadMessage(ClientSocket socket, string message);
     }
 
-    public class AltClientSocketHandler {
+    public class ClientSocket {
 
         protected readonly System.Net.Sockets.TcpClient Client;
         protected readonly string SeparatorSequence;
         protected readonly char[] SeparatorSequenceChars;
         protected readonly System.Text.Encoding Encoding;
-        protected AltIClientSocketHandlerDelegate ClientSocketHandlerDelegate;
+        protected ISocketDelegatable iClientSocketDelegatable;
         public bool ToBeKilled;
 
 
-        public AltClientSocketHandler(System.Net.Sockets.TcpClient client,
-                                        AltIClientSocketHandlerDelegate clientSocketHandlerDelegate,
+        public ClientSocket(System.Net.Sockets.TcpClient client,
+                                        ISocketDelegatable iClientSocketDelegatable,
                                         string separatorString,
                                         System.Text.Encoding encoding) {
             Client = client;
             Encoding = encoding;
             SeparatorSequence = separatorString;
             SeparatorSequenceChars = separatorString.ToCharArray();
-            ClientSocketHandlerDelegate = clientSocketHandlerDelegate;
+            this.iClientSocketDelegatable = iClientSocketDelegatable;
             ToBeKilled = false;
         }
 
@@ -69,14 +69,14 @@ namespace JustUnityTester.Server {
 
                         // all except the last piece
                         for (int i = 0; i < tokens.Length - 1; i++) {
-                            ClientSocketHandlerDelegate.ClientSocketHandlerDidReadMessage(this, tokens[i]);
+                            iClientSocketDelegatable.ReadMessage(this, tokens[i]);
                         }
 
                         // for the last piece, if the data ended with separator than this is a full token
                         // otherwise, its not so append to data buffer
                         if (endsWithSeparator) {
                             if (tokens[tokens.Length - 1].Length > 0) {
-                                ClientSocketHandlerDelegate.ClientSocketHandlerDidReadMessage(this, tokens[tokens.Length - 1]);
+                                iClientSocketDelegatable.ReadMessage(this, tokens[tokens.Length - 1]);
                             }
                         } else {
                             dataBuffer.Append(tokens[tokens.Length - 1]);

@@ -7,7 +7,7 @@ using JustUnityTester.Server.Commands;
 using JustUnityTester.Server.UI;
 using Newtonsoft.Json;
 
-public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate {
+public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
     enum FindOption { Name, ContainName, Component }
 
     public static TestRunner Instance;
@@ -18,7 +18,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
     public bool AltUnityIconPressed = false;
 
     private UnityEngine.Vector3 _position;
-    private AltSocketServer _socketServer;
+    private SocketServer _socketServer;
 
     public static String logMessage = "";
     public bool logEnabled;
@@ -64,7 +64,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
     public string requestEndingString = "&";
 
 
-    public static AltResponseQueue _responseQueue;
+    public static ResponseQueue _responseQueue;
 
     public bool ShowInputs {
         get => _showInputs;
@@ -92,7 +92,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         StartSocketServer();
 
         UnityEngine.Debug.Log("AltUnity Driver started");
-        _responseQueue = new AltResponseQueue();
+        _responseQueue = new ResponseQueue();
 
         myPathFile = UnityEngine.Application.persistentDataPath + "/AltUnityTesterLogFile.txt";
         UnityEngine.Debug.Log(myPathFile);
@@ -141,13 +141,13 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
     }
 
     public void StartSocketServer() {
-        AltIClientSocketHandlerDelegate clientSocketHandlerDelegate = this;
+        ISocketDelegatable iClientSocketDelegatable = this;
         int maxClients = 1;
 
         System.Text.Encoding encoding = System.Text.Encoding.UTF8;
 
-        _socketServer = new AltSocketServer(
-            clientSocketHandlerDelegate, SocketPortNumber, maxClients, requestEndingString, encoding);
+        _socketServer = new SocketServer(
+            iClientSocketDelegatable, SocketPortNumber, maxClients, requestEndingString, encoding);
 
         try {
             _socketServer.StartListeningForConnections();
@@ -242,7 +242,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         return testObject;
     }
 
-    public void ClientSocketHandlerDidReadMessage(AltClientSocketHandler handler, string message) {
+    public void ReadMessage(ClientSocket handler, string message) {
         string[] separator = new string[] { requestSeparatorString };
         string[] pieces = message.Split(separator, StringSplitOptions.None);
         TestComponent testComponent;
@@ -546,7 +546,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         return null;
     }
 
-    public System.Collections.IEnumerator HighLightSelectedObjectCorutine(UnityEngine.GameObject gameObject, UnityEngine.Color color, float width, UnityEngine.Vector2 size, AltClientSocketHandler handler) {
+    public System.Collections.IEnumerator HighLightSelectedObjectCorutine(UnityEngine.GameObject gameObject, UnityEngine.Color color, float width, UnityEngine.Vector2 size, ClientSocket handler) {
         destroyHightlight = false;
         UnityEngine.Renderer renderer = gameObject.GetComponent<UnityEngine.Renderer>();
         System.Collections.Generic.List<UnityEngine.Shader> originalShaders = new System.Collections.Generic.List<UnityEngine.Shader>();
@@ -580,14 +580,14 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         }
     }
 
-    public System.Collections.IEnumerator TakeTexturedScreenshot(UnityEngine.Vector2 size, AltClientSocketHandler handler) {
+    public System.Collections.IEnumerator TakeTexturedScreenshot(UnityEngine.Vector2 size, ClientSocket handler) {
         yield return new UnityEngine.WaitForEndOfFrame();
         var screenshot = UnityEngine.ScreenCapture.CaptureScreenshotAsTexture();
 
         var response = new ScreenshotReady(screenshot, size).Execute();
         handler.SendResponse(response);
     }
-    public System.Collections.IEnumerator TakeScreenshot(AltClientSocketHandler handler) {
+    public System.Collections.IEnumerator TakeScreenshot(ClientSocket handler) {
         yield return new UnityEngine.WaitForEndOfFrame();
         var screenshot = UnityEngine.ScreenCapture.CaptureScreenshotAsTexture();
         var bytesPNG = UnityEngine.ImageConversion.EncodeToPNG(screenshot);

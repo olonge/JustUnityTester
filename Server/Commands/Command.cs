@@ -1,6 +1,6 @@
 namespace JustUnityTester.Server.Commands {
     public abstract class Command {
-        public void SendResponse(AltClientSocketHandler handler) {
+        public void SendResponse(ClientSocket handler) {
             TestRunner._responseQueue.ScheduleResponse(delegate {
                 string response = null;
                 try {

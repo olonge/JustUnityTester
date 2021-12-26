@@ -1,10 +1,11 @@
-﻿namespace JustUnityTester.Server {
+﻿using System.Collections.Generic;
+
+namespace JustUnityTester.Server {
     public delegate void SendResponse();
 
-    public class AltResponseQueue {
-
-        private System.Collections.Generic.Queue<SendResponse> _responseQueue = new System.Collections.Generic.Queue<SendResponse>();
-        private readonly object _queueLock = new object();
+    public class ResponseQueue {
+        Queue<SendResponse> _responseQueue = new Queue<SendResponse>();
+        readonly object _queueLock = new object();
 
         public void Cycle() {
             lock (_queueLock) {
