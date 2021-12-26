@@ -186,12 +186,12 @@ namespace JustUnityTester {
         }
         public List<string> GetAllScenes() => new AltUnityGetAllScenes(socketSettings).Execute();
         public List<TestObject> GetAllCameras() => new AltUnityGetAllCameras(socketSettings).Execute();
-        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) => new AltUnityGetScreenshot(socketSettings, size).Execute();
+        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) => new Screenshot(socketSettings, size).Execute();
         public TestTextureInformation GetScreenshot(int id, AltUnityColor color, float width, AltUnityVector2 size = default) {
-            return new AltUnityGetScreenshot(socketSettings, id, color, width, size).Execute();
+            return new Screenshot(socketSettings, id, color, width, size).Execute();
         }
         public TestTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
-            return new AltUnityGetScreenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
+            return new Screenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
         }
         public void GetPNGScreenshot(string path) => new PNGScreenshot(socketSettings, path).Execute();
     }

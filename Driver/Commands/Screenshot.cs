@@ -1,8 +1,9 @@
 using JustUnityTester.Core;
 using JustUnityTester.Driver.Primitives;
+using Newtonsoft.Json;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetScreenshot : ReturnedElement {
+    public class Screenshot : ReturnedElement {
         int id;
         AltUnityColor color;
         float width;
@@ -11,18 +12,18 @@ namespace JustUnityTester.Driver.Commands {
 
         int option = 0;
 
-        public AltUnityGetScreenshot(SocketSettings socketSettings, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, AltUnityVector2 size) : base(socketSettings) {
             this.size = size;
             option = 1;
         }
-        public AltUnityGetScreenshot(SocketSettings socketSettings, int id, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, int id, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
             this.size = size;
             this.color = color;
             this.width = width;
             this.id = id;
             option = 2;
         }
-        public AltUnityGetScreenshot(SocketSettings socketSettings, AltUnityVector2 coordinates, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, AltUnityVector2 coordinates, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
             this.coordinates = coordinates;
             this.color = color;
             this.width = width;
@@ -53,19 +54,19 @@ namespace JustUnityTester.Driver.Commands {
         }
 
         private TestTextureInformation GetSimpleScreenshot() {
-            var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
+            var sizeSerialized = JsonConvert.SerializeObject(size);
             Socket.Client.Send(toBytes(CreateCommand("getScreenshot", sizeSerialized)));
             return ReceiveImage();
         }
         private TestTextureInformation GetHighlightObjectScreenshot() {
-            var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
+            var sizeSerialized = JsonConvert.SerializeObject(size);
             var colorAndWidth = color.r + "!!" + color.g + "!!" + color.b + "!!" + color.a + "!-!" + width;
             Socket.Client.Send(toBytes(CreateCommand("hightlightObjectScreenshot", id.ToString(), colorAndWidth, sizeSerialized)));
             return ReceiveImage();
         }
         private TestTextureInformation GetHighlightObjectFromCoordinatesScreenshot(out TestObject selectedObject) {
-            var coordinatesSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(coordinates);
-            var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
+            var coordinatesSerialized = JsonConvert.SerializeObject(coordinates);
+            var sizeSerialized = JsonConvert.SerializeObject(size);
             var colorAndWidth = color.r + "!!" + color.g + "!!" + color.b + "!!" + color.a + "!-!" + width;
             Socket.Client.Send(toBytes(CreateCommand("hightlightObjectFromCoordinatesScreenshot", coordinatesSerialized, colorAndWidth, sizeSerialized)));
             selectedObject = ReceiveAltUnityObject();
