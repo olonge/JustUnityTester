@@ -3,7 +3,7 @@ using System.IO;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityBuilder {
+    public class EditorSetup {
         public static string PreviousScenePath;
         public static UnityEngine.SceneManagement.Scene SceneWithAltUnityRunner;
         public static string SceneWithAltUnityRunnerPath;
@@ -49,14 +49,14 @@ namespace JustUnityTester.Editor {
             SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
             var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<AltUnityRunner>();
-            if (AltUnityTesterEditor.EditorConfiguration == null) {
+            if (TesterEditor.Config == null) {
                 component.ShowInputs = false;
                 component.showPopUp = true;
                 component.SocketPortNumber = port;
             } else {
-                component.ShowInputs = AltUnityTesterEditor.EditorConfiguration.inputVisualizer;
-                component.showPopUp = AltUnityTesterEditor.EditorConfiguration.showPopUp;
-                component.SocketPortNumber = AltUnityTesterEditor.EditorConfiguration.serverPort;
+                component.ShowInputs = TesterEditor.Config.inputVisualizer;
+                component.showPopUp = TesterEditor.Config.showPopUp;
+                component.SocketPortNumber = TesterEditor.Config.serverPort;
             }
 
             //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());

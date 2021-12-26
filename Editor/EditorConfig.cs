@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityEditorConfiguration : ScriptableObject {
+    public class EditorConfig : ScriptableObject {
 
         public bool appendToName;
         public string OutputPathName = "";
@@ -12,9 +12,9 @@ namespace JustUnityTester.Editor {
         public bool AutomaticallySign;
         public string SigningTeamId;
         public int BuildNumber = 0;
-        public List<AltUnityMyTest> MyTests = new List<AltUnityMyTest>();
-        public List<AltUnityMyScenes> Scenes = new List<AltUnityMyScenes>();
-        public AltUnityPlatform platform = AltUnityPlatform.Editor;
+        public List<MyTest> MyTests = new List<MyTest>();
+        public List<MyScenes> Scenes = new List<MyScenes>();
+        public TestPlatform platform = TestPlatform.Editor;
         public UnityEditor.BuildTarget standaloneTarget = UnityEditor.BuildTarget.StandaloneWindows;
         public bool ranInEditor = false;
         public string requestSeparator = ";";

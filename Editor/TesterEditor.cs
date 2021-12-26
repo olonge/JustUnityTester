@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityTesterEditor : UnityEditor.EditorWindow {
+    public class TesterEditor : UnityEditor.EditorWindow {
 
-        public static bool needsRepaiting = false;
+        public static bool needsRepainting = false;
 
-        public static AltUnityEditorConfiguration EditorConfiguration;
-        public static AltUnityTesterEditor _window;
+        public static EditorConfig Config;
+        public static TesterEditor _window;
 
         public static NUnit.Framework.Internal.TestSuite _testSuite;
 
@@ -50,17 +50,17 @@ namespace JustUnityTester.Editor {
         public static int reportTestFailed;
         public static double timeTestRan;
 
-        public static List<AltUnityMyDevices> devices = new List<AltUnityMyDevices>();
+        public static List<MyDevices> devices = new List<MyDevices>();
         // public static System.Collections.Generic.Dictionary<string, int> iosForwards = new System.Collections.Generic.Dictionary<string, int>();
 
         // Add menu item named "My Window" to the Window menu
         [UnityEditor.MenuItem("Window/Just Unity Tester/Inspector")]
         public static void ShowWindow() {
-            //Show existing window instance. If one doesn't exist, make one.
-            _window = (AltUnityTesterEditor)GetWindow(typeof(AltUnityTesterEditor));
+            /// Show existing window instance. If one doesn't exist, make one.
+            _window = (TesterEditor)GetWindow(typeof(TesterEditor));
+            _window.titleContent = new UnityEngine.GUIContent("Just Unity Tester");
             _window.minSize = new UnityEngine.Vector2(600, 100);
             _window.Show();
-
         }
 
 
@@ -69,11 +69,11 @@ namespace JustUnityTester.Editor {
             if (UnityEditor.EditorGUIUtility.isProSkin) {
                 color = UnityEngine.Color.white;
             }
-            if (EditorConfiguration == null) {
+            if (Config == null) {
                 InitEditorConfiguration();
             }
             if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/AltUnityTester")) {
-                AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
+                EditorSetup.CreateJsonFileForInputMappingOfAxis();
             }
             if (failIcon == null) {
                 var findIcon = UnityEditor.AssetDatabase.FindAssets("16px-indicator-fail");
@@ -119,36 +119,35 @@ namespace JustUnityTester.Editor {
                 portForwardingTexture = MakeTexture(20, 20, greenColor);
             }
 
-            GetListOfSceneFromEditor();
-            AltUnityTestRunner.SetUpListTest();
-
-
+            AddScenesToConfig();
+            TestRunner.LoadTests();
         }
 
-        private void GetListOfSceneFromEditor() {
-            List<AltUnityMyScenes> newSceneses = new List<AltUnityMyScenes>();
-            foreach (var scene in UnityEditor.EditorBuildSettings.scenes) {
-                newSceneses.Add(new AltUnityMyScenes(scene.enabled, scene.path, 0));
-            }
-
-            EditorConfiguration.Scenes = newSceneses;
+        private void AddScenesToConfig() {
+            var scenes = new List<MyScenes>();
+            foreach (var scene in UnityEditor.EditorBuildSettings.scenes)
+                scenes.Add(new MyScenes(scene.enabled, scene.path, 0));
+            Config.Scenes = scenes;
         }
 
 
         public static void InitEditorConfiguration() {
             if (UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings").Length == 0) {
-                var altUnityEditorFolderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
-                altUnityEditorFolderPath = altUnityEditorFolderPath.Substring(0, altUnityEditorFolderPath.Length - 24);
-                EditorConfiguration = CreateInstance<AltUnityEditorConfiguration>();
-                EditorConfiguration.MyTests = null;
-                UnityEditor.AssetDatabase.CreateAsset(EditorConfiguration, altUnityEditorFolderPath + "/AltUnityTesterEditorSettings.asset");
+
+                var folderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
+                folderPath = folderPath.Substring(0, folderPath.Length - 24);
+
+                Config = CreateInstance<EditorConfig>();
+                Config.MyTests = null;
+
+                UnityEditor.AssetDatabase.CreateAsset(Config, folderPath + "/AltUnityTesterEditorSettings.asset");
                 UnityEditor.AssetDatabase.SaveAssets();
 
             } else {
-                EditorConfiguration = UnityEditor.AssetDatabase.LoadAssetAtPath<AltUnityEditorConfiguration>(
+                Config = UnityEditor.AssetDatabase.LoadAssetAtPath<EditorConfig>(
                     UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings")[0]));
             }
-            UnityEditor.EditorUtility.SetDirty(EditorConfiguration);
+            UnityEditor.EditorUtility.SetDirty(Config);
         }
 
 
@@ -167,22 +166,21 @@ namespace JustUnityTester.Editor {
 
         private void OnGUI() {
 
-            if (needsRepaiting) {
-                needsRepaiting = false;
+            if (needsRepainting) {
+                needsRepainting = false;
                 Repaint();
             }
 
-            if (UnityEngine.Application.isPlaying && !EditorConfiguration.ranInEditor) {
-                EditorConfiguration.ranInEditor = true;
+            if (UnityEngine.Application.isPlaying && !Config.ranInEditor) {
+                Config.ranInEditor = true;
             }
 
-            if (!UnityEngine.Application.isPlaying && EditorConfiguration.ranInEditor) {
+            if (!UnityEngine.Application.isPlaying && Config.ranInEditor) {
                 AfterExitPlayMode();
 
             }
 
             DrawGUI();
-
         }
 
         private void DrawGUI() {
@@ -193,8 +191,8 @@ namespace JustUnityTester.Editor {
             UnityEditor.EditorGUILayout.BeginHorizontal();
             var leftSide = screenWidth / 3 * 2;
             _scrollPosition = UnityEditor.EditorGUILayout.BeginScrollView(_scrollPosition, false, false, UnityEngine.GUILayout.MinWidth(leftSide));
-            if (EditorConfiguration.MyTests != null)
-                DisplayTestGui(EditorConfiguration.MyTests);
+            if (Config.MyTests != null)
+                DisplayTestGui(Config.MyTests);
 
             UnityEditor.EditorGUILayout.Separator();
             UnityEditor.EditorGUILayout.EndScrollView();
@@ -209,15 +207,15 @@ namespace JustUnityTester.Editor {
 
 
             UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
-            UnindentedLabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
-            UnindentedLabelAndCheckboxHorizontalLayout("Show popup", ref EditorConfiguration.showPopUp);
+            UnindentedLabelAndCheckboxHorizontalLayout("Input visualizer:", ref Config.inputVisualizer);
+            UnindentedLabelAndCheckboxHorizontalLayout("Show popup", ref Config.showPopUp);
 
             UnityEditor.EditorGUILayout.Separator();
             UnityEditor.EditorGUILayout.Separator();
             UnityEditor.EditorGUILayout.Separator();
 
             UnityEditor.EditorGUILayout.LabelField("Run", UnityEditor.EditorStyles.boldLabel);
-            if (EditorConfiguration.platform == AltUnityPlatform.Editor) {
+            if (Config.platform == TestPlatform.Editor) {
                 if (UnityEditor.EditorApplication.isPlaying) {
                     UnityEditor.EditorGUI.BeginDisabledGroup(true);
                     UnityEngine.GUILayout.Button("Play in Editor");
@@ -249,12 +247,12 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run All Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run All Tests")) {
-                if (EditorConfiguration.platform == AltUnityPlatform.Editor) {
-                    System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest));
+                if (Config.platform == TestPlatform.Editor) {
+                    System.Threading.Thread testThread = new System.Threading.Thread(() => TestRunner.RunTests(TestRunner.TestRunMode.RunAllTest));
                     testThread.Start();
                 } else {
 
-                    AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest);
+                    TestRunner.RunTests(TestRunner.TestRunMode.RunAllTest);
                 }
             }
 
@@ -263,12 +261,12 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run Selected Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run Selected Tests")) {
-                if (EditorConfiguration.platform == AltUnityPlatform.Editor) {
-                    System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunSelectedTest));
+                if (Config.platform == TestPlatform.Editor) {
+                    System.Threading.Thread testThread = new System.Threading.Thread(() => TestRunner.RunTests(TestRunner.TestRunMode.RunSelectedTest));
                     testThread.Start();
                 } else {
 
-                    AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunSelectedTest);
+                    TestRunner.RunTests(TestRunner.TestRunMode.RunSelectedTest);
                 }
             }
 
@@ -277,12 +275,12 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run Failed Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run Failed Tests")) {
-                if (EditorConfiguration.platform == AltUnityPlatform.Editor) {
-                    System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunFailedTest));
+                if (Config.platform == TestPlatform.Editor) {
+                    System.Threading.Thread testThread = new System.Threading.Thread(() => TestRunner.RunTests(TestRunner.TestRunMode.RunFailedTest));
                     testThread.Start();
                 } else {
 
-                    AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunFailedTest);
+                    TestRunner.RunTests(TestRunner.TestRunMode.RunFailedTest);
                 }
             }
 
@@ -297,12 +295,12 @@ namespace JustUnityTester.Editor {
                 gUIStyle.richText = true;
                 gUIStyle.alignment = UnityEngine.TextAnchor.MiddleCenter;
                 UnityEngine.GUIStyle gUIStyle2 = new UnityEngine.GUIStyle();
-                UnityEditor.EditorGUILayout.LabelField("<b>" + EditorConfiguration.MyTests[selectedTest].TestName + "</b>", gUIStyle);
+                UnityEditor.EditorGUILayout.LabelField("<b>" + Config.MyTests[selectedTest].TestName + "</b>", gUIStyle);
 
 
                 UnityEditor.EditorGUILayout.Separator();
                 string textToDisplayForMessage;
-                if (EditorConfiguration.MyTests[selectedTest].Status == 0) {
+                if (Config.MyTests[selectedTest].Status == 0) {
                     textToDisplayForMessage = "No informartion about this test available.\nPlease rerun the test.";
                     UnityEditor.EditorGUILayout.LabelField(textToDisplayForMessage, gUIStyle, UnityEngine.GUILayout.MinWidth(30));
                 } else {
@@ -311,7 +309,7 @@ namespace JustUnityTester.Editor {
                     gUIStyle.richText = true;
 
                     string status = "";
-                    switch (EditorConfiguration.MyTests[selectedTest].Status) {
+                    switch (Config.MyTests[selectedTest].Status) {
                         case 1:
                             status = "<color=green>Passed</color>";
                             break;
@@ -324,22 +322,22 @@ namespace JustUnityTester.Editor {
 
                     UnityEngine.GUILayout.BeginHorizontal();
                     UnityEditor.EditorGUILayout.LabelField("<b>Time</b>", gUIStyle, UnityEngine.GUILayout.MinWidth(30));
-                    UnityEditor.EditorGUILayout.LabelField(EditorConfiguration.MyTests[selectedTest].TestDuration.ToString(), gUIStyle, UnityEngine.GUILayout.MinWidth(100));
+                    UnityEditor.EditorGUILayout.LabelField(Config.MyTests[selectedTest].TestDuration.ToString(), gUIStyle, UnityEngine.GUILayout.MinWidth(100));
                     UnityEngine.GUILayout.EndHorizontal();
 
                     UnityEngine.GUILayout.BeginHorizontal();
                     UnityEditor.EditorGUILayout.LabelField("<b>Status</b>", gUIStyle, UnityEngine.GUILayout.MinWidth(30));
                     UnityEditor.EditorGUILayout.LabelField(status, gUIStyle, UnityEngine.GUILayout.MinWidth(100));
                     UnityEngine.GUILayout.EndHorizontal();
-                    if (EditorConfiguration.MyTests[selectedTest].Status == -1) {
+                    if (Config.MyTests[selectedTest].Status == -1) {
                         UnityEngine.GUILayout.BeginHorizontal();
                         UnityEditor.EditorGUILayout.LabelField("<b>Message</b>", gUIStyle, UnityEngine.GUILayout.MinWidth(30));
-                        UnityEditor.EditorGUILayout.LabelField(EditorConfiguration.MyTests[selectedTest].TestResultMessage, gUIStyle, UnityEngine.GUILayout.MinWidth(100));
+                        UnityEditor.EditorGUILayout.LabelField(Config.MyTests[selectedTest].TestResultMessage, gUIStyle, UnityEngine.GUILayout.MinWidth(100));
                         UnityEngine.GUILayout.EndHorizontal();
 
                         UnityEngine.GUILayout.BeginHorizontal();
                         UnityEditor.EditorGUILayout.LabelField("<b>StackTrace</b>", gUIStyle, UnityEngine.GUILayout.MinWidth(30));
-                        UnityEditor.EditorGUILayout.LabelField(EditorConfiguration.MyTests[selectedTest].TestStackTrace, gUIStyle, UnityEngine.GUILayout.MinWidth(100));
+                        UnityEditor.EditorGUILayout.LabelField(Config.MyTests[selectedTest].TestStackTrace, gUIStyle, UnityEngine.GUILayout.MinWidth(100));
                         UnityEngine.GUILayout.EndHorizontal();
                     }
                 }
@@ -354,7 +352,7 @@ namespace JustUnityTester.Editor {
         private void AfterExitPlayMode() {
             RemoveAltUnityRunnerPrefab();
             //AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
-            EditorConfiguration.ranInEditor = false;
+            Config.ranInEditor = false;
         }
 
         private static void RemoveAltUnityRunnerPrefab() {
@@ -369,18 +367,16 @@ namespace JustUnityTester.Editor {
                 //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
                 UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
             }
-
         }
 
 
         private void RunInEditor() {
-            AltUnityBuilder.InsertAltUnityInTheActiveScene();
-            AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
+            EditorSetup.InsertAltUnityInTheActiveScene();
+            EditorSetup.CreateJsonFileForInputMappingOfAxis();
 
             /// Stops marking the scripts as dirty causing the IDE to recompile them
             //AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
             UnityEditor.EditorApplication.isPlaying = true;
-
         }
 
         private static void UnindentedLabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable) {
@@ -394,7 +390,7 @@ namespace JustUnityTester.Editor {
         }
 
 
-        private void DisplayTestGui(List<AltUnityMyTest> tests) {
+        private void DisplayTestGui(List<MyTest> tests) {
             UnityEditor.EditorGUILayout.LabelField("Tests list", UnityEditor.EditorStyles.boldLabel);
             UnityEditor.EditorGUILayout.BeginHorizontal();
             UnityEditor.EditorGUILayout.EndHorizontal();
@@ -483,7 +479,7 @@ namespace JustUnityTester.Editor {
             UnityEditor.EditorGUILayout.EndVertical();
         }
 
-        private static void SelectTest(List<AltUnityMyTest> tests, AltUnityMyTest test, string testName, UnityEngine.GUIStyle guiStyle) {
+        private static void SelectTest(List<MyTest> tests, MyTest test, string testName, UnityEngine.GUIStyle guiStyle) {
             if (!test.IsSuite) {
                 if (UnityEngine.GUILayout.Button(testName, guiStyle)) {
                     if (selectedTest == tests.IndexOf(test)) {
@@ -506,26 +502,26 @@ namespace JustUnityTester.Editor {
             }
         }
 
-        private void ChangeSelectionChildsAndParent(AltUnityMyTest test) {
+        private void ChangeSelectionChildsAndParent(MyTest test) {
             if (test.Type.ToString().Equals("NUnit.Framework.Internal.TestAssembly")) {
-                var index = EditorConfiguration.MyTests.IndexOf(test);
-                for (int i = index + 1; i < EditorConfiguration.MyTests.Count; i++) {
-                    if (EditorConfiguration.MyTests[i].Type.ToString().Equals("NUnit.Framework.Internal.TestAssembly")) {
+                var index = Config.MyTests.IndexOf(test);
+                for (int i = index + 1; i < Config.MyTests.Count; i++) {
+                    if (Config.MyTests[i].Type.ToString().Equals("NUnit.Framework.Internal.TestAssembly")) {
                         break;
                     } else {
-                        EditorConfiguration.MyTests[i].Selected = test.Selected;
+                        Config.MyTests[i].Selected = test.Selected;
                     }
                 }
             } else {
                 if (test.IsSuite) {
-                    var index = EditorConfiguration.MyTests.IndexOf(test);
+                    var index = Config.MyTests.IndexOf(test);
                     for (int i = index + 1; i <= index + test.TestCaseCount; i++) {
-                        EditorConfiguration.MyTests[i].Selected = test.Selected;
+                        Config.MyTests[i].Selected = test.Selected;
                     }
                 }
                 if (test.Selected == false) {
                     while (test.ParentName != null) {
-                        test = EditorConfiguration.MyTests.FirstOrDefault(a => a.TestName.Equals(test.ParentName));
+                        test = Config.MyTests.FirstOrDefault(a => a.TestName.Equals(test.ParentName));
                         if (test != null)
                             test.Selected = false;
                         else
@@ -534,25 +530,23 @@ namespace JustUnityTester.Editor {
                 }
 
             }
-
         }
 
         public static void AddAllScenes() {
             var scenesToBeAddedGuid = UnityEditor.AssetDatabase.FindAssets("t:SceneAsset");
-            EditorConfiguration.Scenes = new List<AltUnityMyScenes>();
+            Config.Scenes = new List<MyScenes>();
             foreach (var sceneGuid in scenesToBeAddedGuid) {
                 var scenePath = UnityEditor.AssetDatabase.GUIDToAssetPath(sceneGuid);
-                EditorConfiguration.Scenes.Add(new AltUnityMyScenes(false, scenePath, 0));
+                Config.Scenes.Add(new MyScenes(false, scenePath, 0));
 
             }
 
             UnityEditor.EditorBuildSettings.scenes = PathFromTheSceneInCurrentList();
-
         }
 
         private static UnityEditor.EditorBuildSettingsScene[] PathFromTheSceneInCurrentList() {
             List<UnityEditor.EditorBuildSettingsScene> listofPath = new List<UnityEditor.EditorBuildSettingsScene>();
-            foreach (var scene in EditorConfiguration.Scenes) {
+            foreach (var scene in Config.Scenes) {
                 listofPath.Add(new UnityEditor.EditorBuildSettingsScene(scene.Path, scene.ToBeBuilt));
             }
 
@@ -592,7 +586,6 @@ namespace JustUnityTester.Editor {
              newFilePath
             });
 #endif
-
         }
 
         [UnityEditor.MenuItem("Assets/Create/AltUnityTest", true, 80)]

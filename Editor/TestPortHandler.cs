@@ -1,7 +1,7 @@
 using System.Linq;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityPortHandler {
+    public class TestPortHandler {
 
 
         public static int idIproxyProcess = 0;
@@ -54,7 +54,7 @@ namespace JustUnityTester.Editor {
             }
 
 
-            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+            adbFileName = TesterEditor.Config.AdbPath;
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
@@ -83,7 +83,7 @@ namespace JustUnityTester.Editor {
                 argument = "-s " + deviceId + " forward --remove tcp:" + localPort;
             }
             string adbFileName;
-            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+            adbFileName = TesterEditor.Config.AdbPath;
             var process = new System.Diagnostics.Process();
             var startInfo = new System.Diagnostics.ProcessStartInfo {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
@@ -99,11 +99,11 @@ namespace JustUnityTester.Editor {
         }
 
 
-        public static System.Collections.Generic.List<AltUnityMyDevices> GetDevicesAndroid() {
-            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+        public static System.Collections.Generic.List<MyDevices> GetDevicesAndroid() {
+            System.Collections.Generic.List<MyDevices> devices = new System.Collections.Generic.List<MyDevices>();
             try {
                 string adbFileName;
-                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                adbFileName = TesterEditor.Config.AdbPath;
                 var process = new System.Diagnostics.Process();
                 var startInfo = new System.Diagnostics.ProcessStartInfo {
                     CreateNoWindow = true,
@@ -121,7 +121,7 @@ namespace JustUnityTester.Editor {
                     if (line.Length > 0 && !line.StartsWith("List ")) {
                         var parts = line.Split('\t');
                         string deviceId = parts[0];
-                        devices.Add(new AltUnityMyDevices(deviceId));
+                        devices.Add(new MyDevices(deviceId));
                     }
                 }
                 process.WaitForExit();
@@ -131,12 +131,12 @@ namespace JustUnityTester.Editor {
             }
             return devices;
         }
-        public static System.Collections.Generic.List<AltUnityMyDevices> GetForwardedDevicesAndroid() {
-            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+        public static System.Collections.Generic.List<MyDevices> GetForwardedDevicesAndroid() {
+            System.Collections.Generic.List<MyDevices> devices = new System.Collections.Generic.List<MyDevices>();
             try {
 
                 string adbFileName;
-                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                adbFileName = TesterEditor.Config.AdbPath;
                 var process = new System.Diagnostics.Process();
                 var startInfo = new System.Diagnostics.ProcessStartInfo {
                     CreateNoWindow = true,
@@ -157,7 +157,7 @@ namespace JustUnityTester.Editor {
                             string deviceId = parts[0];
                             int localPort = int.Parse(parts[1].Split(':')[1]);
                             int remotePort = int.Parse(parts[2].Split(':')[1]);
-                            devices.Add(new AltUnityMyDevices(deviceId, localPort, remotePort, true));
+                            devices.Add(new MyDevices(deviceId, localPort, remotePort, true));
                         } catch (System.FormatException) {
                             UnityEngine.Debug.Log("adb forward also has: " + line + " but we did not included in the list");
                         }
