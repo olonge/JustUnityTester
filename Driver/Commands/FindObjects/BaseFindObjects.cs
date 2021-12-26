@@ -1,6 +1,6 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityBaseFindObjects : ReturnedElement {
-        public AltUnityBaseFindObjects(SocketSettings socketSettings) : base(socketSettings) {
+    public class BaseFindObjects : ReturnedElement {
+        public BaseFindObjects(SocketSettings socketSettings) : base(socketSettings) {
         }
         protected string SetPath(By by, string value) {
             string path = "";

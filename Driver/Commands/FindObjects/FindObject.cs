@@ -1,14 +1,14 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityFindObject : AltUnityBaseFindObjects {
+    public class FindObject : BaseFindObjects {
         By by;
         string value;
         By cameraBy;
         string cameraPath;
         bool enabled;
 
-        public AltUnityFindObject(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled) : base(socketSettings) {
+        public FindObject(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled) : base(socketSettings) {
             this.by = by;
             this.value = value;
             this.cameraBy = cameraBy;

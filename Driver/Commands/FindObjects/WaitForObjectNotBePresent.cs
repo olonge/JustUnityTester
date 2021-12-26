@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityWaitForObjectNotBePresent : AltUnityBaseFindObjects {
+    public class WaitForObjectNotBePresent : BaseFindObjects {
         By by;
         string value;
         By cameraBy;
@@ -9,7 +9,7 @@ namespace JustUnityTester.Driver.Commands {
         bool enabled;
         double timeout;
         double interval;
-        public AltUnityWaitForObjectNotBePresent(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
+        public WaitForObjectNotBePresent(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
             this.by = by;
             this.value = value;
             this.cameraBy = cameraBy;
@@ -26,7 +26,7 @@ namespace JustUnityTester.Driver.Commands {
             while (time <= timeout) {
                 found = false;
                 try {
-                    altElement = new AltUnityFindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
+                    altElement = new FindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
                     found = true;
                     System.Threading.Thread.Sleep(System.Convert.ToInt32(interval * 1000));
                     time += interval;

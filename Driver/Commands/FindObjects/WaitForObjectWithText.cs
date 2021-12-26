@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityWaitForObjectWithText : AltUnityBaseFindObjects {
+    public class WaitForObjectWithText : BaseFindObjects {
         By by;
         string value;
         string text;
@@ -10,7 +10,7 @@ namespace JustUnityTester.Driver.Commands {
         bool enabled;
         double timeout;
         double interval;
-        public AltUnityWaitForObjectWithText(SocketSettings socketSettings, By by, string value, string text, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
+        public WaitForObjectWithText(SocketSettings socketSettings, By by, string value, string text, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
             this.by = by;
             this.value = value;
             this.cameraBy = cameraBy;
@@ -26,7 +26,7 @@ namespace JustUnityTester.Driver.Commands {
             TestObject altElement = null;
             while (time < timeout) {
                 try {
-                    altElement = new AltUnityFindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
+                    altElement = new FindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
                     if (altElement.GetText().Equals(text))
                         break;
                     throw new System.Exception("Not the wanted text");

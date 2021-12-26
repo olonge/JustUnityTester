@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityWaitForObject : AltUnityBaseFindObjects {
+    public class WaitForObject : BaseFindObjects {
         By by;
         string value;
         By cameraBy;
@@ -10,7 +10,7 @@ namespace JustUnityTester.Driver.Commands {
         double timeout;
         double interval;
 
-        public AltUnityWaitForObject(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
+        public WaitForObject(SocketSettings socketSettings, By by, string value, By cameraBy, string cameraPath, bool enabled, double timeout, double interval) : base(socketSettings) {
             this.by = by;
             this.value = value;
             this.cameraBy = cameraBy;
@@ -24,7 +24,7 @@ namespace JustUnityTester.Driver.Commands {
             TestObject altElement = null;
             while (time < timeout) {
                 try {
-                    altElement = new AltUnityFindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
+                    altElement = new FindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
                     break;
                 } catch (System.Exception) {
                     System.Diagnostics.Debug.WriteLine("Waiting for element where name contains " + value + "....");

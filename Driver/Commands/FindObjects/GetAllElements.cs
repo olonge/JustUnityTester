@@ -1,11 +1,11 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetAllElements : AltUnityBaseFindObjects {
+    public class GetAllElements : BaseFindObjects {
         By cameraBy;
         string cameraPath;
         bool enabled;
-        public AltUnityGetAllElements(SocketSettings socketSettings, By cameraBy, string cameraPath, bool enabled) : base(socketSettings) {
+        public GetAllElements(SocketSettings socketSettings, By cameraBy, string cameraPath, bool enabled) : base(socketSettings) {
             this.cameraBy = cameraBy;
             this.cameraPath = cameraPath;
             this.enabled = enabled;
