@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetAllMethods : AltBaseCommand {
+    public class AltUnityGetAllMethods : BaseCommand {
         TestComponent testComponent;
         TestObject altUnityObject;
         TestMethodSelection methodSelection;

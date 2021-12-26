@@ -1,7 +1,7 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySwipeAndWait : AltBaseCommand {
+    public class AltUnitySwipeAndWait : BaseCommand {
         AltUnityVector2 start;
         AltUnityVector2 end;
         float duration;

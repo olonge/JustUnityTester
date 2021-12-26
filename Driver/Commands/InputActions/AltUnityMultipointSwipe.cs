@@ -1,7 +1,7 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityMultipointSwipe : AltBaseCommand {
+    public class AltUnityMultipointSwipe : BaseCommand {
         AltUnityVector2[] positions;
         float duration;
 

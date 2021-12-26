@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetComponentProperty : AltBaseCommand {
+    public class AltUnityGetComponentProperty : BaseCommand {
         string componentName;
         string propertyName;
         string assemblyName;

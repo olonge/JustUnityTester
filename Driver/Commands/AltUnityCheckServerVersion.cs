@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityCheckServerVersion : AltBaseCommand {
+    public class AltUnityCheckServerVersion : BaseCommand {
         public AltUnityCheckServerVersion(SocketSettings socketSettings) : base(socketSettings) {
         }
         public string Execute() {

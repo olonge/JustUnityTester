@@ -3,11 +3,11 @@ using JustUnityTester.Driver.Primitives;
 using System.Linq;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltBaseCommand {
+    public class BaseCommand {
         private static int BUFFER_SIZE = 1024;
         protected SocketSettings SocketSettings;
         protected System.Net.Sockets.TcpClient Socket;
-        public AltBaseCommand(SocketSettings socketSettings) {
+        public BaseCommand(SocketSettings socketSettings) {
             SocketSettings = socketSettings;
             Socket = SocketSettings.socket;
         }

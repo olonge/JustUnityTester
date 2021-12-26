@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTapCustom : AltBaseCommand {
+    public class AltUnityTapCustom : BaseCommand {
         float x;
         float y;
         int count;

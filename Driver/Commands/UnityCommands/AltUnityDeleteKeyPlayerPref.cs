@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityDeleteKeyPlayerPref : AltBaseCommand {
+    public class AltUnityDeleteKeyPlayerPref : BaseCommand {
         string keyName;
         public AltUnityDeleteKeyPlayerPref(SocketSettings socketSettings, string keyname) : base(socketSettings) {
             keyName = keyname;

@@ -1,7 +1,7 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTilt : AltBaseCommand {
+    public class AltUnityTilt : BaseCommand {
         AltUnityVector3 acceleration;
         float duration;
         public AltUnityTilt(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {

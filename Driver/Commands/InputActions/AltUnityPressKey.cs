@@ -1,7 +1,7 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityPressKey : AltBaseCommand {
+    public class AltUnityPressKey : BaseCommand {
         AltUnityKeyCode keyCode;
         float power;
         float duration;

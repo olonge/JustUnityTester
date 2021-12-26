@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityScrollMouseAndWait : AltBaseCommand {
+    public class AltUnityScrollMouseAndWait : BaseCommand {
         float speed;
         float duration;
         public AltUnityScrollMouseAndWait(SocketSettings socketSettings, float speed, float duration) : base(socketSettings) {

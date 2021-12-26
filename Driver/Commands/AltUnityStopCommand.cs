@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityStopCommand : AltBaseCommand {
+    public class AltUnityStopCommand : BaseCommand {
         public AltUnityStopCommand(SocketSettings socketSettings) : base(socketSettings) {
         }
         public void Execute() {

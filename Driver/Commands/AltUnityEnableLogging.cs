@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityEnableLogging : AltBaseCommand {
+    public class AltUnityEnableLogging : BaseCommand {
         public AltUnityEnableLogging(SocketSettings socketSettings) : base(socketSettings) {
         }
         public void Execute() {

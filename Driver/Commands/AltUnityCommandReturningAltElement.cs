@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityCommandReturningAltElement : AltBaseCommand {
+    public class AltUnityCommandReturningAltElement : BaseCommand {
         public AltUnityCommandReturningAltElement(SocketSettings socketSettings) : base(socketSettings) {
         }
 

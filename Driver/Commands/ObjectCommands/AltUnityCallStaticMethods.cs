@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityCallStaticMethods : AltBaseCommand {
+    public class AltUnityCallStaticMethods : BaseCommand {
         string typeName;
         string methodName;
         string parameters;

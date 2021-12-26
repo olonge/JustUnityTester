@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetPNGScreenshot : AltBaseCommand {
+    public class AltUnityGetPNGScreenshot : BaseCommand {
         string path;
         public AltUnityGetPNGScreenshot(SocketSettings socketSettings, string path) : base(socketSettings) {
             this.path = path;

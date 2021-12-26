@@ -3,7 +3,7 @@ using JustUnityTester.Core;
 using Newtonsoft.Json;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetAllComponents : AltBaseCommand {
+    public class AltUnityGetAllComponents : BaseCommand {
         TestObject AltUnityObject;
 
         public AltUnityGetAllComponents(SocketSettings socketSettings, TestObject altUnityObject) : base(socketSettings) {

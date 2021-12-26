@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTapScreen : AltBaseCommand {
+    public class AltUnityTapScreen : BaseCommand {
         float x;
         float y;
         public AltUnityTapScreen(SocketSettings socketSettings, float x, float y) : base(socketSettings) {
