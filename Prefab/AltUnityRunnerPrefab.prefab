@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 222994267543958294}
   - component: {fileID: 114138382158970806}
   m_Layer: 0
-  m_Name: AltUnityTesterTitleText
+  m_Name: TesterTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AltUnityTester v.1.5.6
+  m_Text: Just-Unity-Tester v.1.0.0
 --- !u!1 &1434420373844080
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 222979366387825262}
   - component: {fileID: 114299953858491160}
   m_Layer: 0
-  m_Name: LookingForConnections
+  m_Name: PopUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,15 +704,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d64f576b163a84c53be56deef13c731f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AltUnityPopUp: {fileID: 1166850336722808}
-  AltUnityIcon: {fileID: 114444481275187822}
-  AltUnityPopUpText: {fileID: 114299953858491160}
+  PopUp: {fileID: 1166850336722808}
+  Icon: {fileID: 114444481275187822}
+  PopUpText: {fileID: 114299953858491160}
   AltUnityIconPressed: 0
   logEnabled: 0
   _showInputs: 0
   _inputsVisualiser: {fileID: 114264291789795184}
   showPopUp: 0
-  AltUnityPopUpCanvas: {fileID: 1984498899790160}
+  PopUpCanvas: {fileID: 1984498899790160}
   destroyHightlight: 0
   SocketPortNumber: 13000
   DebugBuildNeeded: 1

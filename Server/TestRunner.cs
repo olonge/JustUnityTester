@@ -12,10 +12,10 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
 
     public static TestRunner Instance;
 
-    public UnityEngine.GameObject AltUnityPopUp;
-    public UnityEngine.UI.Image AltUnityIcon;
-    public UnityEngine.UI.Text AltUnityPopUpText;
-    public bool AltUnityIconPressed = false;
+    public UnityEngine.GameObject PopUp;
+    public UnityEngine.UI.Image Icon;
+    public UnityEngine.UI.Text PopUpText;
+    public bool IsIconPressed = false;
 
     private UnityEngine.Vector3 _position;
     private SocketServer _socketServer;
@@ -53,7 +53,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
     [UnityEngine.Space]
 
     public bool showPopUp;
-    [UnityEngine.SerializeField] private UnityEngine.GameObject AltUnityPopUpCanvas = null;
+    [UnityEngine.SerializeField] private UnityEngine.GameObject PopUpCanvas = null;
     public bool destroyHightlight = false;
     public int SocketPortNumber = 13000;
     public bool DebugBuildNeeded = true;
@@ -80,7 +80,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
             Destroy(this.gameObject);
 
         if (DebugBuildNeeded && !UnityEngine.Debug.isDebugBuild)
-            UnityEngine.Debug.Log("AltTester will not run if this is not a Debug/Development build");
+            UnityEngine.Debug.Log("Tester will not run if this is not a Debug/Development build");
         else
             DontDestroyOnLoad(this);
 
@@ -91,17 +91,17 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
 
         StartSocketServer();
 
-        UnityEngine.Debug.Log("AltUnity Driver started");
+        UnityEngine.Debug.Log("Driver started");
         _responseQueue = new ResponseQueue();
 
-        myPathFile = UnityEngine.Application.persistentDataPath + "/AltUnityTesterLogFile.txt";
+        myPathFile = UnityEngine.Application.persistentDataPath + "/JustUnityTesterLogFile.txt";
         UnityEngine.Debug.Log(myPathFile);
 
         FileWriter = new StreamWriter(myPathFile, true);
         if (showPopUp == false)
-            AltUnityPopUpCanvas.SetActive(false);
+            PopUpCanvas.SetActive(false);
         else
-            AltUnityPopUpCanvas.SetActive(true);
+            PopUpCanvas.SetActive(true);
     }
 
 
@@ -112,18 +112,18 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
             return;
         }
 #endif
-        if (!AltUnityIconPressed) {
+        if (!IsIconPressed) {
             if (_socketServer.ClientCount != 0) {
-                AltUnityPopUp.SetActive(false);
+                PopUp.SetActive(false);
             } else {
-                AltUnityPopUp.SetActive(true);
+                PopUp.SetActive(true);
             }
         }
         if (!_socketServer.IsServerStopped()) {
-            AltUnityIcon.color = UnityEngine.Color.white;
+            Icon.color = UnityEngine.Color.white;
         } else {
-            AltUnityIcon.color = UnityEngine.Color.red;
-            AltUnityPopUpText.text = "Server stopped working." + Environment.NewLine + " Please restart the server";
+            Icon.color = UnityEngine.Color.red;
+            PopUpText.text = "Server stopped working." + Environment.NewLine + " Please restart the server";
         }
         _responseQueue.Cycle();
     }
@@ -151,16 +151,16 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
 
         try {
             _socketServer.StartListeningForConnections();
-            AltUnityPopUpText.text = "Waiting for connection" + Environment.NewLine + "on port " + _socketServer.PortNumber + "...";
+            PopUpText.text = "Waiting for connection" + Environment.NewLine + "on port " + _socketServer.PortNumber + "...";
             UnityEngine.Debug.Log(string.Format(
-                "AltUnity Server at {0} on port {1}",
+                "Server at {0} on port {1}",
                 _socketServer.LocalEndPoint.Address, _socketServer.PortNumber));
         } catch (SocketException ex) {
             if (ex.Message.Contains("Only one usage of each socket address")) {
-                AltUnityPopUpText.text = "Cannot start AltUnity Server. Another process is listening on port " + SocketPortNumber;
+                PopUpText.text = "Cannot start Server. Another process is listening on port " + SocketPortNumber;
             } else {
                 UnityEngine.Debug.LogError(ex);
-                AltUnityPopUpText.text = "An error occured while starting AltUnity Server.";
+                PopUpText.text = "An error occured while starting the Server.";
             }
         }
     }
@@ -510,20 +510,20 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
     }
 
     public void ServerRestartPressed() {
-        AltUnityIconPressed = false;
+        IsIconPressed = false;
         _socketServer.Cleanup();
         StartSocketServer();
-        AltUnityPopUp.SetActive(true);
+        PopUp.SetActive(true);
     }
 
     public void IconPressed() {
-        AltUnityPopUp.SetActive(!AltUnityPopUp.activeSelf);
-        AltUnityIconPressed = !AltUnityIconPressed;
+        PopUp.SetActive(!PopUp.activeSelf);
+        IsIconPressed = !IsIconPressed;
     }
 
-    public static UnityEngine.GameObject GetGameObject(TestObject altUnityObject) {
+    public static UnityEngine.GameObject GetGameObject(TestObject testObject) {
         foreach (UnityEngine.GameObject gameObject in UnityEngine.Resources.FindObjectsOfTypeAll<UnityEngine.GameObject>()) {
-            if (gameObject.GetInstanceID() == altUnityObject.id)
+            if (gameObject.GetInstanceID() == testObject.id)
                 return gameObject;
         }
         throw new JustUnityTester.Exceptions.NotFoundException("Object not found");
