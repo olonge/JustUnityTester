@@ -390,6 +390,14 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             } else if (UnityEngine.GUILayout.Button("Play in Editor")) {
                 RunInEditor();
             }
+
+            if (!UnityEditor.EditorApplication.isPlaying) {
+                UnityEditor.EditorGUI.BeginDisabledGroup(true);
+                UnityEngine.GUILayout.Button("End Tests");
+                UnityEditor.EditorGUI.EndDisabledGroup();
+            } else if (UnityEngine.GUILayout.Button("End Tests")) {
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
         }
         else
         {
