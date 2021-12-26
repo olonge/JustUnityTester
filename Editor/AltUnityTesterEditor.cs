@@ -755,7 +755,9 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     {
         AltUnityBuilder.InsertAltUnityInTheActiveScene();
         AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
-        AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
+
+        /// Stops marking the scripts as dirty causing the IDE to recompile them
+        //AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
         UnityEditor.EditorApplication.isPlaying = true;
 
     }
