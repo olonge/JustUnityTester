@@ -308,7 +308,7 @@ public class AltUnityBuilder
             component.SocketPortNumber = AltUnityTesterEditor.EditorConfiguration.serverPort;
         }
 
-        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+        //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
         UnityEngine.Debug.Log("Scene successfully modified.");
     }
@@ -335,7 +335,8 @@ public class AltUnityBuilder
         altUnityRunnerComponent.requestSeparatorString = AltUnityTesterEditor.EditorConfiguration.requestSeparator;
         altUnityRunnerComponent.ShowInputs = AltUnityTesterEditor.EditorConfiguration.inputVisualizer;
         altUnityRunnerComponent.showPopUp = AltUnityTesterEditor.EditorConfiguration.showPopUp;
-        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+
+        //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
         UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
 
         try
