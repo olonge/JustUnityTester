@@ -50,6 +50,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     private bool _foldOutBuildSettings = true;
     private bool _foldOutIosSettings = true;
     private bool _foldOutAltUnityServerSettings = true;
+    private bool _foldOutVisuals = true;
 
     //TestResult after running a test
     public static bool isTestRunResultAvailable = false;
@@ -235,15 +236,15 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
         UnityEditor.EditorGUILayout.Separator();
 
-        DisplayBuildSettings();
+        //DisplayBuildSettings();
 
-        UnityEditor.EditorGUILayout.Separator();
+        //UnityEditor.EditorGUILayout.Separator();
 
-        DisplayAltUnityServerSettings();
+        //DisplayAltUnityServerSettings();
 
-        UnityEditor.EditorGUILayout.Separator();
+        //UnityEditor.EditorGUILayout.Separator();
 
-        DisplayPortForwarding(leftSide);
+        //DisplayPortForwarding(leftSide);
 
 
         UnityEditor.EditorGUILayout.EndScrollView();
@@ -314,12 +315,12 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup = UnityEditor.BuildTargetGroup.iOS;
             }
         }
-#endif
+#endif*/
 
 
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
-        UnityEditor.EditorGUILayout.Separator();*/
+        UnityEditor.EditorGUILayout.Separator();
 
         
         if (AltUnityBuilder.built)
@@ -376,7 +377,15 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.EndDisabledGroup();
         }*/
 
-        UnityEditor.EditorGUILayout.Separator();
+        //UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
+        _foldOutVisuals = UnityEditor.EditorGUILayout.Foldout(_foldOutVisuals, "Visuals");
+        if (_foldOutVisuals) {            
+            LabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
+            LabelAndCheckboxHorizontalLayout("Show popup", ref EditorConfiguration.showPopUp);
+
+        }
+
+            UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
 
