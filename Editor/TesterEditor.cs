@@ -213,7 +213,7 @@ namespace JustUnityTester.Editor {
             UnityEditor.EditorGUILayout.Separator();
 
             UnityEditor.EditorGUILayout.LabelField("Run", UnityEditor.EditorStyles.boldLabel);
-            if (Config.platform == AltUnityPlatform.Editor) {
+            if (Config.platform == TestPlatform.Editor) {
                 if (UnityEditor.EditorApplication.isPlaying) {
                     UnityEditor.EditorGUI.BeginDisabledGroup(true);
                     UnityEngine.GUILayout.Button("Play in Editor");
@@ -245,7 +245,7 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run All Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run All Tests")) {
-                if (Config.platform == AltUnityPlatform.Editor) {
+                if (Config.platform == TestPlatform.Editor) {
                     System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest));
                     testThread.Start();
                 } else {
@@ -259,7 +259,7 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run Selected Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run Selected Tests")) {
-                if (Config.platform == AltUnityPlatform.Editor) {
+                if (Config.platform == TestPlatform.Editor) {
                     System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunSelectedTest));
                     testThread.Start();
                 } else {
@@ -273,7 +273,7 @@ namespace JustUnityTester.Editor {
                 UnityEngine.GUILayout.Button("Run Failed Tests");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             } else if (UnityEngine.GUILayout.Button("Run Failed Tests")) {
-                if (Config.platform == AltUnityPlatform.Editor) {
+                if (Config.platform == TestPlatform.Editor) {
                     System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunFailedTest));
                     testThread.Start();
                 } else {

@@ -1,5 +1,5 @@
 namespace JustUnityTester.Editor {
-    public enum AltUnityPlatform {
+    public enum TestPlatform {
         Android,
 #if UNITY_EDITOR_OSX
     iOS,

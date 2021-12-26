@@ -35,7 +35,7 @@ namespace JustUnityTester.Editor {
             });
 
             runTestThread.Start();
-            if (TesterEditor.Config.platform != AltUnityPlatform.Editor) {
+            if (TesterEditor.Config.platform != TestPlatform.Editor) {
                 float previousProgres = progress - 1;
                 while (runTestThread.IsAlive) {
                     if (previousProgres == progress) continue;
@@ -46,7 +46,7 @@ namespace JustUnityTester.Editor {
             }
 
             runTestThread.Join();
-            if (TesterEditor.Config.platform != AltUnityPlatform.Editor) {
+            if (TesterEditor.Config.platform != TestPlatform.Editor) {
                 TesterEditor.needsRepaiting = true;
                 UnityEditor.EditorUtility.ClearProgressBar();
             }
