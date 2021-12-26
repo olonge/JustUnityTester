@@ -197,13 +197,13 @@ namespace JustUnityTester {
         public System.Collections.Generic.List<TestObject> GetAllCameras() {
             return new AltUnityGetAllCameras(socketSettings).Execute();
         }
-        public AltUnityTextureInformation GetScreenshot(AltUnityVector2 size = default) {
+        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, size).Execute();
         }
-        public AltUnityTextureInformation GetScreenshot(int id, AltUnityColor color, float width, AltUnityVector2 size = default) {
+        public TestTextureInformation GetScreenshot(int id, AltUnityColor color, float width, AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, id, color, width, size).Execute();
         }
-        public AltUnityTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
+        public TestTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
 
         }

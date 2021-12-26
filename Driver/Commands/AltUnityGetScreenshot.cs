@@ -29,7 +29,7 @@ namespace JustUnityTester.Driver.Commands {
             this.size = size;
             option = 3;
         }
-        public AltUnityTextureInformation Execute(out TestObject selectedObject) {
+        public TestTextureInformation Execute(out TestObject selectedObject) {
             selectedObject = null;
             switch (option) {
                 case 2:
@@ -40,7 +40,7 @@ namespace JustUnityTester.Driver.Commands {
                     return GetSimpleScreenshot();
             }
         }
-        public AltUnityTextureInformation Execute() {
+        public TestTextureInformation Execute() {
             TestObject selectedObject = null;
             switch (option) {
                 case 2:
@@ -52,18 +52,18 @@ namespace JustUnityTester.Driver.Commands {
             }
         }
 
-        private AltUnityTextureInformation GetSimpleScreenshot() {
+        private TestTextureInformation GetSimpleScreenshot() {
             var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
             Socket.Client.Send(toBytes(CreateCommand("getScreenshot", sizeSerialized)));
             return ReceiveImage();
         }
-        private AltUnityTextureInformation GetHighlightObjectScreenshot() {
+        private TestTextureInformation GetHighlightObjectScreenshot() {
             var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
             var colorAndWidth = color.r + "!!" + color.g + "!!" + color.b + "!!" + color.a + "!-!" + width;
             Socket.Client.Send(toBytes(CreateCommand("hightlightObjectScreenshot", id.ToString(), colorAndWidth, sizeSerialized)));
             return ReceiveImage();
         }
-        private AltUnityTextureInformation GetHighlightObjectFromCoordinatesScreenshot(out TestObject selectedObject) {
+        private TestTextureInformation GetHighlightObjectFromCoordinatesScreenshot(out TestObject selectedObject) {
             var coordinatesSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(coordinates);
             var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
             var colorAndWidth = color.r + "!!" + color.g + "!!" + color.b + "!!" + color.a + "!-!" + width;
