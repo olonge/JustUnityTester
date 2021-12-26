@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class SetKeyPlayerPref : AltUnityCommand {
+    class SetKeyPlayerPref : Command {
         PLayerPrefKeyType type;
         string keyName;
         string value;

@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class FindAllObjects : AltUnityCommand {
+    class FindAllObjects : Command {
         string methodParameter;
 
         public FindAllObjects(string methodParameter) {

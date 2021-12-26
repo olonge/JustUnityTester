@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class FindObjects_Old : AltUnityCommand {
+    class FindObjects_Old : Command {
 
         protected UnityEngine.GameObject FindObjectInScene(string objectName, bool enabled) {
             string[] pathList = objectName.Split('/');

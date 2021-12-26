@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class ScrollMousd : AltUnityCommand {
+    class ScrollMousd : Command {
         float scrollValue;
         float duration;
 

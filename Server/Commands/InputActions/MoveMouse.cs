@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class MoveMouse : AltUnityCommand {
+    class MoveMouse : Command {
         Vector2 location;
         float duration;
 

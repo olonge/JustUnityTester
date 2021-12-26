@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class DeletePlayerPref : AltUnityCommand {
+    class DeletePlayerPref : Command {
 
         public override string Execute() {
             TestRunner.Instance.LogMessage("deletePlayerPref");

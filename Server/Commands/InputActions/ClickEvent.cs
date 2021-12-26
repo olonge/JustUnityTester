@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class ClickEvent : AltUnityCommand {
+    class ClickEvent : Command {
         readonly TestObject testObject;
 
         public ClickEvent(TestObject testObject) => this.testObject = testObject;

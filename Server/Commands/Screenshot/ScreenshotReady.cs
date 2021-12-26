@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class ScreenshotReady : AltUnityCommand {
+    class ScreenshotReady : Command {
         Texture2D screenshot;
         Vector2 size;
 
@@ -29,7 +29,7 @@ namespace JustUnityTester.Server.Commands {
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             });
 
-            AltUnityTextureScale.Bilinear(screenshot, width, height);
+            TextureScale.Bilinear(screenshot, width, height);
             screenshot.Apply(true);
             screenshot.Compress(false);
             screenshot.Apply(false);

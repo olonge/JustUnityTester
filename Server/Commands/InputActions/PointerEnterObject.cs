@@ -1,7 +1,7 @@
 ﻿using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class PointerEnterObject : AltUnityCommand {
+    class PointerEnterObject : Command {
         TestObject altUnityObject;
 
         public PointerEnterObject(TestObject altUnityObject) {

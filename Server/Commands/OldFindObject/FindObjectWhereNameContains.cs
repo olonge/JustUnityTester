@@ -1,7 +1,7 @@
 using System.Linq;
 
 namespace JustUnityTester.Server.Commands {
-    class FindObjectWhereNameContains : AltUnityCommand {
+    class FindObjectWhereNameContains : Command {
         string methodParameters;
 
         public FindObjectWhereNameContains(string methodParameters) {

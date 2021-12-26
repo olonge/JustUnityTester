@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class HighlightSelectedObject : AltUnityCommand {
+    class HighlightSelectedObject : Command {
         int id;
         string ColorAndWidth;
         Vector2 size;

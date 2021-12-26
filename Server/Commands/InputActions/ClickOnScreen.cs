@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    public class ClickOnScreen : AltUnityCommand {
+    public class ClickOnScreen : Command {
         UnityEngine.Vector2 position;
         string count;
         string interval;

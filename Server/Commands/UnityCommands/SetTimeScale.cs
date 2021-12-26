@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class SetTimeScale : AltUnityCommand {
+    class SetTimeScale : Command {
         float timeScale;
 
         public SetTimeScale(float timeScale) {

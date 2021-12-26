@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    public class AltUnityTextureScale {
+    public class TextureScale {
         public class AltUnityThreadData {
             public int start;
             public int end;

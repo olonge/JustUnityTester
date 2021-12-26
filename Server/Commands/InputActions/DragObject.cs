@@ -1,7 +1,7 @@
 ﻿using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class DragObject : AltUnityCommand {
+    class DragObject : Command {
         UnityEngine.Vector2 position;
         TestObject altUnityObject;
 

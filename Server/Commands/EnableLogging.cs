@@ -1,8 +1,8 @@
 namespace JustUnityTester.Server.Commands {
-    class AltUnityEnableLoggingCommand : AltUnityCommand {
+    class EnableLogging : Command {
         bool activateDebug;
 
-        public AltUnityEnableLoggingCommand(bool activateDebug) {
+        public EnableLogging(bool activateDebug) {
             this.activateDebug = activateDebug;
         }
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class HoldButton : AltUnityCommand {
+    class HoldButton : Command {
         KeyCode keyCode;
         float power;
         float duration;

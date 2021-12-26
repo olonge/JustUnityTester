@@ -1,7 +1,7 @@
 using JustUnityTester.Server;
 
 namespace JustUnityTester.Server.Commands {
-    class LoadScene : AltUnityCommand {
+    class LoadScene : Command {
         string scene;
         UnityEngine.SceneManagement.LoadSceneMode mode;
         AltClientSocketHandler handler;

@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class Tap : AltUnityCommand {
+    class Tap : Command {
         TestObject altUnityObject;
         int count;
 

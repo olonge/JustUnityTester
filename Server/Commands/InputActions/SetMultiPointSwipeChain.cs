@@ -1,7 +1,7 @@
 using System.Linq;
 
 namespace JustUnityTester.Server.Commands {
-    public class SetMultiPointSwipeChain : AltUnityCommand {
+    public class SetMultiPointSwipeChain : Command {
         UnityEngine.Vector2[] positions;
         string duration;
 

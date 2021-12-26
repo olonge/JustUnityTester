@@ -1,7 +1,7 @@
 using System.Text;
 
 namespace JustUnityTester.Server.Commands {
-    class ScreenshotPNGReady : AltUnityCommand {
+    class ScreenshotPNGReady : Command {
         byte[] screenshotData;
 
         public ScreenshotPNGReady(byte[] screenshotData) {

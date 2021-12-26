@@ -2,7 +2,7 @@ using JustUnityTester.Core;
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class HightlightObjectFromCoordinates : AltUnityCommand {
+    class HightlightObjectFromCoordinates : Command {
         Vector2 screenCoordinates;
         string ColorAndWidth;
         Vector2 size;

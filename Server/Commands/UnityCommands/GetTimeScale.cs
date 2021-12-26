@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class GetTimeScale : AltUnityCommand {
+    class GetTimeScale : Command {
         public override string Execute() {
             TestRunner.Instance.LogMessage("GetTimeScale");
             string response = TestRunner.Instance.errorCouldNotPerformOperationMessage;

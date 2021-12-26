@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class Tilt : AltUnityCommand {
+    class Tilt : Command {
         UnityEngine.Vector3 acceleration;
         float duration;
 

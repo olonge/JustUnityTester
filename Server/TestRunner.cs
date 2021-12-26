@@ -250,7 +250,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         string methodParameters;
         UnityEngine.Vector2 size;
         PLayerPrefKeyType option;
-        AltUnityCommand command = null;
+        Command command = null;
 
         try {
             switch (pieces[0]) {
@@ -453,7 +453,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "enableLogging":
                     var enableLogging = bool.Parse(pieces[1]);
-                    command = new AltUnityEnableLoggingCommand(enableLogging);
+                    command = new EnableLogging(enableLogging);
                     break;
 
                 case "getText":
@@ -468,12 +468,12 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new GetScreenshotPNG(handler);
                     break;
                 case "getServerVersion":
-                    command = new AltUnityGetServerVersionCommand();
+                    command = new GetServerVersion();
                     break;
 
 
                 default:
-                    command = new AltUnityUnknowStringCommand();
+                    command = new UnknownCommand();
                     break;
             }
         } catch (JsonException exception) {

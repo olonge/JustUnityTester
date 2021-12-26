@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    class ClickOnScreenAtPos : AltUnityCommand {
+    class ClickOnScreenAtPos : Command {
         string x;
         string y;
 

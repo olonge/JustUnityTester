@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class AltUnityUnknowStringCommand : AltUnityCommand {
+    class UnknownCommand : Command {
         public override string Execute() {
             return TestRunner.Instance.errorUnknownError;
         }
