@@ -2,14 +2,14 @@ using JustUnityTester.Core;
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityHightlightObjectFromCoordinatesCommand : AltUnityCommand {
+    class HightlightObjectFromCoordinates : AltUnityCommand {
         Vector2 screenCoordinates;
         string ColorAndWidth;
         Vector2 size;
         AltClientSocketHandler handler;
 
 
-        public AltUnityHightlightObjectFromCoordinatesCommand(Vector2 screenCoordinates, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
+        public HightlightObjectFromCoordinates(Vector2 screenCoordinates, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
             this.screenCoordinates = screenCoordinates;
             ColorAndWidth = colorAndWidth;
             this.size = size;
@@ -48,7 +48,7 @@ namespace JustUnityTester.Server.Commands {
                 TestRunner.Instance.StartCoroutine(TestRunner.Instance.HighLightSelectedObjectCorutine(hits[hits.Length - 1].transform.gameObject, color, width, size, handler));
             } else {
                 handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(new TestObject("Null")));
-                new AltUnityGetScreenshotCommand(size, handler).Execute();
+                new GetScreenshot(size, handler).Execute();
             }
             return "Ok";
         }

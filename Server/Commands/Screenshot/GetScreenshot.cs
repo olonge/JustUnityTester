@@ -2,11 +2,11 @@ using JustUnityTester.Server;
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetScreenshotCommand : AltUnityCommand {
+    class GetScreenshot : AltUnityCommand {
         Vector2 size;
         AltClientSocketHandler handler;
 
-        public AltUnityGetScreenshotCommand(Vector2 size, AltClientSocketHandler handler) {
+        public GetScreenshot(Vector2 size, AltClientSocketHandler handler) {
             this.size = size;
             this.handler = handler;
         }

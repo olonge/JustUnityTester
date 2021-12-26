@@ -1,10 +1,10 @@
 using System.Text;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityScreenshotPNGReadyCommand : AltUnityCommand {
+    class ScreenshotPNGReady : AltUnityCommand {
         byte[] screenshotData;
 
-        public AltUnityScreenshotPNGReadyCommand(byte[] screenshotData) {
+        public ScreenshotPNGReady(byte[] screenshotData) {
             this.screenshotData = screenshotData;
         }
 

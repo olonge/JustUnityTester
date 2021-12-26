@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityScreenshotReadyCommand : AltUnityCommand {
+    class ScreenshotReady : AltUnityCommand {
         Texture2D screenshot;
         Vector2 size;
 
-        public AltUnityScreenshotReadyCommand(Texture2D screenshot, Vector2 size) {
+        public ScreenshotReady(Texture2D screenshot, Vector2 size) {
             this.screenshot = screenshot;
             this.size = size;
         }

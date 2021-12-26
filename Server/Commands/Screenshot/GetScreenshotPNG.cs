@@ -5,10 +5,10 @@ using System.Text;
 using JustUnityTester.Server;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetScreenshotPNGCommand : AltUnityCommand {
+    class GetScreenshotPNG : AltUnityCommand {
         AltClientSocketHandler handler;
 
-        public AltUnityGetScreenshotPNGCommand(AltClientSocketHandler handler) {
+        public GetScreenshotPNG(AltClientSocketHandler handler) {
             this.handler = handler;
         }
 

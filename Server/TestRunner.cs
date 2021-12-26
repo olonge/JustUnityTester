@@ -410,17 +410,17 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "getScreenshot":
                     size = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    command = new AltUnityGetScreenshotCommand(size, handler);
+                    command = new GetScreenshot(size, handler);
                     break;
                 case "hightlightObjectScreenshot":
                     var id = Convert.ToInt32(pieces[1]);
                     size = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[3]);
-                    command = new AltUnityHighlightSelectedObjectCommand(id, pieces[2], size, handler);
+                    command = new HighlightSelectedObject(id, pieces[2], size, handler);
                     break;
                 case "hightlightObjectFromCoordinatesScreenshot":
                     var coordinates = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
                     size = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[3]);
-                    command = new AltUnityHightlightObjectFromCoordinatesCommand(coordinates, pieces[2], size, handler);
+                    command = new HightlightObjectFromCoordinates(coordinates, pieces[2], size, handler);
                     break;
                 case "pressKeyboardKey":
                     var piece = pieces[1];
@@ -465,7 +465,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new SetText(testObject, pieces[2]);
                     break;
                 case "getPNGScreenshot":
-                    command = new AltUnityGetScreenshotPNGCommand(handler);
+                    command = new GetScreenshotPNG(handler);
                     break;
                 case "getServerVersion":
                     command = new AltUnityGetServerVersionCommand();
@@ -558,7 +558,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                 material.SetFloat("_OutlineWidth", width);
             }
             yield return null;
-            new AltUnityGetScreenshotCommand(size, handler).Execute();
+            new GetScreenshot(size, handler).Execute();
             yield return null;
             for (var i = 0; i < renderer.materials.Length; i++) {
                 renderer.materials[i].shader = originalShaders[0];
@@ -569,13 +569,13 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                 var panelHighlight = Instantiate(panelHightlightPrefab, rectTransform);
                 panelHighlight.GetComponent<UnityEngine.UI.Image>().color = color;
                 yield return null;
-                new AltUnityGetScreenshotCommand(size, handler).Execute();
+                new GetScreenshot(size, handler).Execute();
                 while (!destroyHightlight)
                     yield return null;
                 Destroy(panelHighlight);
                 destroyHightlight = false;
             } else {
-                new AltUnityGetScreenshotCommand(size, handler).Execute();
+                new GetScreenshot(size, handler).Execute();
             }
         }
     }
@@ -584,7 +584,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         yield return new UnityEngine.WaitForEndOfFrame();
         var screenshot = UnityEngine.ScreenCapture.CaptureScreenshotAsTexture();
 
-        var response = new AltUnityScreenshotReadyCommand(screenshot, size).Execute();
+        var response = new ScreenshotReady(screenshot, size).Execute();
         handler.SendResponse(response);
     }
     public System.Collections.IEnumerator TakeScreenshot(AltClientSocketHandler handler) {

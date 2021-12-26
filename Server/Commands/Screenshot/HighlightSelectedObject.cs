@@ -1,13 +1,13 @@
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityHighlightSelectedObjectCommand : AltUnityCommand {
+    class HighlightSelectedObject : AltUnityCommand {
         int id;
         string ColorAndWidth;
         Vector2 size;
         AltClientSocketHandler handler;
 
-        public AltUnityHighlightSelectedObjectCommand(int id, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
+        public HighlightSelectedObject(int id, string colorAndWidth, Vector2 size, AltClientSocketHandler handler) {
             this.id = id;
             ColorAndWidth = colorAndWidth;
             this.size = size;
@@ -30,7 +30,7 @@ namespace JustUnityTester.Server.Commands {
             if (gameObject != null) {
                 TestRunner.Instance.StartCoroutine(TestRunner.Instance.HighLightSelectedObjectCorutine(gameObject, color, width, size, handler));
             } else
-                new AltUnityGetScreenshotCommand(size, handler).Execute();
+                new GetScreenshot(size, handler).Execute();
             return "Ok";
         }
     }
