@@ -49,14 +49,14 @@ namespace JustUnityTester.Editor {
             SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
             var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<AltUnityRunner>();
-            if (TesterEditor.EditorConfiguration == null) {
+            if (TesterEditor.Config == null) {
                 component.ShowInputs = false;
                 component.showPopUp = true;
                 component.SocketPortNumber = port;
             } else {
-                component.ShowInputs = TesterEditor.EditorConfiguration.inputVisualizer;
-                component.showPopUp = TesterEditor.EditorConfiguration.showPopUp;
-                component.SocketPortNumber = TesterEditor.EditorConfiguration.serverPort;
+                component.ShowInputs = TesterEditor.Config.inputVisualizer;
+                component.showPopUp = TesterEditor.Config.showPopUp;
+                component.SocketPortNumber = TesterEditor.Config.serverPort;
             }
 
             //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());

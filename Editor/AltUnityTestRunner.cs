@@ -35,7 +35,7 @@ namespace JustUnityTester.Editor {
             });
 
             runTestThread.Start();
-            if (TesterEditor.EditorConfiguration.platform != AltUnityPlatform.Editor) {
+            if (TesterEditor.Config.platform != AltUnityPlatform.Editor) {
                 float previousProgres = progress - 1;
                 while (runTestThread.IsAlive) {
                     if (previousProgres == progress) continue;
@@ -46,7 +46,7 @@ namespace JustUnityTester.Editor {
             }
 
             runTestThread.Join();
-            if (TesterEditor.EditorConfiguration.platform != AltUnityPlatform.Editor) {
+            if (TesterEditor.Config.platform != AltUnityPlatform.Editor) {
                 TesterEditor.needsRepaiting = true;
                 UnityEditor.EditorUtility.ClearProgressBar();
             }
@@ -64,7 +64,7 @@ namespace JustUnityTester.Editor {
             int numberOfTestPassed = 0;
             int numberOfTestFailed = 0;
             double totalTime = 0;
-            foreach (var test in TesterEditor.EditorConfiguration.MyTests) {
+            foreach (var test in TesterEditor.Config.MyTests) {
                 int counter = 0;
                 // int testPassed = 0;
                 int testPassedCounter = 0;
@@ -153,7 +153,7 @@ namespace JustUnityTester.Editor {
                     }
                 }
             }
-            var listOfTests = TesterEditor.EditorConfiguration.MyTests;
+            var listOfTests = TesterEditor.Config.MyTests;
             var serializeTests = Newtonsoft.Json.JsonConvert.SerializeObject(listOfTests, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings {
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             });
@@ -174,17 +174,17 @@ namespace JustUnityTester.Editor {
             NUnit.Framework.Internal.Filters.OrFilter filter = new NUnit.Framework.Internal.Filters.OrFilter();
             switch (testMode) {
                 case TestRunMode.RunAllTest:
-                    foreach (var test in TesterEditor.EditorConfiguration.MyTests)
+                    foreach (var test in TesterEditor.Config.MyTests)
                         if (!test.IsSuite)
                             filter.Add(new NUnit.Framework.Internal.Filters.FullNameFilter(test.TestName));
                     break;
                 case TestRunMode.RunSelectedTest:
-                    foreach (var test in TesterEditor.EditorConfiguration.MyTests)
+                    foreach (var test in TesterEditor.Config.MyTests)
                         if (test.Selected && !test.IsSuite)
                             filter.Add(new NUnit.Framework.Internal.Filters.FullNameFilter(test.TestName));
                     break;
                 case TestRunMode.RunFailedTest:
-                    foreach (var test in TesterEditor.EditorConfiguration.MyTests)
+                    foreach (var test in TesterEditor.Config.MyTests)
                         if (test.Status == -1 && !test.IsSuite)
                             filter.Add(new NUnit.Framework.Internal.Filters.FullNameFilter(test.TestName));
                     break;
@@ -205,11 +205,11 @@ namespace JustUnityTester.Editor {
                     TesterEditor.reportTestFailed++;
                 }
                 TesterEditor.timeTestRan += test.Duration;
-                int index = TesterEditor.EditorConfiguration.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName));
-                TesterEditor.EditorConfiguration.MyTests[index].Status = status;
-                TesterEditor.EditorConfiguration.MyTests[index].TestDuration = test.Duration;
-                TesterEditor.EditorConfiguration.MyTests[index].TestStackTrace = test.StackTrace;
-                TesterEditor.EditorConfiguration.MyTests[index].TestResultMessage = test.Message;
+                int index = TesterEditor.Config.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName));
+                TesterEditor.Config.MyTests[index].Status = status;
+                TesterEditor.Config.MyTests[index].TestDuration = test.Duration;
+                TesterEditor.Config.MyTests[index].TestStackTrace = test.StackTrace;
+                TesterEditor.Config.MyTests[index].TestResultMessage = test.Message;
                 return status;
             }
 
@@ -229,23 +229,23 @@ namespace JustUnityTester.Editor {
             }
 
             if (test.Test.TestCaseCount != passCount + failCount + notExecutedCount) {
-                TesterEditor.EditorConfiguration.MyTests[TesterEditor.EditorConfiguration.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = 0;
+                TesterEditor.Config.MyTests[TesterEditor.Config.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = 0;
                 return 0;
             }
 
             if (failCount > 0) {
-                TesterEditor.EditorConfiguration.MyTests[TesterEditor.EditorConfiguration.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = -1;
+                TesterEditor.Config.MyTests[TesterEditor.Config.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = -1;
                 return -1;
 
             }
-            TesterEditor.EditorConfiguration.MyTests[TesterEditor.EditorConfiguration.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = 1;
+            TesterEditor.Config.MyTests[TesterEditor.Config.MyTests.FindIndex(a => a.TestName.Equals(test.Test.FullName))].Status = 1;
             return 1;
         }
 
         public static void SetUpListTest() {
-            var reload = TesterEditor.EditorConfiguration.MyTests == null;
+            var reload = TesterEditor.Config.MyTests == null;
             if (!reload) {
-                foreach (var test in TesterEditor.EditorConfiguration.MyTests) {
+                foreach (var test in TesterEditor.Config.MyTests) {
                     if (test.Type == null) {
                         reload = true;
                     }
@@ -283,7 +283,7 @@ namespace JustUnityTester.Editor {
                 addTestSuiteToMyTest(testSuite, myTests);
             }
             SetCorrectCheck(myTests);
-            TesterEditor.EditorConfiguration.MyTests = myTests;
+            TesterEditor.Config.MyTests = myTests;
         }
 
         private static void SetCorrectCheck(System.Collections.Generic.List<AltUnityMyTest> myTests) {
@@ -334,8 +334,8 @@ namespace JustUnityTester.Editor {
             var parentName = testSuite.Parent?.FullName ?? string.Empty;
 
             AltUnityMyTest index = null;
-            if (TesterEditor.EditorConfiguration.MyTests != null)
-                index = TesterEditor.EditorConfiguration.MyTests.FirstOrDefault(a => a.TestName.Equals(testSuite.FullName) && a.ParentName.Equals(parentName));
+            if (TesterEditor.Config.MyTests != null)
+                index = TesterEditor.Config.MyTests.FirstOrDefault(a => a.TestName.Equals(testSuite.FullName) && a.ParentName.Equals(parentName));
 
             if (index == null) {
                 newMyTests.Add(new AltUnityMyTest(false, testSuite.FullName, 0, testSuite.IsSuite, testSuite.GetType(),
@@ -371,7 +371,7 @@ namespace JustUnityTester.Editor {
                 }
             }
             TesterEditor.InitEditorConfiguration();
-            var tests = TesterEditor.EditorConfiguration.MyTests;
+            var tests = TesterEditor.Config.MyTests;
 
             if (!runAllTests) {
                 System.Collections.Generic.List<string> ClassToTest = new System.Collections.Generic.List<string>();
