@@ -119,19 +119,15 @@ namespace JustUnityTester.Editor {
                 portForwardingTexture = MakeTexture(20, 20, greenColor);
             }
 
-            GetListOfSceneFromEditor();
+            AddScenesToConfig();
             AltUnityTestRunner.SetUpListTest();
-
-
         }
 
-        private void GetListOfSceneFromEditor() {
-            List<MyScenes> newSceneses = new List<MyScenes>();
-            foreach (var scene in UnityEditor.EditorBuildSettings.scenes) {
-                newSceneses.Add(new MyScenes(scene.enabled, scene.path, 0));
-            }
-
-            Config.Scenes = newSceneses;
+        private void AddScenesToConfig() {
+            var scenes = new List<MyScenes>();
+            foreach (var scene in UnityEditor.EditorBuildSettings.scenes)
+                scenes.Add(new MyScenes(scene.enabled, scene.path, 0));
+            Config.Scenes = scenes;
         }
 
 
