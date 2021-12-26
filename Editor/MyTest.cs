@@ -32,124 +32,17 @@ namespace JustUnityTester.Editor {
             this.path = path;
         }
 
-        public bool Selected {
-            get {
-                return _selected;
-            }
-
-            set {
-                _selected = value;
-            }
-        }
-
-        public string TestName {
-            get {
-                return _testName;
-            }
-
-            set {
-                _testName = value;
-            }
-        }
-
-        public int Status {
-            get {
-                return _status;
-            }
-
-            set {
-                _status = value;
-            }
-        }
-
-        public bool IsSuite {
-            get {
-                return _isSuite;
-            }
-
-            set {
-                _isSuite = value;
-            }
-        }
-
-        public Type Type {
-            get {
-                return _type;
-            }
-
-            set {
-                _type = value;
-            }
-        }
-
-        public string ParentName {
-            get {
-                return _parentName;
-            }
-
-            set {
-                _parentName = value;
-            }
-        }
-
-        public int TestCaseCount {
-            get {
-                return _testCaseCount;
-            }
-
-            set {
-                _testCaseCount = value;
-            }
-        }
-
-        public bool FoldOut {
-            get {
-                return _foldOut;
-            }
-
-            set {
-                _foldOut = value;
-            }
-        }
-
-        public string TestResultMessage {
-            get {
-                return _testResultMessage;
-            }
-
-            set {
-                _testResultMessage = value;
-            }
-        }
-
-        public string TestStackTrace {
-            get {
-                return _testStackTrace;
-            }
-
-            set {
-                _testStackTrace = value;
-            }
-        }
-
-        public double TestDuration {
-            get {
-                return _testDuration;
-            }
-
-            set {
-                _testDuration = value;
-            }
-        }
-
-        public string Path {
-            get {
-                return path;
-            }
-
-            set {
-                path = value;
-            }
-        }
+        public bool Selected { get => _selected; set => _selected = value; }
+        public string TestName { get => _testName; set => _testName = value; }
+        public int Status { get => _status; set => _status = value; }
+        public bool IsSuite { get => _isSuite; set => _isSuite = value; }
+        public Type Type { get => _type; set => _type = value; }
+        public string ParentName { get => _parentName; set => _parentName = value; }
+        public int TestCaseCount { get => _testCaseCount; set => _testCaseCount = value; }
+        public bool FoldOut { get => _foldOut; set => _foldOut = value; }
+        public string TestResultMessage { get => _testResultMessage; set => _testResultMessage = value; }
+        public string TestStackTrace { get => _testStackTrace; set => _testStackTrace = value; }
+        public double TestDuration { get => _testDuration; set => _testDuration = value; }
+        public string Path { get => path; set => path = value; }
     }
 }
