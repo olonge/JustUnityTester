@@ -1,5 +1,5 @@
-using Assets.AltUnityTester.AltUnityDriver.Commands.InputActions;
 using Assets.AltUnityTester.AltUnityDriver.UnityStruct;
+using JustUnityTester.Driver.Commands;
 
 namespace JustUnityTester {
     public class AltUnityDriver {
