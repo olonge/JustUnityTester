@@ -1,192 +1,155 @@
-﻿
-using System;
+﻿using System;
 
-[System.Serializable]
-public class AltUnityMyTest
-{
+namespace JustUnityTester.Editor {
+    [Serializable]
+    public class AltUnityMyTest {
 
-    public bool _selected;
-    public string _testName;
-    public int _status;
-    public bool _isSuite;
-    public System.Type _type;
-    public string _parentName;
-    public int _testCaseCount;
-    public bool _foldOut;
-    public string _testResultMessage;
-    public string _testStackTrace;
-    public Double _testDuration;
-    public string path;
+        public bool _selected;
+        public string _testName;
+        public int _status;
+        public bool _isSuite;
+        public Type _type;
+        public string _parentName;
+        public int _testCaseCount;
+        public bool _foldOut;
+        public string _testResultMessage;
+        public string _testStackTrace;
+        public double _testDuration;
+        public string path;
 
-    public AltUnityMyTest(bool selected, string testName, int status, bool isSuite, Type type, string parentName, int testCaseCount, bool foldOut, string testResultMessage, string testStackTrace, Double testDuration, string path)
-    {
-        _selected = selected;
-        _testName = testName;
-        _status = status;
-        _isSuite = isSuite;
-        _type = type;
-        _parentName = parentName;
-        _testCaseCount = testCaseCount;
-        _foldOut = foldOut;
-        _testResultMessage = testResultMessage;
-        _testStackTrace = testStackTrace;
-        _testDuration = testDuration;
-        this.path = path;
-    }
-
-    public bool Selected
-    {
-        get
-        {
-            return _selected;
+        public AltUnityMyTest(bool selected, string testName, int status, bool isSuite, Type type, string parentName, int testCaseCount, bool foldOut, string testResultMessage, string testStackTrace, double testDuration, string path) {
+            _selected = selected;
+            _testName = testName;
+            _status = status;
+            _isSuite = isSuite;
+            _type = type;
+            _parentName = parentName;
+            _testCaseCount = testCaseCount;
+            _foldOut = foldOut;
+            _testResultMessage = testResultMessage;
+            _testStackTrace = testStackTrace;
+            _testDuration = testDuration;
+            this.path = path;
         }
 
-        set
-        {
-            _selected = value;
-        }
-    }
+        public bool Selected {
+            get {
+                return _selected;
+            }
 
-    public string TestName
-    {
-        get
-        {
-            return _testName;
+            set {
+                _selected = value;
+            }
         }
 
-        set
-        {
-            _testName = value;
-        }
-    }
+        public string TestName {
+            get {
+                return _testName;
+            }
 
-    public int Status
-    {
-        get
-        {
-            return _status;
+            set {
+                _testName = value;
+            }
         }
 
-        set
-        {
-            _status = value;
-        }
-    }
+        public int Status {
+            get {
+                return _status;
+            }
 
-    public bool IsSuite
-    {
-        get
-        {
-            return _isSuite;
+            set {
+                _status = value;
+            }
         }
 
-        set
-        {
-            _isSuite = value;
-        }
-    }
+        public bool IsSuite {
+            get {
+                return _isSuite;
+            }
 
-    public Type Type
-    {
-        get
-        {
-            return _type;
+            set {
+                _isSuite = value;
+            }
         }
 
-        set
-        {
-            _type = value;
-        }
-    }
+        public Type Type {
+            get {
+                return _type;
+            }
 
-    public string ParentName
-    {
-        get
-        {
-            return _parentName;
+            set {
+                _type = value;
+            }
         }
 
-        set
-        {
-            _parentName = value;
-        }
-    }
+        public string ParentName {
+            get {
+                return _parentName;
+            }
 
-    public int TestCaseCount
-    {
-        get
-        {
-            return _testCaseCount;
+            set {
+                _parentName = value;
+            }
         }
 
-        set
-        {
-            _testCaseCount = value;
-        }
-    }
+        public int TestCaseCount {
+            get {
+                return _testCaseCount;
+            }
 
-    public bool FoldOut
-    {
-        get
-        {
-            return _foldOut;
+            set {
+                _testCaseCount = value;
+            }
         }
 
-        set
-        {
-            _foldOut = value;
-        }
-    }
+        public bool FoldOut {
+            get {
+                return _foldOut;
+            }
 
-    public string TestResultMessage
-    {
-        get
-        {
-            return _testResultMessage;
+            set {
+                _foldOut = value;
+            }
         }
 
-        set
-        {
-            _testResultMessage = value;
-        }
-    }
+        public string TestResultMessage {
+            get {
+                return _testResultMessage;
+            }
 
-    public string TestStackTrace
-    {
-        get
-        {
-            return _testStackTrace;
+            set {
+                _testResultMessage = value;
+            }
         }
 
-        set
-        {
-            _testStackTrace = value;
-        }
-    }
+        public string TestStackTrace {
+            get {
+                return _testStackTrace;
+            }
 
-    public Double TestDuration
-    {
-        get
-        {
-            return _testDuration;
+            set {
+                _testStackTrace = value;
+            }
         }
 
-        set
-        {
-            _testDuration = value;
-        }
-    }
+        public double TestDuration {
+            get {
+                return _testDuration;
+            }
 
-    public string Path
-    {
-        get
-        {
-            return path;
+            set {
+                _testDuration = value;
+            }
         }
 
-        set
-        {
-            path = value;
+        public string Path {
+            get {
+                return path;
+            }
+
+            set {
+                path = value;
+            }
         }
     }
 }
