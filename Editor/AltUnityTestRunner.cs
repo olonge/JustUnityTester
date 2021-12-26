@@ -255,7 +255,7 @@ namespace JustUnityTester.Editor {
                 return;
             }
 
-            var myTests = new System.Collections.Generic.List<AltUnityMyTest>();
+            var myTests = new System.Collections.Generic.List<MyTest>();
             System.Reflection.Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
 
             const string engineTestRunnerAssemblyName = "UnityEngine.TestRunner";
@@ -286,11 +286,11 @@ namespace JustUnityTester.Editor {
             TesterEditor.Config.MyTests = myTests;
         }
 
-        private static void SetCorrectCheck(System.Collections.Generic.List<AltUnityMyTest> myTests) {
+        private static void SetCorrectCheck(System.Collections.Generic.List<MyTest> myTests) {
             bool classCheck = true;
             bool assemblyCheck = true;
             for (int i = myTests.Count - 1; i >= 0; i--) {
-                AltUnityMyTest test = myTests[i];
+                MyTest test = myTests[i];
                 System.Type testType = test.Type;
                 switch (testType.ToString()) {
                     case "NUnit.Framework.Internal.TestMethod":
@@ -320,7 +320,7 @@ namespace JustUnityTester.Editor {
             }
         }
 
-        private static void addTestSuiteToMyTest(NUnit.Framework.Interfaces.ITest testSuite, System.Collections.Generic.List<AltUnityMyTest> newMyTests) {
+        private static void addTestSuiteToMyTest(NUnit.Framework.Interfaces.ITest testSuite, System.Collections.Generic.List<MyTest> newMyTests) {
             string path = null;
 
             if (testSuite.GetType() == typeof(NUnit.Framework.Internal.TestMethod)) {
@@ -333,15 +333,15 @@ namespace JustUnityTester.Editor {
             }
             var parentName = testSuite.Parent?.FullName ?? string.Empty;
 
-            AltUnityMyTest index = null;
+            MyTest index = null;
             if (TesterEditor.Config.MyTests != null)
                 index = TesterEditor.Config.MyTests.FirstOrDefault(a => a.TestName.Equals(testSuite.FullName) && a.ParentName.Equals(parentName));
 
             if (index == null) {
-                newMyTests.Add(new AltUnityMyTest(false, testSuite.FullName, 0, testSuite.IsSuite, testSuite.GetType(),
+                newMyTests.Add(new MyTest(false, testSuite.FullName, 0, testSuite.IsSuite, testSuite.GetType(),
                     parentName, testSuite.TestCaseCount, false, null, null, 0, path));
             } else {
-                newMyTests.Add(new AltUnityMyTest(index.Selected, index.TestName, index.Status, index.IsSuite, testSuite.GetType(),
+                newMyTests.Add(new MyTest(index.Selected, index.TestName, index.Status, index.IsSuite, testSuite.GetType(),
                    index.ParentName, testSuite.TestCaseCount, index.FoldOut, index.TestResultMessage, index.TestStackTrace, index.TestDuration, path));
             }
 

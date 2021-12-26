@@ -2,7 +2,7 @@
 
 namespace JustUnityTester.Editor {
     [Serializable]
-    public class AltUnityMyTest {
+    public class MyTest {
 
         public bool _selected;
         public string _testName;
@@ -17,7 +17,7 @@ namespace JustUnityTester.Editor {
         public double _testDuration;
         public string path;
 
-        public AltUnityMyTest(bool selected, string testName, int status, bool isSuite, Type type, string parentName, int testCaseCount, bool foldOut, string testResultMessage, string testStackTrace, double testDuration, string path) {
+        public MyTest(bool selected, string testName, int status, bool isSuite, Type type, string parentName, int testCaseCount, bool foldOut, string testResultMessage, string testStackTrace, double testDuration, string path) {
             _selected = selected;
             _testName = testName;
             _status = status;

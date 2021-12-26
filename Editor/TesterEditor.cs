@@ -390,7 +390,7 @@ namespace JustUnityTester.Editor {
         }
 
 
-        private void DisplayTestGui(List<AltUnityMyTest> tests) {
+        private void DisplayTestGui(List<MyTest> tests) {
             UnityEditor.EditorGUILayout.LabelField("Tests list", UnityEditor.EditorStyles.boldLabel);
             UnityEditor.EditorGUILayout.BeginHorizontal();
             UnityEditor.EditorGUILayout.EndHorizontal();
@@ -479,7 +479,7 @@ namespace JustUnityTester.Editor {
             UnityEditor.EditorGUILayout.EndVertical();
         }
 
-        private static void SelectTest(List<AltUnityMyTest> tests, AltUnityMyTest test, string testName, UnityEngine.GUIStyle guiStyle) {
+        private static void SelectTest(List<MyTest> tests, MyTest test, string testName, UnityEngine.GUIStyle guiStyle) {
             if (!test.IsSuite) {
                 if (UnityEngine.GUILayout.Button(testName, guiStyle)) {
                     if (selectedTest == tests.IndexOf(test)) {
@@ -502,7 +502,7 @@ namespace JustUnityTester.Editor {
             }
         }
 
-        private void ChangeSelectionChildsAndParent(AltUnityMyTest test) {
+        private void ChangeSelectionChildsAndParent(MyTest test) {
             if (test.Type.ToString().Equals("NUnit.Framework.Internal.TestAssembly")) {
                 var index = Config.MyTests.IndexOf(test);
                 for (int i = index + 1; i < Config.MyTests.Count; i++) {
