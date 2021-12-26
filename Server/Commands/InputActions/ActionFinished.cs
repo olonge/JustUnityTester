@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class AltUnityActionFinishedCommand : AltUnityCommand {
+    class ActionFinished : AltUnityCommand {
         public override string Execute() {
             string response = TestRunner.Instance.errorNotFoundMessage;
 #if ALTUNITYTESTER

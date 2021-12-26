@@ -1,9 +1,9 @@
 namespace JustUnityTester.Server.Commands {
-    class AltUnityTiltCommand : AltUnityCommand {
+    class Tilt : AltUnityCommand {
         UnityEngine.Vector3 acceleration;
         float duration;
 
-        public AltUnityTiltCommand(UnityEngine.Vector3 acceleration, float duration) {
+        public Tilt(UnityEngine.Vector3 acceleration, float duration) {
             this.acceleration = acceleration;
             this.duration = duration;
         }

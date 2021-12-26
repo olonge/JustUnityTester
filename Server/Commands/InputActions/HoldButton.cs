@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityHoldButtonCommand : AltUnityCommand {
+    class HoldButton : AltUnityCommand {
         KeyCode keyCode;
         float power;
         float duration;
 
-        public AltUnityHoldButtonCommand(KeyCode keyCode, float power, float duration) {
+        public HoldButton(KeyCode keyCode, float power, float duration) {
             this.keyCode = keyCode;
             this.power = power;
             this.duration = duration;

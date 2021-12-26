@@ -1,22 +1,20 @@
 ﻿using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityDropObjectCommand : AltUnityCommand {
-        UnityEngine.Vector2 position;
+    class PointerUpFromObject : AltUnityCommand {
         TestObject altUnityObject;
 
-        public AltUnityDropObjectCommand(UnityEngine.Vector2 position, TestObject altUnityObject) {
-            this.position = position;
+        public PointerUpFromObject(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 
         public override string Execute() {
-            TestRunner.Instance.LogMessage("Drop object: " + altUnityObject);
+            TestRunner.Instance.LogMessage("PointerUp object: " + altUnityObject);
             string response = TestRunner.Instance.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
             UnityEngine.GameObject gameObject = TestRunner.GetGameObject(altUnityObject);
             TestRunner.Instance.LogMessage("GameOBject: " + gameObject);
-            UnityEngine.EventSystems.ExecuteEvents.Execute(gameObject, pointerEventData, UnityEngine.EventSystems.ExecuteEvents.dropHandler);
+            UnityEngine.EventSystems.ExecuteEvents.Execute(gameObject, pointerEventData, UnityEngine.EventSystems.ExecuteEvents.pointerUpHandler);
             var camera = TestRunner.Instance.FoundCameraById(altUnityObject.idCamera);
             response = Newtonsoft.Json.JsonConvert.SerializeObject(camera != null ? TestRunner.Instance.GameObjectToAltUnityObject(gameObject, camera) : TestRunner.Instance.GameObjectToAltUnityObject(gameObject));
             return response;

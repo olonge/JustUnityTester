@@ -1,10 +1,10 @@
 ﻿using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityPointerEnterObjectCommand : AltUnityCommand {
+    class PointerEnterObject : AltUnityCommand {
         TestObject altUnityObject;
 
-        public AltUnityPointerEnterObjectCommand(TestObject altUnityObject) {
+        public PointerEnterObject(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

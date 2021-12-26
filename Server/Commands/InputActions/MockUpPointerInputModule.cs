@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.Commands {
-    public class AltUnityMockUpPointerInputModule : UnityEngine.EventSystems.StandaloneInputModule {
+    public class MockUpPointerInputModule : UnityEngine.EventSystems.StandaloneInputModule {
         public UnityEngine.GameObject gameObjectHit;
         public UnityEngine.EventSystems.PointerEventData ExecuteTouchEvent(UnityEngine.Touch touch, UnityEngine.EventSystems.PointerEventData previousData = null) {
             UnityEngine.RaycastHit hit;

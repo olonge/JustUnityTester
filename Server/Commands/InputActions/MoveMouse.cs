@@ -1,11 +1,11 @@
 using UnityEngine;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityMoveMouseCommand : AltUnityCommand {
+    class MoveMouse : AltUnityCommand {
         Vector2 location;
         float duration;
 
-        public AltUnityMoveMouseCommand(Vector2 location, float duration) {
+        public MoveMouse(Vector2 location, float duration) {
             this.location = location;
             this.duration = duration;
         }

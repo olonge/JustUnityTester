@@ -271,7 +271,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     var tapCount = 1;
                     if (pieces.Length > 1 && !string.IsNullOrEmpty(pieces[2]))
                         tapCount = JsonConvert.DeserializeObject<int>(pieces[2]);
-                    command = new AltUnityTapCommand(altUnityObject, tapCount < 1 ? 1 : tapCount);
+                    command = new Tap(altUnityObject, tapCount < 1 ? 1 : tapCount);
                     break;
                 case "findObjectsByName":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
@@ -307,57 +307,57 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "clickEvent":
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityClickEventCommand(altUnityObject);
+                    command = new ClickEvent(altUnityObject);
                     break;
                 case "tapScreen":
-                    command = new AltUnityClickOnScreenAtXyCommand(pieces[1], pieces[2]);
+                    command = new ClickOnScreenAtPos(pieces[1], pieces[2]);
                     break;
                 case "tapCustom":
                     UnityEngine.Vector2 clickPos = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    command = new AltUnityClickOnScreenCustom(clickPos, pieces[2], pieces[3]);
+                    command = new ClickOnScreen(clickPos, pieces[2], pieces[3]);
                     break;
                 case "dragObject":
                     UnityEngine.Vector2 positionVector2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
-                    command = new AltUnityDragObjectCommand(positionVector2, altUnityObject);
+                    command = new DragObject(positionVector2, altUnityObject);
                     break;
                 case "dropObject":
                     UnityEngine.Vector2 positionDropVector2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
-                    command = new AltUnityDropObjectCommand(positionDropVector2, altUnityObject);
+                    command = new DropObject(positionDropVector2, altUnityObject);
                     break;
                 case "pointerUpFromObject":
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityPointerUpFromObjectCommand(altUnityObject);
+                    command = new PointerUpFromObject(altUnityObject);
                     break;
                 case "pointerDownFromObject":
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityPointerDownFromObjectCommand(altUnityObject);
+                    command = new PointerDownFromObject(altUnityObject);
                     break;
                 case "pointerEnterObject":
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityPointerEnterObjectCommand(altUnityObject);
+                    command = new PointerEnterObject(altUnityObject);
                     break;
                 case "pointerExitObject":
                     altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityPointerExitObjectCommand(altUnityObject);
+                    command = new PointerExitObject(altUnityObject);
                     break;
                 case "tilt":
                     UnityEngine.Vector3 vector3 = JsonConvert.DeserializeObject<UnityEngine.Vector3>(pieces[1]);
                     float duration = float.Parse(pieces[2]);
-                    command = new AltUnityTiltCommand(vector3, duration);
+                    command = new Tilt(vector3, duration);
                     break;
                 case "multipointSwipe":
                     UnityEngine.Vector2 start2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
                     UnityEngine.Vector2 end2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[2]);
-                    command = new AltUnitySetMultipointSwipeCommand(start2, end2, pieces[3]);
+                    command = new SetMultiPointSwipe(start2, end2, pieces[3]);
                     break;
                 case "multipointSwipeChain":
                     var length = pieces.Length - 3;
                     var positions = new UnityEngine.Vector2[length];
                     for (var i = 0; i < length; i++)
                         positions[i] = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[i + 2]);
-                    command = new AltUnitySetMultipointSwipeChainCommand(positions, pieces[1]);
+                    command = new SetMultiPointSwipeChain(positions, pieces[1]);
                     break;
                 case "loadScene":
                     var loadSingle = bool.Parse(pieces[2]);
@@ -385,7 +385,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new AltUnityGetKeyPlayerPrefCommand(option, pieces[1]);
                     break;
                 case "actionFinished":
-                    command = new AltUnityActionFinishedCommand();
+                    command = new ActionFinished();
                     break;
                 case "getAllComponents":
                     command = new AltUnityGetAllComponentsCommand(pieces[1]);
@@ -427,17 +427,17 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     UnityEngine.KeyCode keycode = (UnityEngine.KeyCode)Enum.Parse(typeof(UnityEngine.KeyCode), piece);
                     float power = JsonConvert.DeserializeObject<float>(pieces[2]);
                     duration = JsonConvert.DeserializeObject<float>(pieces[3]);
-                    command = new AltUnityHoldButtonCommand(keycode, power, duration);
+                    command = new HoldButton(keycode, power, duration);
                     break;
                 case "moveMouse":
                     UnityEngine.Vector2 location = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
                     duration = JsonConvert.DeserializeObject<float>(pieces[2]);
-                    command = new AltUnityMoveMouseCommand(location, duration);
+                    command = new MoveMouse(location, duration);
                     break;
                 case "scrollMouse":
                     var scrollValue = JsonConvert.DeserializeObject<float>(pieces[1]);
                     duration = JsonConvert.DeserializeObject<float>(pieces[2]);
-                    command = new AltUnityScrollMouseCommand(scrollValue, duration);
+                    command = new ScrollMousd(scrollValue, duration);
                     break;
                 case "findObject":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];

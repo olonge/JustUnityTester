@@ -1,10 +1,10 @@
 namespace JustUnityTester.Server.Commands {
-    class AltUnitySetMultipointSwipeCommand : AltUnityCommand {
+    class SetMultiPointSwipe : AltUnityCommand {
         UnityEngine.Vector2 start;
         UnityEngine.Vector2 destination;
         string duration;
 
-        public AltUnitySetMultipointSwipeCommand(UnityEngine.Vector2 start, UnityEngine.Vector2 destination, string duration) {
+        public SetMultiPointSwipe(UnityEngine.Vector2 start, UnityEngine.Vector2 destination, string duration) {
             this.start = start;
             this.destination = destination;
             this.duration = duration;

@@ -1,11 +1,11 @@
 ﻿using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityDragObjectCommand : AltUnityCommand {
+    class DragObject : AltUnityCommand {
         UnityEngine.Vector2 position;
         TestObject altUnityObject;
 
-        public AltUnityDragObjectCommand(UnityEngine.Vector2 position, TestObject altUnityObject) {
+        public DragObject(UnityEngine.Vector2 position, TestObject altUnityObject) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }
@@ -13,7 +13,7 @@ namespace JustUnityTester.Server.Commands {
         public override string Execute() {
             TestRunner.Instance.LogMessage("Drag object: " + altUnityObject);
             string response = TestRunner.Instance.errorNotFoundMessage;
-            AltUnityMockUpPointerInputModule mockUp = new AltUnityMockUpPointerInputModule();
+            MockUpPointerInputModule mockUp = new MockUpPointerInputModule();
             var pointerEventData = mockUp.ExecuteTouchEvent(new UnityEngine.Touch() { position = position });
             UnityEngine.GameObject gameObject = TestRunner.GetGameObject(altUnityObject);
             UnityEngine.Camera viewingCamera = TestRunner.Instance.FoundCameraById(altUnityObject.idCamera);

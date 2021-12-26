@@ -1,9 +1,9 @@
 namespace JustUnityTester.Server.Commands {
-    class AltUnityScrollMouseCommand : AltUnityCommand {
+    class ScrollMousd : AltUnityCommand {
         float scrollValue;
         float duration;
 
-        public AltUnityScrollMouseCommand(float scrollValue, float duration) {
+        public ScrollMousd(float scrollValue, float duration) {
             this.scrollValue = scrollValue;
             this.duration = duration;
         }

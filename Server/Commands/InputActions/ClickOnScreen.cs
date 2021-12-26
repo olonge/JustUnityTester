@@ -1,10 +1,10 @@
 namespace JustUnityTester.Server.Commands {
-    public class AltUnityClickOnScreenCustom : AltUnityCommand {
+    public class ClickOnScreen : AltUnityCommand {
         UnityEngine.Vector2 position;
         string count;
         string interval;
 
-        public AltUnityClickOnScreenCustom(UnityEngine.Vector2 position, string count, string interval) {
+        public ClickOnScreen(UnityEngine.Vector2 position, string count, string interval) {
             this.position = position;
             this.count = count;
             this.interval = interval;
