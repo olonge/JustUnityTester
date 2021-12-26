@@ -61,7 +61,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     // public static System.Collections.Generic.Dictionary<string, int> iosForwards = new System.Collections.Generic.Dictionary<string, int>();
 
     // Add menu item named "My Window" to the Window menu
-    [UnityEditor.MenuItem("Window/AltUnityTester")]
+    [UnityEditor.MenuItem("Window/Just Unity Tester/Inspector")]
     public static void ShowWindow()
     {
         //Show existing window instance. If one doesn't exist, make one.
@@ -1355,7 +1355,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         return (GetPathForSelectedItem() + "/").Contains("/Editor/");
     }
 
-    [UnityEditor.MenuItem("Window/CreateAltUnityTesterPackage")]
+    [UnityEditor.MenuItem("Window/Just Unity Tester/Create Tester Package")]
     public static void CreateAltUnityTesterPackage()
     {
         UnityEngine.Debug.Log("AltUnityTester - Unity Package creation started...");
