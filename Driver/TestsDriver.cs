@@ -46,7 +46,7 @@ namespace JustUnityTester {
         public string CheckServerVersion() => new CheckServerVersion(socketSettings).Execute();
         private void EnableLogging() => new EnableLogging(socketSettings).Execute();
 
-        public void Stop() => new AltUnityStopCommand(socketSettings).Execute();
+        public void Stop() => new StopCommand(socketSettings).Execute();
         public void LoadScene(string scene, bool loadSingle = true) {
             new AltUnityLoadScene(socketSettings, scene, loadSingle).Execute();
         }
