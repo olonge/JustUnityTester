@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using JustUnityTester.Core;
 using JustUnityTester.Driver.Commands;
 using JustUnityTester.Driver.Primitives;
@@ -42,27 +43,19 @@ namespace JustUnityTester {
             }
 
         }
-        public string CheckServerVersion() {
-            return new CheckServerVersion(socketSettings).Execute();
-        }
-        private void EnableLogging() {
-            new EnableLogging(socketSettings).Execute();
-        }
+        public string CheckServerVersion() => new CheckServerVersion(socketSettings).Execute();
+        private void EnableLogging() => new EnableLogging(socketSettings).Execute();
 
-        public void Stop() {
-            new AltUnityStopCommand(socketSettings).Execute();
-        }
+        public void Stop() => new AltUnityStopCommand(socketSettings).Execute();
         public void LoadScene(string scene, bool loadSingle = true) {
             new AltUnityLoadScene(socketSettings, scene, loadSingle).Execute();
         }
-        public System.Collections.Generic.List<string> GetAllLoadedScenes() {
-            return new AltUnityGetAllLoadedScenes(socketSettings).Execute();
-        }
+        public List<string> GetAllLoadedScenes() => new AltUnityGetAllLoadedScenes(socketSettings).Execute();
 
-        public System.Collections.Generic.List<TestObject> FindObjects(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
+        public List<TestObject> FindObjects(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
             return new AltUnityFindObjects(socketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
         }
-        public System.Collections.Generic.List<TestObject> FindObjectsWhichContain(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
+        public List<TestObject> FindObjectsWhichContain(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
             return new AltUnityFindObjectsWhichContain(socketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
         }
         [System.Obsolete()]
@@ -163,7 +156,7 @@ namespace JustUnityTester {
         public void TiltAndWait(AltUnityVector3 acceleration, float duration = 0) {
             new AltUnityTiltAndWait(socketSettings, acceleration, duration).Execute();
         }
-        public System.Collections.Generic.List<TestObject> GetAllElements(By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
+        public List<TestObject> GetAllElements(By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
             return new AltUnityGetAllElements(socketSettings, cameraBy, cameraPath, enabled).Execute();
         }
         public string WaitForCurrentSceneToBe(string sceneName, double timeout = 10, double interval = 1) {
@@ -191,24 +184,15 @@ namespace JustUnityTester {
         public TestObject WaitForObjectWithText(By by, string value, string text, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true, double timeout = 20, double interval = 0.5) {
             return new AltUnityWaitForObjectWithText(socketSettings, by, value, text, cameraBy, cameraPath, enabled, timeout, interval).Execute();
         }
-        public System.Collections.Generic.List<string> GetAllScenes() {
-            return new AltUnityGetAllScenes(socketSettings).Execute();
-        }
-        public System.Collections.Generic.List<TestObject> GetAllCameras() {
-            return new AltUnityGetAllCameras(socketSettings).Execute();
-        }
-        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) {
-            return new AltUnityGetScreenshot(socketSettings, size).Execute();
-        }
+        public List<string> GetAllScenes() => new AltUnityGetAllScenes(socketSettings).Execute();
+        public List<TestObject> GetAllCameras() => new AltUnityGetAllCameras(socketSettings).Execute();
+        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) => new AltUnityGetScreenshot(socketSettings, size).Execute();
         public TestTextureInformation GetScreenshot(int id, AltUnityColor color, float width, AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, id, color, width, size).Execute();
         }
         public TestTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
-
         }
-        public void GetPNGScreenshot(string path) {
-            new AltUnityGetPNGScreenshot(socketSettings, path).Execute();
-        }
+        public void GetPNGScreenshot(string path) => new AltUnityGetPNGScreenshot(socketSettings, path).Execute();
     }
 }
