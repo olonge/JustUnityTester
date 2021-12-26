@@ -1,4 +1,5 @@
 using Assets.AltUnityTester.AltUnityDriver.UnityStruct;
+using JustUnityTester.Core;
 using System.Linq;
 
 namespace JustUnityTester.Driver.Commands {

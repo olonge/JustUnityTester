@@ -1,7 +1,7 @@
 using System.Linq;
+using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityFindObjectsWhereNameContainsCommand : AltUnityCommand
     {
         string methodParameters;

@@ -1,3 +1,5 @@
+using JustUnityTester.Core;
+
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllCameras : AltUnityBaseFindObjects {
         public AltUnityGetAllCameras(SocketSettings socketSettings) : base(socketSettings) {

@@ -1,5 +1,6 @@
-﻿namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+﻿using JustUnityTester.Core;
+
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityDragObjectCommand : AltUnityCommand
     {
         UnityEngine.Vector2 position;

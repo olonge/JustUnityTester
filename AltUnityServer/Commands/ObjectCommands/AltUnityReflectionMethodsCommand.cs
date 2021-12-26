@@ -1,7 +1,7 @@
 using System.Linq;
+using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer
-{
+namespace Assets.AltUnityTester.AltUnityServer {
     class AltUnityReflectionMethodsCommand :AltUnityCommand
     {
         public static System.Type GetType(string typeName, string assemblyName)

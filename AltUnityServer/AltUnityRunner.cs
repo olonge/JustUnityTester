@@ -3,6 +3,8 @@ using System.Linq;
 using System.Net.Sockets;
 using altunitytester.Assets.AltUnityTester.AltUnityServer;
 using Assets.AltUnityTester.AltUnityServer.Commands;
+using JustUnityTester.Core;
+
 public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
 {
     enum FindOption

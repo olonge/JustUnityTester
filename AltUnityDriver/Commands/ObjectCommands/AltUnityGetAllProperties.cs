@@ -1,3 +1,5 @@
+using JustUnityTester.Core;
+
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllProperties : AltBaseCommand {
         AltUnityComponent altUnityComponent;

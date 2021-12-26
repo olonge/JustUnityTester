@@ -1,3 +1,5 @@
+using JustUnityTester.Core;
+
 namespace JustUnityTester.Editor {
     public class AltUnityBuilder {
         public static string PreviousScenePath;

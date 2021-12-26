@@ -1,5 +1,6 @@
-namespace altunitytester.Assets.AltUnityTester.AltUnityServer
-{
+using JustUnityTester.Core;
+
+namespace altunitytester.Assets.AltUnityTester.AltUnityServer {
     public class AltUnityGetCurrentSceneCommand : AltUnityCommand
     {
         public override string Execute()

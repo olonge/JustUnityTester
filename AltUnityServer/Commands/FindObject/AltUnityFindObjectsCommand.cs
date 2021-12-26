@@ -1,6 +1,7 @@
 using System.Linq;
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+using JustUnityTester.Core;
+
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityFindObjectsCommand : AltUnityBaseClassFindObjectsCommand 
     {
         string stringSent;
