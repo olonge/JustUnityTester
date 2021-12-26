@@ -1,10 +1,10 @@
 using System.Linq;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityFindActiveObjectsByNameCommand : AltUnityBaseClassFindObjectsCommand {
+    class FindActiveObjectsByName : BaseFindObjects {
         string methodParameters;
 
-        public AltUnityFindActiveObjectsByNameCommand(string stringSent) {
+        public FindActiveObjectsByName(string stringSent) {
             methodParameters = stringSent;
         }
 

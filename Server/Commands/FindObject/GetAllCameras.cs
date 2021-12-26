@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetAllCamerasCommand : AltUnityCommand {
+    class GetAllCameras : AltUnityCommand {
         public override string Execute() {
             TestRunner.Instance.LogMessage("getAllCameras");
             string response = TestRunner.Instance.errorNotFoundMessage;

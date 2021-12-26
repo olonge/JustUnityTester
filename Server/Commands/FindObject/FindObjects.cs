@@ -2,10 +2,10 @@ using System.Linq;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityFindObjectsCommand : AltUnityBaseClassFindObjectsCommand {
+    class FindObjects : BaseFindObjects {
         string stringSent;
 
-        public AltUnityFindObjectsCommand(string stringSent) {
+        public FindObjects(string stringSent) {
             this.stringSent = stringSent;
         }
 

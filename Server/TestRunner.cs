@@ -256,7 +256,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
             switch (pieces[0]) {
                 case "findAllObjects":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2];
-                    command = new AltUnityFindAllObjectsCommand(methodParameters);
+                    command = new FindAllObjects(methodParameters);
                     break;
                 case "findObjectByName":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
@@ -282,7 +282,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new AltUnityFindObjectsWhereNameContainsCommand(methodParameters);
                     break;
                 case "getCurrentScene":
-                    command = new AltUnityGetCurrentSceneCommand();
+                    command = new GetCurrentScene();
                     break;
                 case "findObjectByComponent":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
@@ -400,10 +400,10 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new AltUnityGetAllMethodsCommand(testComponent, methodSelection);
                     break;
                 case "getAllScenes":
-                    command = new AltUnityGetAllScenesCommand();
+                    command = new GetAllScenes();
                     break;
                 case "getAllCameras":
-                    command = new AltUnityGetAllCamerasCommand();
+                    command = new GetAllCameras();
                     break;
                 case "getAllLoadedScenes":
                     command = new AltUnityGetAllLoadedScenesCommand();
@@ -441,15 +441,15 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "findObject":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
-                    command = new AltUnityFindObjectCommand(methodParameters);
+                    command = new FindObject(methodParameters);
                     break;
                 case "findObjects":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
-                    command = new AltUnityFindObjectsCommand(methodParameters);
+                    command = new FindObjects(methodParameters);
                     break;
                 case "findActiveObjectByName":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
-                    command = new AltUnityFindActiveObjectsByNameCommand(methodParameters);
+                    command = new FindActiveObjectsByName(methodParameters);
                     break;
                 case "enableLogging":
                     var enableLogging = bool.Parse(pieces[1]);

@@ -1,7 +1,7 @@
 using System.Linq;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityBaseClassFindObjectsCommand : AltUnityCommand {
+    class BaseFindObjects : AltUnityCommand {
         protected System.Collections.Generic.List<System.Collections.Generic.List<string>> ProcessPath(string path) {
             System.Collections.Generic.List<char> escapeCharacters;
             var text = EliminateEscapedCharacters(path, out escapeCharacters);
