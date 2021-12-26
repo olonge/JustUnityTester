@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net.Sockets;
 using altunitytester.Assets.AltUnityTester.AltUnityServer;
 using Assets.AltUnityTester.AltUnityServer.Commands;
 public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
@@ -177,11 +178,20 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         _socketServer = new AltSocketServer(
             clientSocketHandlerDelegate, SocketPortNumber, maxClients, requestEndingString, encoding);
 
-        _socketServer.StartListeningForConnections();
-        AltUnityPopUpText.text = "Waiting for connection"+System.Environment.NewLine+"on port " + _socketServer.PortNumber + "...";
-        UnityEngine.Debug.Log(string.Format(
-            "AltUnity Server at {0} on port {1}",
-            _socketServer.LocalEndPoint.Address, _socketServer.PortNumber));
+        try {
+            _socketServer.StartListeningForConnections();
+            AltUnityPopUpText.text = "Waiting for connection" + System.Environment.NewLine + "on port " + _socketServer.PortNumber + "...";
+            UnityEngine.Debug.Log(string.Format(
+                "AltUnity Server at {0} on port {1}",
+                _socketServer.LocalEndPoint.Address, _socketServer.PortNumber));
+        } catch (SocketException ex) {
+            if (ex.Message.Contains("Only one usage of each socket address")) {
+                AltUnityPopUpText.text = "Cannot start AltUnity Server. Another process is listening on port " + SocketPortNumber;
+            } else {
+                UnityEngine.Debug.LogError(ex);
+                AltUnityPopUpText.text = "An error occured while starting AltUnity Server.";
+            }
+        }
     }
    
     private UnityEngine.Vector3 getObjectScreePosition(UnityEngine.GameObject gameObject, UnityEngine.Camera camera)
@@ -224,27 +234,29 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
     public AltUnityObject GameObjectToAltUnityObject(UnityEngine.GameObject altGameObject, UnityEngine.Camera camera = null)
     {
         int cameraId = -1;
-        //if no camera is given it will iterate through all cameras until  found one that sees the object if no camera sees the object it will return the position from the last camera
-        //if there is no camera in the scene it will return as scren position x:-1 y=-1, z=-1 and cameraId=-1
-        if (camera == null)
-        {
-            _position = new UnityEngine.Vector3(-1, -1, -1);
-            foreach (var camera1 in UnityEngine.Camera.allCameras)
-            {
-                _position = getObjectScreePosition(altGameObject, camera1);
-                cameraId = camera1.GetInstanceID();
-                if (_position.x > 0 && _position.y > 0 && _position.x < UnityEngine.Screen.width && _position.y < UnityEngine.Screen.height && _position.z >= 0)//Check if camera sees the object
-                {
-                    break;
+        /// if no camera is given it will iterate through all cameras until one is found one that sees this object.
+        /// if no camera sees the object it will return the position from the last camera.
+        /// if there is no camera in the scene it will return as screen position x:-1 y=-1, z=-1 and cameraId=-1
+        try {
+            if (camera == null) {
+                _position = UnityEngine.Vector3.one * -1;
+                foreach (var camera1 in UnityEngine.Camera.allCameras) {
+                    _position = getObjectScreePosition(altGameObject, camera1);
+                    cameraId = camera1.GetInstanceID();
+                    if (_position.x > 0 && _position.y > 0 && _position.x < UnityEngine.Screen.width && _position.y < UnityEngine.Screen.height && _position.z >= 0)//Check if camera sees the object
+                    {
+                        break;
+                    }
                 }
+            } else {
+                _position = getObjectScreePosition(altGameObject, camera);
+                cameraId = camera.GetInstanceID();
             }
+        } catch (Exception) {
+            _position = UnityEngine.Vector3.one * -1;
+            cameraId = -1;
         }
-        else
-        {
-            _position = getObjectScreePosition(altGameObject, camera);
-            cameraId = camera.GetInstanceID();
 
-        }
         int parentId = 0;
         if (altGameObject.transform.parent != null)
         {
@@ -269,7 +281,8 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         return altObject;
     }
 
-    public void ClientSocketHandlerDidReadMessage(AltClientSocketHandler handler, string message) {
+    public void ClientSocketHandlerDidReadMessage(AltClientSocketHandler handler, string message) 
+        {
         string[] separator = new string[] { requestSeparatorString };
         string[] pieces = message.Split(separator, System.StringSplitOptions.None);
         AltUnityComponent altComponent;
@@ -389,7 +402,8 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     command = new AltUnitySetMultipointSwipeChainCommand(positions, pieces[1]);
                     break;
                 case "loadScene":
-                    command = new AltUnityLoadSceneCommand (pieces[1],handler);
+                    var loadSingle = bool.Parse(pieces[2]);
+                    command = new AltUnityLoadSceneCommand(pieces[1], loadSingle, handler);
                     break;
                 case "setTimeScale":
                     float timeScale = Newtonsoft.Json.JsonConvert.DeserializeObject<float>(pieces[1]);
@@ -432,6 +446,9 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     break;
                 case "getAllCameras":
                     command = new AltUnityGetAllCamerasCommand();
+                    break;
+                case "getAllLoadedScenes":
+                    command = new AltUnityGetAllLoadedScenesCommand();
                     break;
                 case "getScreenshot":
                     size = Newtonsoft.Json.JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
