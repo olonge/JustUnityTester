@@ -10,11 +10,11 @@ namespace JustUnityTester.Driver.Commands {
             this.cameraPath = cameraPath;
             this.enabled = enabled;
         }
-        public System.Collections.Generic.List<AltUnityObject> Execute() {
+        public System.Collections.Generic.List<TestObject> Execute() {
             cameraPath = SetPath(cameraBy, cameraPath);
             Socket.Client.Send(toBytes(CreateCommand("findObjects", "//*", cameraBy.ToString(), cameraPath, enabled.ToString())));
             string data = Recvall();
-            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<AltUnityObject>>(data);
+            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<TestObject>>(data);
             HandleErrors(data);
             return null;
         }

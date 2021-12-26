@@ -8,10 +8,10 @@ namespace JustUnityTester.Driver.Commands {
             this.x = x;
             this.y = y;
         }
-        public AltUnityObject Execute() {
+        public TestObject Execute() {
             Socket.Client.Send(toBytes(CreateCommand("tapScreen", x.ToString(), y.ToString())));
             string data = Recvall();
-            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(data);
+            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(data);
             if (data.Contains("error:notFound")) return null;
             HandleErrors(data);
             return null;

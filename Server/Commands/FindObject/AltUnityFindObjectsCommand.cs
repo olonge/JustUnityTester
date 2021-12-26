@@ -24,7 +24,7 @@ namespace JustUnityTester.Server.Commands {
             }
             var path = ProcessPath(objectName);
             var isDirectChild = IsNextElementDirectChild(path[0]);
-            System.Collections.Generic.List<AltUnityObject> foundObjects = new System.Collections.Generic.List<AltUnityObject>();
+            System.Collections.Generic.List<TestObject> foundObjects = new System.Collections.Generic.List<TestObject>();
             foreach (UnityEngine.GameObject testableObject in FindObjects(null, path, 1, false, isDirectChild, enabled)) {
                 foundObjects.Add(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));
             }

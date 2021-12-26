@@ -15,7 +15,7 @@ namespace JustUnityTester.Driver.Commands {
             this.cameraPath = cameraPath;
             this.enabled = enabled;
         }
-        public System.Collections.Generic.List<AltUnityObject> Execute() {
+        public System.Collections.Generic.List<TestObject> Execute() {
             string path = SetPath(by, value);
             cameraPath = SetPath(cameraBy, cameraPath);
             Socket.Client.Send(toBytes(CreateCommand("findObjects", path, cameraBy.ToString(), cameraPath, enabled.ToString())));

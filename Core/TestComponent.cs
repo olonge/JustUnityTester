@@ -1,9 +1,9 @@
 ﻿namespace JustUnityTester.Core {
-    public struct AltUnityComponent {
+    public struct TestComponent {
         public string componentName;
         public string assemblyName;
 
-        public AltUnityComponent(string componentName, string assemblyName) {
+        public TestComponent(string componentName, string assemblyName) {
             this.componentName = componentName;
             this.assemblyName = assemblyName;
         }

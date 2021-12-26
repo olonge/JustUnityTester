@@ -1,15 +1,15 @@
 ﻿namespace JustUnityTester.Exceptions {
-    public class AltUnityException : System.Exception {
-        public AltUnityException() {
+    public class TestException : System.Exception {
+        public TestException() {
 
         }
 
-        public AltUnityException(string message) : base(message) {
+        public TestException(string message) : base(message) {
 
         }
     }
 
-    public class NotFoundException : AltUnityException {
+    public class NotFoundException : TestException {
         public NotFoundException() {
         }
 
@@ -17,7 +17,7 @@
         }
     }
 
-    public class PropertyNotFoundException : AltUnityException {
+    public class PropertyNotFoundException : TestException {
         public PropertyNotFoundException() {
         }
 
@@ -25,7 +25,7 @@
         }
     }
 
-    public class MethodNotFoundException : AltUnityException {
+    public class MethodNotFoundException : TestException {
         public MethodNotFoundException() {
         }
 
@@ -33,7 +33,7 @@
         }
     }
 
-    public class ComponentNotFoundException : AltUnityException {
+    public class ComponentNotFoundException : TestException {
         public ComponentNotFoundException() {
         }
 
@@ -41,7 +41,7 @@
         }
     }
 
-    public class CouldNotPerformOperationException : AltUnityException {
+    public class CouldNotPerformOperationException : TestException {
         public CouldNotPerformOperationException() {
         }
 
@@ -49,7 +49,7 @@
         }
     }
 
-    public class IncorrectNumberOfParametersException : AltUnityException {
+    public class IncorrectNumberOfParametersException : TestException {
         public IncorrectNumberOfParametersException() {
         }
 
@@ -57,7 +57,7 @@
         }
     }
 
-    public class CouldNotParseJsonStringException : AltUnityException {
+    public class CouldNotParseJsonStringException : TestException {
         public CouldNotParseJsonStringException() {
         }
 
@@ -65,7 +65,7 @@
         }
     }
 
-    public class FailedToParseArgumentsException : AltUnityException {
+    public class FailedToParseArgumentsException : TestException {
         public FailedToParseArgumentsException() {
         }
 
@@ -73,7 +73,7 @@
         }
     }
 
-    public class ObjectWasNotFoundException : AltUnityException {
+    public class ObjectWasNotFoundException : TestException {
         public ObjectWasNotFoundException() {
         }
 
@@ -81,7 +81,7 @@
         }
     }
 
-    public class PropertyCannotBeSetException : AltUnityException {
+    public class PropertyCannotBeSetException : TestException {
         public PropertyCannotBeSetException() {
         }
 
@@ -89,7 +89,7 @@
         }
     }
 
-    public class NullReferenceException : AltUnityException {
+    public class NullReferenceException : TestException {
         public NullReferenceException() {
         }
 
@@ -97,7 +97,7 @@
         }
     }
 
-    public class UnknownErrorException : AltUnityException {
+    public class UnknownErrorException : TestException {
         public UnknownErrorException() {
         }
 
@@ -105,7 +105,7 @@
         }
     }
 
-    public class FormatException : AltUnityException {
+    public class FormatException : TestException {
         public FormatException() {
         }
 
@@ -113,7 +113,7 @@
         }
     }
 
-    public class WaitTimeOutException : AltUnityException {
+    public class WaitTimeOutException : TestException {
         public WaitTimeOutException() {
         }
 

@@ -4,12 +4,12 @@ using JustUnityTester.Driver.Primitives;
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityDragObject : AltUnityCommandReturningAltElement {
         AltUnityVector2 position;
-        AltUnityObject altUnityObject;
-        public AltUnityDragObject(SocketSettings socketSettings, AltUnityVector2 position, AltUnityObject altUnityObject) : base(socketSettings) {
+        TestObject altUnityObject;
+        public AltUnityDragObject(SocketSettings socketSettings, AltUnityVector2 position, TestObject altUnityObject) : base(socketSettings) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }
-        public AltUnityObject Execute() {
+        public TestObject Execute() {
             var positionJson = PositionToJson(position);
             var altObject = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityObject);
 

@@ -1,18 +1,24 @@
+using System.Collections.Generic;
+using System.Text;
 using JustUnityTester.Core;
+using Newtonsoft.Json;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllProperties : AltBaseCommand {
-        AltUnityComponent altUnityComponent;
-        AltUnityObject altUnityObject;
-        public AltUnityGetAllProperties(SocketSettings socketSettings, AltUnityComponent altUnityComponent, AltUnityObject altUnityObject) : base(socketSettings) {
-            this.altUnityComponent = altUnityComponent;
+        TestComponent testComponent;
+        TestObject altUnityObject;
+        public AltUnityGetAllProperties(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject) : base(socketSettings) {
+            this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
         }
-        public System.Collections.Generic.List<AltUnityProperty> Execute() {
-            var altComponent = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityComponent);
-            Socket.Client.Send(System.Text.Encoding.ASCII.GetBytes(CreateCommand("getAllFields", altUnityObject.id.ToString(), altComponent)));
+        public List<TestProperty> Execute() {
+            var altComponent = JsonConvert.SerializeObject(testComponent);
+            Socket.Client.Send(Encoding.ASCII.GetBytes(CreateCommand("getAllFields", altUnityObject.id.ToString(), altComponent)));
             string data = Recvall();
-            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<AltUnityProperty>>(data);
+
+            if (!data.Contains("error:"))
+                return JsonConvert.DeserializeObject<List<TestProperty>>(data);
+
             HandleErrors(data);
             return null;
         }

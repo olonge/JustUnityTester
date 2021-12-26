@@ -1,12 +1,15 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using JustUnityTester.Core;
+using Newtonsoft.Json;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityGetAllMethodsCommand : AltUnityReflectionMethodsCommand {
-        AltUnityComponent component;
-        AltUnityMethodSelection methodSelection;
+        TestComponent component;
+        TestMethodSelection methodSelection;
 
-        public AltUnityGetAllMethodsCommand(AltUnityComponent component, AltUnityMethodSelection methodSelection) {
+        public AltUnityGetAllMethodsCommand(TestComponent component, TestMethodSelection methodSelection) {
             this.component = component;
             this.methodSelection = methodSelection;
         }
@@ -14,27 +17,30 @@ namespace JustUnityTester.Server.Commands {
         public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("getAllMethods");
             System.Type type = GetType(component.componentName, component.assemblyName);
-            System.Reflection.MethodInfo[] methodInfos = new System.Reflection.MethodInfo[1];
+            MethodInfo[] methodInfos = new MethodInfo[1];
             switch (methodSelection) {
-                case AltUnityMethodSelection.CLASSMETHODS:
-                    methodInfos = type.GetMethods(System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);
+
+                case TestMethodSelection.CLASSMETHODS:
+                    methodInfos = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     break;
-                case AltUnityMethodSelection.INHERITEDMETHODS:
-                    var allMethods = type.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);
-                    var classMethods = type.GetMethods(System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);
+
+                case TestMethodSelection.INHERITEDMETHODS:
+                    var allMethods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+                    var classMethods = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     methodInfos = allMethods.Except(classMethods).ToArray();
                     break;
-                case AltUnityMethodSelection.ALLMETHODS:
-                    methodInfos = type.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);
+
+                case TestMethodSelection.ALLMETHODS:
+                    methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     break;
             }
 
-            System.Collections.Generic.List<string> listMethods = new System.Collections.Generic.List<string>();
+            var listMethods = new List<string>();
 
             foreach (var methodInfo in methodInfos) {
                 listMethods.Add(methodInfo.ToString());
             }
-            return Newtonsoft.Json.JsonConvert.SerializeObject(listMethods);
+            return JsonConvert.SerializeObject(listMethods);
         }
     }
 }

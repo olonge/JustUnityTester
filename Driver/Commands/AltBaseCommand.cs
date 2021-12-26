@@ -123,7 +123,7 @@ namespace JustUnityTester.Driver.Commands {
                     throw new Exceptions.FormatException(data);
             }
         }
-        public AltUnityTextureInformation ReceiveImage() {
+        public TestTextureInformation ReceiveImage() {
 
             var data = Recvall();
             if (data == "Ok") {
@@ -154,7 +154,7 @@ namespace JustUnityTester.Driver.Commands {
 
             byte[] imageDecompressed = DeCompressScreenshot(imageCompressed);
 
-            return new AltUnityTextureInformation(imageDecompressed, Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityVector2>(scaleDifference), textSizeVector3, textureFormat);
+            return new TestTextureInformation(imageDecompressed, Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityVector2>(scaleDifference), textSizeVector3, textureFormat);
         }
         public static byte[] DeCompressScreenshot(byte[] screenshotCompressed) {
 

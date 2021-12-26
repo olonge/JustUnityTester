@@ -2,17 +2,17 @@ using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityGetTextCommand : AltUnityReflectionMethodsCommand {
-        static readonly AltUnityObjectProperty[] TextProperties =
+        static readonly TestObjectProperty[] TextProperties =
         {
-            new AltUnityObjectProperty("UnityEngine.UI.Text", "text"),
-            new AltUnityObjectProperty("UnityEngine.UI.InputField", "text"),
-            new AltUnityObjectProperty("TMPro.TMP_Text", "text", "Unity.TextMeshPro"),
-            new AltUnityObjectProperty("TMPro.TMP_InputField", "text", "Unity.TextMeshPro")
+            new TestObjectProperty("UnityEngine.UI.Text", "text"),
+            new TestObjectProperty("UnityEngine.UI.InputField", "text"),
+            new TestObjectProperty("TMPro.TMP_Text", "text", "Unity.TextMeshPro"),
+            new TestObjectProperty("TMPro.TMP_InputField", "text", "Unity.TextMeshPro")
         };
 
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityGetTextCommand(AltUnityObject altUnityObject) {
+        public AltUnityGetTextCommand(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

@@ -19,9 +19,9 @@ namespace JustUnityTester.Driver.Commands {
             this.timeout = timeout;
             this.interval = interval;
         }
-        public AltUnityObject Execute() {
+        public TestObject Execute() {
             double time = 0;
-            AltUnityObject altElement = null;
+            TestObject altElement = null;
             while (time < timeout) {
                 try {
                     altElement = new AltUnityFindObjectWhichContains(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();

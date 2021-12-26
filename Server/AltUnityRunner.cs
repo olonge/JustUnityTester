@@ -234,7 +234,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         return camera.WorldToScreenPoint(gameObject.transform.position);
     }
 
-    public AltUnityObject GameObjectToAltUnityObject(UnityEngine.GameObject altGameObject, UnityEngine.Camera camera = null)
+    public TestObject GameObjectToAltUnityObject(UnityEngine.GameObject altGameObject, UnityEngine.Camera camera = null)
     {
         int cameraId = -1;
         /// if no camera is given it will iterate through all cameras until one is found one that sees this object.
@@ -267,7 +267,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         }
 
 
-        AltUnityObject altObject = new AltUnityObject(name: altGameObject.name,
+        TestObject altObject = new TestObject(name: altGameObject.name,
                                                       id: altGameObject.GetInstanceID(),
                                                       x: System.Convert.ToInt32(UnityEngine.Mathf.Round(_position.x)),
                                                       y: System.Convert.ToInt32(UnityEngine.Mathf.Round(_position.y)),
@@ -288,8 +288,8 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         {
         string[] separator = new string[] { requestSeparatorString };
         string[] pieces = message.Split(separator, System.StringSplitOptions.None);
-        AltUnityComponent altComponent;
-        AltUnityObject altUnityObject;
+        TestComponent testComponent;
+        TestObject altUnityObject;
         string methodParameters;
         UnityEngine.Vector2 size;
         PLayerPrefKeyType option;
@@ -312,7 +312,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     command = new AltUnityFindObjectWhereNameContainsCommand (methodParameters);
                     break;
                 case "tapObject":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     var tapCount = 1;
                     if (pieces.Length > 1 && !string.IsNullOrEmpty(pieces[2]))
                         tapCount = Newtonsoft.Json.JsonConvert.DeserializeObject<int>(pieces[2]);
@@ -351,7 +351,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     _socketServer.StartListeningForConnections();
                     break;
                 case "clickEvent":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityClickEventCommand (altUnityObject);
                     break;
                 case "tapScreen":
@@ -363,28 +363,28 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     break;
                 case "dragObject":
                     UnityEngine.Vector2 positionVector2 = Newtonsoft.Json.JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[2]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[2]);
                     command = new AltUnityDragObjectCommand (positionVector2, altUnityObject);
                     break;
                 case "dropObject":
                     UnityEngine.Vector2 positionDropVector2 = Newtonsoft.Json.JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[2]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[2]);
                     command = new AltUnityDropObjectCommand (positionDropVector2, altUnityObject);
                     break;
                 case "pointerUpFromObject":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityPointerUpFromObjectCommand (altUnityObject);
                     break;
                 case "pointerDownFromObject":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityPointerDownFromObjectCommand (altUnityObject);
                     break;
                 case "pointerEnterObject":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityPointerEnterObjectCommand (altUnityObject);
                     break;
                 case "pointerExitObject":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityPointerExitObjectCommand (altUnityObject);
                     break;
                 case "tilt":
@@ -436,13 +436,13 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     command = new AltUnityGetAllComponentsCommand(pieces[1]);
                     break;
                 case "getAllFields":
-                    altComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityComponent>(pieces[2]);
-                    command = new AltUnityGetAllFieldsCommand(pieces[1], altComponent);
+                    testComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<TestComponent>(pieces[2]);
+                    command = new AltUnityGetAllFieldsCommand(pieces[1], testComponent);
                     break;
                 case "getAllMethods":
-                    altComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityComponent>(pieces[1]);
-                    var methodSelection = (AltUnityMethodSelection)Enum.Parse(typeof(AltUnityMethodSelection), pieces[2], true);
-                    command = new AltUnityGetAllMethodsCommand (altComponent,methodSelection);
+                    testComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<TestComponent>(pieces[1]);
+                    var methodSelection = (TestMethodSelection)Enum.Parse(typeof(TestMethodSelection), pieces[2], true);
+                    command = new AltUnityGetAllMethodsCommand (testComponent,methodSelection);
                     break;
                 case "getAllScenes":
                     command = new AltUnityGetAllScenesCommand();
@@ -502,11 +502,11 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     break;
 
                 case "getText":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnityGetTextCommand(altUnityObject);
                     break;
                 case "setText":
-                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(pieces[1]);
+                    altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     command = new AltUnitySetTextCommand(altUnityObject, pieces[2]);
                     break;
                 case "getPNGScreenshot":
@@ -577,7 +577,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         AltUnityIconPressed = !AltUnityIconPressed;
     }
 
-    public static UnityEngine.GameObject GetGameObject(AltUnityObject altUnityObject)
+    public static UnityEngine.GameObject GetGameObject(TestObject altUnityObject)
     {
         foreach (UnityEngine.GameObject gameObject in UnityEngine.Resources.FindObjectsOfTypeAll<UnityEngine.GameObject>())
         {

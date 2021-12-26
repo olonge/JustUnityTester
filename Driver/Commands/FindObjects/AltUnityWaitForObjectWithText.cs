@@ -20,10 +20,10 @@ namespace JustUnityTester.Driver.Commands {
             this.interval = interval;
             this.text = text;
         }
-        public AltUnityObject Execute() {
+        public TestObject Execute() {
             string path = SetPath(by, value);
             double time = 0;
-            AltUnityObject altElement = null;
+            TestObject altElement = null;
             while (time < timeout) {
                 try {
                     altElement = new AltUnityFindObject(SocketSettings, by, value, cameraBy, cameraPath, enabled).Execute();

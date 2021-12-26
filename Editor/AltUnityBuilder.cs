@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.IO;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Editor {
@@ -18,7 +20,7 @@ namespace JustUnityTester.Editor {
 
             if (axisArray.arraySize == 0)
                 UnityEngine.Debug.Log("No Axes");
-            System.Collections.Generic.List<AltUnityAxis> axisList = new System.Collections.Generic.List<AltUnityAxis>();
+            List<TestAxis> axisList = new List<TestAxis>();
             for (int i = 0; i < axisArray.arraySize; ++i) {
                 var axis = axisArray.GetArrayElementAtIndex(i);
 
@@ -28,7 +30,7 @@ namespace JustUnityTester.Editor {
                 var positiveButton = axis.FindPropertyRelative("positiveButton").stringValue;
                 var altPositiveButton = axis.FindPropertyRelative("altPositiveButton").stringValue;
                 var altNegativeButton = axis.FindPropertyRelative("altNegativeButton").stringValue;
-                axisList.Add(new AltUnityAxis(name, negativeButton, positiveButton, altPositiveButton, altNegativeButton));
+                axisList.Add(new TestAxis(name, negativeButton, positiveButton, altPositiveButton, altNegativeButton));
             }
 
             string dataAsJson = Newtonsoft.Json.JsonConvert.SerializeObject(axisList);
@@ -37,7 +39,7 @@ namespace JustUnityTester.Editor {
                 UnityEditor.AssetDatabase.CreateFolder("Assets", "Resources");
                 UnityEditor.AssetDatabase.CreateFolder("Assets/Resources", "AltUnityTester");
             }
-            System.IO.File.WriteAllText(filePath, dataAsJson);
+            File.WriteAllText(filePath, dataAsJson);
         }
 
         public static void InsertAltUnityInScene(string scene, int port = 13000) {

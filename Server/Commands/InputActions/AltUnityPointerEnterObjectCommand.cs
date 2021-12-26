@@ -2,9 +2,9 @@
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityPointerEnterObjectCommand : AltUnityCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityPointerEnterObjectCommand(AltUnityObject altUnityObject) {
+        public AltUnityPointerEnterObjectCommand(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

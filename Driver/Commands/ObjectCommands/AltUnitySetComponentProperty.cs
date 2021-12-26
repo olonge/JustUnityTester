@@ -6,9 +6,9 @@ namespace JustUnityTester.Driver.Commands {
         string propertyName;
         string value;
         string assemblyName;
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnitySetComponentProperty(SocketSettings socketSettings, string componentName, string propertyName, string value, string assemblyName, AltUnityObject altUnityObject) : base(socketSettings) {
+        public AltUnitySetComponentProperty(SocketSettings socketSettings, string componentName, string propertyName, string value, string assemblyName, TestObject altUnityObject) : base(socketSettings) {
             this.componentName = componentName;
             this.propertyName = propertyName;
             this.value = value;
@@ -17,7 +17,7 @@ namespace JustUnityTester.Driver.Commands {
         }
         public string Execute() {
             string altObject = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityObject);
-            string propertyInfo = Newtonsoft.Json.JsonConvert.SerializeObject(new AltUnityObjectProperty(componentName, propertyName, assemblyName));
+            string propertyInfo = Newtonsoft.Json.JsonConvert.SerializeObject(new TestObjectProperty(componentName, propertyName, assemblyName));
             Socket.Client.Send(
                 System.Text.Encoding.ASCII.GetBytes(CreateCommand("setObjectComponentProperty", altObject, propertyInfo, value)));
             string data = Recvall();

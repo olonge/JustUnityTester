@@ -47,7 +47,7 @@ namespace JustUnityTester.Server.Commands {
                 handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(hits[hits.Length - 1].transform.gameObject)));
                 AltUnityRunner._altUnityRunner.StartCoroutine(AltUnityRunner._altUnityRunner.HighLightSelectedObjectCorutine(hits[hits.Length - 1].transform.gameObject, color, width, size, handler));
             } else {
-                handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(new AltUnityObject("Null")));
+                handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(new TestObject("Null")));
                 new AltUnityGetScreenshotCommand(size, handler).Execute();
             }
             return "Ok";

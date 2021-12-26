@@ -2,9 +2,9 @@ using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityClickEventCommand : AltUnityCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityClickEventCommand(AltUnityObject altObject) {
+        public AltUnityClickEventCommand(TestObject altObject) {
             altUnityObject = altObject;
         }
 

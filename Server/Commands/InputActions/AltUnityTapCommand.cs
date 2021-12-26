@@ -2,10 +2,10 @@ using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityTapCommand : AltUnityCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
         int count;
 
-        public AltUnityTapCommand(AltUnityObject altUnityObject, int count) {
+        public AltUnityTapCommand(TestObject altUnityObject, int count) {
             this.altUnityObject = altUnityObject;
             this.count = count;
         }
