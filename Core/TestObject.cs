@@ -61,8 +61,8 @@ namespace JustUnityTester.Core {
         public TestObject Tap() => new AltUnityTap(socketSettings, this, 1).Execute();
         public TestObject DoubleTap() => new AltUnityTap(socketSettings, this, 2).Execute();
         public List<TestComponent> GetAllComponents() => new AltUnityGetAllComponents(socketSettings, this).Execute();
-        public List<AltUnityProperty> GetAllProperties(TestComponent altUnityComponent) =>
-            new AltUnityGetAllProperties(socketSettings, altUnityComponent, this).Execute();
+        public List<TestProperty> GetAllProperties(TestComponent testComponent) =>
+            new AltUnityGetAllProperties(socketSettings, testComponent, this).Execute();
         public List<string> GetAllMethods(TestComponent testComponent, TestMethodSelection methodSelection = TestMethodSelection.ALLMETHODS) =>
             new AltUnityGetAllMethods(socketSettings, testComponent, this, methodSelection).Execute();
     }

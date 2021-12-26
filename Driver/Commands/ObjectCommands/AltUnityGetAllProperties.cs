@@ -11,13 +11,13 @@ namespace JustUnityTester.Driver.Commands {
             this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
         }
-        public List<AltUnityProperty> Execute() {
+        public List<TestProperty> Execute() {
             var altComponent = JsonConvert.SerializeObject(testComponent);
             Socket.Client.Send(Encoding.ASCII.GetBytes(CreateCommand("getAllFields", altUnityObject.id.ToString(), altComponent)));
             string data = Recvall();
 
             if (!data.Contains("error:"))
-                return JsonConvert.DeserializeObject<List<AltUnityProperty>>(data);
+                return JsonConvert.DeserializeObject<List<TestProperty>>(data);
 
             HandleErrors(data);
             return null;
