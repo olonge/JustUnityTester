@@ -4,7 +4,7 @@ using System.Linq;
 namespace JustUnityTester.Editor {
     public class TesterEditor : UnityEditor.EditorWindow {
 
-        public static bool needsRepaiting = false;
+        public static bool needsRepainting = false;
 
         public static EditorConfig Config;
         public static TesterEditor _window;
@@ -133,11 +133,14 @@ namespace JustUnityTester.Editor {
 
         public static void InitEditorConfiguration() {
             if (UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings").Length == 0) {
-                var altUnityEditorFolderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
-                altUnityEditorFolderPath = altUnityEditorFolderPath.Substring(0, altUnityEditorFolderPath.Length - 24);
+
+                var folderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
+                folderPath = folderPath.Substring(0, folderPath.Length - 24);
+
                 Config = CreateInstance<EditorConfig>();
                 Config.MyTests = null;
-                UnityEditor.AssetDatabase.CreateAsset(Config, altUnityEditorFolderPath + "/AltUnityTesterEditorSettings.asset");
+
+                UnityEditor.AssetDatabase.CreateAsset(Config, folderPath + "/AltUnityTesterEditorSettings.asset");
                 UnityEditor.AssetDatabase.SaveAssets();
 
             } else {
@@ -163,8 +166,8 @@ namespace JustUnityTester.Editor {
 
         private void OnGUI() {
 
-            if (needsRepaiting) {
-                needsRepaiting = false;
+            if (needsRepainting) {
+                needsRepainting = false;
                 Repaint();
             }
 
@@ -178,7 +181,6 @@ namespace JustUnityTester.Editor {
             }
 
             DrawGUI();
-
         }
 
         private void DrawGUI() {
@@ -365,7 +367,6 @@ namespace JustUnityTester.Editor {
                 //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
                 UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
             }
-
         }
 
 
@@ -376,7 +377,6 @@ namespace JustUnityTester.Editor {
             /// Stops marking the scripts as dirty causing the IDE to recompile them
             //AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
             UnityEditor.EditorApplication.isPlaying = true;
-
         }
 
         private static void UnindentedLabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable) {
@@ -530,7 +530,6 @@ namespace JustUnityTester.Editor {
                 }
 
             }
-
         }
 
         public static void AddAllScenes() {
@@ -543,7 +542,6 @@ namespace JustUnityTester.Editor {
             }
 
             UnityEditor.EditorBuildSettings.scenes = PathFromTheSceneInCurrentList();
-
         }
 
         private static UnityEditor.EditorBuildSettingsScene[] PathFromTheSceneInCurrentList() {
@@ -588,7 +586,6 @@ namespace JustUnityTester.Editor {
              newFilePath
             });
 #endif
-
         }
 
         [UnityEditor.MenuItem("Assets/Create/AltUnityTest", true, 80)]

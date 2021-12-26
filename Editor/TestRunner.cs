@@ -51,7 +51,7 @@ namespace JustUnityTester.Editor {
 
             runTestThread.Join();
             if (TesterEditor.Config.platform != TestPlatform.Editor) {
-                TesterEditor.needsRepaiting = true;
+                TesterEditor.needsRepainting = true;
                 UnityEditor.EditorUtility.ClearProgressBar();
             }
         }
