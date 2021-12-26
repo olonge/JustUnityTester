@@ -48,7 +48,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, ISocketDelegatable {
 
     [UnityEngine.Space]
     [UnityEngine.SerializeField] private bool _showInputs = false;
-    [UnityEngine.SerializeField] private AltUnityInputsVisualiser _inputsVisualiser = null;
+    [UnityEngine.SerializeField] private InputsVisualiser _inputsVisualiser = null;
 
     [UnityEngine.Space]
 

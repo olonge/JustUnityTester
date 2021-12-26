@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace JustUnityTester.Server.UI {
-    public class AltPopIconDrag : EventTrigger {
+    public class PopIconDrag : EventTrigger {
 
         private bool dragging;
         private float time;
@@ -10,9 +10,8 @@ namespace JustUnityTester.Server.UI {
         public void Update() {
             if (!dragging && pressed) {
                 time += Time.deltaTime;
-                if (time > 0.5f) {
+                if (time > 0.5f)
                     dragging = true;
-                }
             }
             if (dragging) {
                 transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

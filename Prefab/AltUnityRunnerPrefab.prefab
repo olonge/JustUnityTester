@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 225}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222871551011164672
@@ -707,7 +707,7 @@ MonoBehaviour:
   PopUp: {fileID: 1166850336722808}
   Icon: {fileID: 114444481275187822}
   PopUpText: {fileID: 114299953858491160}
-  AltUnityIconPressed: 0
+  IsIconPressed: 0
   logEnabled: 0
   _showInputs: 0
   _inputsVisualiser: {fileID: 114264291789795184}

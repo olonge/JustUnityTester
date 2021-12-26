@@ -3,13 +3,13 @@ using System.Collections;
 using UnityEngine;
 
 namespace JustUnityTester.Server.UI {
-    public class AltUnityInputsVisualiser : MonoBehaviour {
+    public class InputsVisualiser : MonoBehaviour {
         public float VisibleTime = 1;
         [Space]
-        [SerializeField] private AltUnityInputMark Template = null;
+        [SerializeField] private InputMark Template = null;
 
-        private readonly List<AltUnityInputMark> _pool = new List<AltUnityInputMark>();
-        private readonly Dictionary<int, AltUnityInputMark> _continuously = new Dictionary<int, AltUnityInputMark>();
+        private readonly List<InputMark> _pool = new List<InputMark>();
+        private readonly Dictionary<int, InputMark> _continuously = new Dictionary<int, InputMark>();
         private Transform _transform;
         private float currentRatio;
         private float initialRatio = 1;
@@ -20,7 +20,7 @@ namespace JustUnityTester.Server.UI {
             _transform = GetComponent<Transform>();
         }
 
-        private IEnumerator VisualizerPulse(AltUnityInputMark mark) {
+        private IEnumerator VisualizerPulse(InputMark mark) {
             currentRatio = initialRatio;
             while (currentRatio != growthBound) {
                 currentRatio = Mathf.MoveTowards(currentRatio, growthBound, approachSpeed);
@@ -32,7 +32,7 @@ namespace JustUnityTester.Server.UI {
         }
 
         public void ShowClick(Vector2 pos) {
-            AltUnityInputMark mark = GetMark();
+            InputMark mark = GetMark();
             StartCoroutine(VisualizerPulse(mark));
             mark.Show(pos);
         }
@@ -40,7 +40,7 @@ namespace JustUnityTester.Server.UI {
         public int ShowContinuousInput(Vector2 pos, int id) {
             var currentId = id;
 
-            AltUnityInputMark mark;
+            InputMark mark;
             if (_continuously.ContainsKey(currentId))
                 mark = _continuously[currentId];
             else {
@@ -54,8 +54,8 @@ namespace JustUnityTester.Server.UI {
             return currentId;
         }
 
-        private AltUnityInputMark GetMark() {
-            AltUnityInputMark inputMark;
+        private InputMark GetMark() {
+            InputMark inputMark;
 
             if (_pool.Count > 0) {
                 inputMark = _pool[0];
@@ -69,7 +69,7 @@ namespace JustUnityTester.Server.UI {
             return inputMark;
         }
 
-        private void PutMark(AltUnityInputMark mark) {
+        private void PutMark(InputMark mark) {
             if (_continuously.ContainsKey(mark.Id))
                 _continuously.Remove(mark.Id);
 

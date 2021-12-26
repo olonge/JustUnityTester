@@ -1,5 +1,5 @@
 namespace JustUnityTester.Server.UI {
-    public class AltUnityInputMark : UnityEngine.MonoBehaviour {
+    public class InputMark : UnityEngine.MonoBehaviour {
         public UnityEngine.CanvasGroup CanvasGroup;
         public UnityEngine.AnimationCurve VisibilityCurve;
 
@@ -7,7 +7,7 @@ namespace JustUnityTester.Server.UI {
         public UnityEngine.Transform Transform { get { return _transform ?? (_transform = GetComponent<UnityEngine.Transform>()); } }
         private UnityEngine.Transform _transform;
 
-        private System.Action<AltUnityInputMark> _onFinished;
+        private System.Action<InputMark> _onFinished;
         private float _time;
         private float _currentTime;
 
@@ -18,7 +18,7 @@ namespace JustUnityTester.Server.UI {
                 CanvasGroup.alpha = 0;
         }
 
-        public void Init(float time, System.Action<AltUnityInputMark> onFinished) {
+        public void Init(float time, System.Action<InputMark> onFinished) {
             _time = time;
             _onFinished = onFinished;
         }
