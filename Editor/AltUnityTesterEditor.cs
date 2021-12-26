@@ -426,8 +426,11 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.LabelField("Run tests", UnityEditor.EditorStyles.boldLabel);
 
-        if (UnityEngine.GUILayout.Button("Run All Tests"))
-        {
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run All Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run All Tests")) {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
                 System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest));
@@ -439,7 +442,12 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest);
             }
         }
-        if (UnityEngine.GUILayout.Button("Run Selected Tests"))
+
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run Selected Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run Selected Tests"))
         {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
@@ -452,7 +460,12 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunSelectedTest);
             }
         }
-        if (UnityEngine.GUILayout.Button("Run Failed Tests"))
+
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run Failed Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run Failed Tests"))
         {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
