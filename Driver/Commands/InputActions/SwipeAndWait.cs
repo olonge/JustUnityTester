@@ -1,17 +1,17 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySwipeAndWait : BaseCommand {
+    public class SwipeAndWait : BaseCommand {
         AltUnityVector2 start;
         AltUnityVector2 end;
         float duration;
-        public AltUnitySwipeAndWait(SocketSettings socketSettings, AltUnityVector2 start, AltUnityVector2 end, float duration) : base(socketSettings) {
+        public SwipeAndWait(SocketSettings socketSettings, AltUnityVector2 start, AltUnityVector2 end, float duration) : base(socketSettings) {
             this.start = start;
             this.end = end;
             this.duration = duration;
         }
         public void Execute() {
-            new AltUnitySwipe(SocketSettings, start, end, duration).Execute();
+            new Swipe(SocketSettings, start, end, duration).Execute();
             System.Threading.Thread.Sleep((int)(duration * 1000));
             string data;
             do {

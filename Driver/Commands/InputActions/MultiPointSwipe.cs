@@ -1,11 +1,11 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityMultipointSwipe : BaseCommand {
+    public class MultiPointSwipe : BaseCommand {
         AltUnityVector2[] positions;
         float duration;
 
-        public AltUnityMultipointSwipe(SocketSettings socketSettings, AltUnityVector2[] positions, float duration) : base(socketSettings) {
+        public MultiPointSwipe(SocketSettings socketSettings, AltUnityVector2[] positions, float duration) : base(socketSettings) {
             this.positions = positions;
             this.duration = duration;
         }

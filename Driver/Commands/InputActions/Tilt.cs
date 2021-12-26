@@ -1,10 +1,10 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTilt : BaseCommand {
+    public class Tilt : BaseCommand {
         AltUnityVector3 acceleration;
         float duration;
-        public AltUnityTilt(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {
+        public Tilt(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {
             this.acceleration = acceleration;
             this.duration = duration;
         }

@@ -107,16 +107,16 @@ namespace JustUnityTester {
             return new AltUnityGetCurrentScene(socketSettings).Execute();
         }
         public void Swipe(AltUnityVector2 start, AltUnityVector2 end, float duration) {
-            new AltUnitySwipe(socketSettings, start, end, duration).Execute();
+            new Swipe(socketSettings, start, end, duration).Execute();
         }
         public void SwipeAndWait(AltUnityVector2 start, AltUnityVector2 end, float duration) {
-            new AltUnitySwipeAndWait(socketSettings, start, end, duration).Execute();
+            new SwipeAndWait(socketSettings, start, end, duration).Execute();
         }
         public void MultipointSwipe(AltUnityVector2[] positions, float duration) {
-            new AltUnityMultipointSwipe(socketSettings, positions, duration).Execute();
+            new MultiPointSwipe(socketSettings, positions, duration).Execute();
         }
         public void MultipointSwipeAndWait(AltUnityVector2[] positions, float duration) {
-            new AltUnityMultipointSwipeAndWait(socketSettings, positions, duration).Execute();
+            new MultiPointSwipeAndWait(socketSettings, positions, duration).Execute();
         }
         public void HoldButton(AltUnityVector2 position, float duration) {
             Swipe(position, position, duration);
@@ -125,36 +125,36 @@ namespace JustUnityTester {
             SwipeAndWait(position, position, duration);
         }
         public void PressKey(AltUnityKeyCode keyCode, float power = 1, float duration = 1) {
-            new AltUnityPressKey(socketSettings, keyCode, power, duration).Execute();
+            new PressKey(socketSettings, keyCode, power, duration).Execute();
         }
         public void PressKeyAndWait(AltUnityKeyCode keyCode, float power = 1, float duration = 1) {
-            new AltUnityPressKeyAndWait(socketSettings, keyCode, power, duration).Execute();
+            new PressKeyAndWait(socketSettings, keyCode, power, duration).Execute();
         }
         public void MoveMouse(AltUnityVector2 location, float duration = 0) {
-            new AltUnityMoveMouse(socketSettings, location, duration).Execute();
+            new MoveMouse(socketSettings, location, duration).Execute();
         }
 
         public void MoveMouseAndWait(AltUnityVector2 location, float duration = 0) {
-            new AltUnityMoveMouseAndWait(socketSettings, location, duration).Execute();
+            new MoveMouseAndWait(socketSettings, location, duration).Execute();
         }
 
         public void ScrollMouse(float speed, float duration = 0) {
-            new AltUnityScrollMouse(socketSettings, speed, duration).Execute();
+            new ScrollMouse(socketSettings, speed, duration).Execute();
         }
         public void ScrollMouseAndWait(float speed, float duration = 0) {
-            new AltUnityScrollMouseAndWait(socketSettings, speed, duration).Execute();
+            new ScrollMouseAndWait(socketSettings, speed, duration).Execute();
         }
         public TestObject TapScreen(float x, float y) {
-            return new AltUnityTapScreen(socketSettings, x, y).Execute();
+            return new TapScreen(socketSettings, x, y).Execute();
         }
         public void TapCustom(float x, float y, int count, float interval = 0.1f) {
-            new AltUnityTapCustom(socketSettings, x, y, count, interval).Execute();
+            new TapCustom(socketSettings, x, y, count, interval).Execute();
         }
         public void Tilt(AltUnityVector3 acceleration, float duration = 0) {
-            new AltUnityTilt(socketSettings, acceleration, duration).Execute();
+            new Tilt(socketSettings, acceleration, duration).Execute();
         }
         public void TiltAndWait(AltUnityVector3 acceleration, float duration = 0) {
-            new AltUnityTiltAndWait(socketSettings, acceleration, duration).Execute();
+            new TiltAndWait(socketSettings, acceleration, duration).Execute();
         }
         public List<TestObject> GetAllElements(By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
             return new GetAllElements(socketSettings, cameraBy, cameraPath, enabled).Execute();

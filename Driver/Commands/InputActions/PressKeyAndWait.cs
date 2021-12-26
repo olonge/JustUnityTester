@@ -1,15 +1,17 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTiltAndWait : BaseCommand {
-        AltUnityVector3 acceleration;
+    public class PressKeyAndWait : BaseCommand {
+        AltUnityKeyCode keyCode;
+        float power;
         float duration;
-        public AltUnityTiltAndWait(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {
-            this.acceleration = acceleration;
+        public PressKeyAndWait(SocketSettings socketSettings, AltUnityKeyCode keyCode, float power, float duration) : base(socketSettings) {
+            this.keyCode = keyCode;
+            this.power = power;
             this.duration = duration;
         }
         public void Execute() {
-            new AltUnityTilt(SocketSettings, acceleration, duration).Execute();
+            new PressKey(SocketSettings, keyCode, power, duration).Execute();
             System.Threading.Thread.Sleep((int)duration * 1000);
             string data;
             do {

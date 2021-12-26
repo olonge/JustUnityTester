@@ -1,13 +1,15 @@
+using JustUnityTester.Driver.Primitives;
+
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityScrollMouseAndWait : BaseCommand {
-        float speed;
+    public class TiltAndWait : BaseCommand {
+        AltUnityVector3 acceleration;
         float duration;
-        public AltUnityScrollMouseAndWait(SocketSettings socketSettings, float speed, float duration) : base(socketSettings) {
-            this.speed = speed;
+        public TiltAndWait(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {
+            this.acceleration = acceleration;
             this.duration = duration;
         }
         public void Execute() {
-            new AltUnityScrollMouse(SocketSettings, speed, duration).Execute();
+            new Tilt(SocketSettings, acceleration, duration).Execute();
             System.Threading.Thread.Sleep((int)duration * 1000);
             string data;
             do {

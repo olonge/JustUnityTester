@@ -1,17 +1,15 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityPressKeyAndWait : BaseCommand {
-        AltUnityKeyCode keyCode;
-        float power;
+    public class MoveMouseAndWait : BaseCommand {
+        AltUnityVector2 location;
         float duration;
-        public AltUnityPressKeyAndWait(SocketSettings socketSettings, AltUnityKeyCode keyCode, float power, float duration) : base(socketSettings) {
-            this.keyCode = keyCode;
-            this.power = power;
+        public MoveMouseAndWait(SocketSettings socketSettings, AltUnityVector2 location, float duration) : base(socketSettings) {
+            this.location = location;
             this.duration = duration;
         }
         public void Execute() {
-            new AltUnityPressKey(SocketSettings, keyCode, power, duration).Execute();
+            new MoveMouse(SocketSettings, location, duration).Execute();
             System.Threading.Thread.Sleep((int)duration * 1000);
             string data;
             do {

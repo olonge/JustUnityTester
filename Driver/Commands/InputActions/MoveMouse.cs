@@ -1,10 +1,10 @@
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityMoveMouse : BaseCommand {
+    public class MoveMouse : BaseCommand {
         AltUnityVector2 location;
         float duration;
-        public AltUnityMoveMouse(SocketSettings socketSettings, AltUnityVector2 location, float duration) : base(socketSettings) {
+        public MoveMouse(SocketSettings socketSettings, AltUnityVector2 location, float duration) : base(socketSettings) {
             this.location = location;
             this.duration = duration;
         }

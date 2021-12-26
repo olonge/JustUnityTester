@@ -1,8 +1,8 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityScrollMouse : BaseCommand {
+    public class ScrollMouse : BaseCommand {
         float speed;
         float duration;
-        public AltUnityScrollMouse(SocketSettings socketSettings, float speed, float duration) : base(socketSettings) {
+        public ScrollMouse(SocketSettings socketSettings, float speed, float duration) : base(socketSettings) {
             this.speed = speed;
             this.duration = duration;
         }

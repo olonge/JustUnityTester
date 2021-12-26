@@ -1,10 +1,10 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTapCustom : BaseCommand {
+    public class TapCustom : BaseCommand {
         float x;
         float y;
         int count;
         float interval;
-        public AltUnityTapCustom(SocketSettings socketSettings, float x, float y, int count, float interval) : base(socketSettings) {
+        public TapCustom(SocketSettings socketSettings, float x, float y, int count, float interval) : base(socketSettings) {
             this.x = x;
             this.y = y;
             this.count = count;

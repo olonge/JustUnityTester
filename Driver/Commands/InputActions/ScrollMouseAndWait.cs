@@ -1,17 +1,13 @@
-using JustUnityTester.Driver.Primitives;
-
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityMultipointSwipeAndWait : BaseCommand {
-        AltUnityVector2[] positions;
+    public class ScrollMouseAndWait : BaseCommand {
+        float speed;
         float duration;
-
-        public AltUnityMultipointSwipeAndWait(SocketSettings socketSettings, AltUnityVector2[] positions, float duration) : base(socketSettings) {
-            this.positions = positions;
+        public ScrollMouseAndWait(SocketSettings socketSettings, float speed, float duration) : base(socketSettings) {
+            this.speed = speed;
             this.duration = duration;
         }
-
         public void Execute() {
-            new AltUnityMultipointSwipe(SocketSettings, positions, duration).Execute();
+            new ScrollMouse(SocketSettings, speed, duration).Execute();
             System.Threading.Thread.Sleep((int)duration * 1000);
             string data;
             do {
