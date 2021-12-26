@@ -252,7 +252,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         var rightSide = (screenWidth / 3);
         UnityEditor.EditorGUILayout.BeginVertical();
 
-        UnityEditor.EditorGUILayout.LabelField("Platform", UnityEditor.EditorStyles.boldLabel);
+        /*UnityEditor.EditorGUILayout.LabelField("Platform", UnityEditor.EditorStyles.boldLabel);
         if (rightSide <= 300)
         {
             UnityEditor.EditorGUILayout.BeginVertical();
@@ -319,7 +319,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
-        UnityEditor.EditorGUILayout.Separator();
+        UnityEditor.EditorGUILayout.Separator();*/
 
         
         if (AltUnityBuilder.built)
@@ -345,7 +345,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
         }
 
-        UnityEditor.EditorGUILayout.LabelField("Build", UnityEditor.EditorStyles.boldLabel);
+        /*UnityEditor.EditorGUILayout.LabelField("Build", UnityEditor.EditorStyles.boldLabel);
         if (EditorConfiguration.platform != AltUnityPlatform.Editor)
         {
             if (UnityEngine.GUILayout.Button("Build Only"))
@@ -374,7 +374,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.BeginDisabledGroup(true);
             UnityEngine.GUILayout.Button("Build Only");
             UnityEditor.EditorGUI.EndDisabledGroup();
-        }
+        }*/
 
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
@@ -406,7 +406,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.EndDisabledGroup();
         }
 
-        if (EditorConfiguration.platform != AltUnityPlatform.Editor)
+        /*if (EditorConfiguration.platform != AltUnityPlatform.Editor)
         {
             if (UnityEngine.GUILayout.Button("Build & Run"))
             {
@@ -431,7 +431,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.BeginDisabledGroup(true);
             UnityEngine.GUILayout.Button("Build & Run", UnityEngine.GUILayout.MinWidth(50));
             UnityEditor.EditorGUI.EndDisabledGroup();
-        }
+        }*/
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
