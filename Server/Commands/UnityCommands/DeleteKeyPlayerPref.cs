@@ -1,8 +1,8 @@
 namespace JustUnityTester.Server.Commands {
-    class AltUnityDeleteKeyPlayerPrefCommand : AltUnityCommand {
+    class DeleteKeyPlayerPref : AltUnityCommand {
         string keyName;
 
-        public AltUnityDeleteKeyPlayerPrefCommand(string keyName) {
+        public DeleteKeyPlayerPref(string keyName) {
             this.keyName = keyName;
         }
 

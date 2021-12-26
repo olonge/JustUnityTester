@@ -1,12 +1,12 @@
 using JustUnityTester.Server;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityLoadSceneCommand : AltUnityCommand {
+    class LoadScene : AltUnityCommand {
         string scene;
         UnityEngine.SceneManagement.LoadSceneMode mode;
         AltClientSocketHandler handler;
 
-        public AltUnityLoadSceneCommand(string scene, bool loadSingle, AltClientSocketHandler handler) {
+        public LoadScene(string scene, bool loadSingle, AltClientSocketHandler handler) {
             mode = loadSingle
                 ? UnityEngine.SceneManagement.LoadSceneMode.Single
                 : UnityEngine.SceneManagement.LoadSceneMode.Additive;

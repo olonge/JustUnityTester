@@ -1,8 +1,8 @@
 ﻿namespace JustUnityTester.Server.Commands {
-    class AltUnityGetAllLoadedScenesCommand : AltUnityCommand {
+    class GetAllLoadedScenes : AltUnityCommand {
         private System.Collections.Generic.List<string> sceneNames = new System.Collections.Generic.List<string>();
 
-        public AltUnityGetAllLoadedScenesCommand() {
+        public GetAllLoadedScenes() {
         }
 
         public override string Execute() {

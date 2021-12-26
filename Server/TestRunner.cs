@@ -361,28 +361,28 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "loadScene":
                     var loadSingle = bool.Parse(pieces[2]);
-                    command = new AltUnityLoadSceneCommand(pieces[1], loadSingle, handler);
+                    command = new LoadScene(pieces[1], loadSingle, handler);
                     break;
                 case "setTimeScale":
                     float timeScale = JsonConvert.DeserializeObject<float>(pieces[1]);
-                    command = new AltUnitySetTimeScaleCommand(timeScale);
+                    command = new SetTimeScale(timeScale);
                     break;
                 case "getTimeScale":
-                    command = new AltUnityGetTimeScaleCommand();
+                    command = new GetTimeScale();
                     break;
                 case "deletePlayerPref":
-                    command = new AltUnityDeletePlayerPrefCommand();
+                    command = new DeletePlayerPref();
                     break;
                 case "deleteKeyPlayerPref":
-                    command = new AltUnityDeleteKeyPlayerPrefCommand(pieces[1]);
+                    command = new DeleteKeyPlayerPref(pieces[1]);
                     break;
                 case "setKeyPlayerPref":
                     option = (PLayerPrefKeyType)Enum.Parse(typeof(PLayerPrefKeyType), pieces[3]);
-                    command = new AltUnitySetKeyPlayerPrefCommand(option, pieces[1], pieces[2]);
+                    command = new SetKeyPlayerPref(option, pieces[1], pieces[2]);
                     break;
                 case "getKeyPlayerPref":
                     option = (PLayerPrefKeyType)Enum.Parse(typeof(PLayerPrefKeyType), pieces[2]);
-                    command = new AltUnityGetKeyPlayerPrefCommand(option, pieces[1]);
+                    command = new GetKeyPlayerPref(option, pieces[1]);
                     break;
                 case "actionFinished":
                     command = new ActionFinished();
@@ -406,7 +406,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new GetAllCameras();
                     break;
                 case "getAllLoadedScenes":
-                    command = new AltUnityGetAllLoadedScenesCommand();
+                    command = new GetAllLoadedScenes();
                     break;
                 case "getScreenshot":
                     size = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
