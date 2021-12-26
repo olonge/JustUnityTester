@@ -234,27 +234,29 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
     public AltUnityObject GameObjectToAltUnityObject(UnityEngine.GameObject altGameObject, UnityEngine.Camera camera = null)
     {
         int cameraId = -1;
-        //if no camera is given it will iterate through all cameras until  found one that sees the object if no camera sees the object it will return the position from the last camera
-        //if there is no camera in the scene it will return as scren position x:-1 y=-1, z=-1 and cameraId=-1
-        if (camera == null)
-        {
-            _position = new UnityEngine.Vector3(-1, -1, -1);
-            foreach (var camera1 in UnityEngine.Camera.allCameras)
-            {
-                _position = getObjectScreePosition(altGameObject, camera1);
-                cameraId = camera1.GetInstanceID();
-                if (_position.x > 0 && _position.y > 0 && _position.x < UnityEngine.Screen.width && _position.y < UnityEngine.Screen.height && _position.z >= 0)//Check if camera sees the object
-                {
-                    break;
+        /// if no camera is given it will iterate through all cameras until one is found one that sees this object.
+        /// if no camera sees the object it will return the position from the last camera.
+        /// if there is no camera in the scene it will return as screen position x:-1 y=-1, z=-1 and cameraId=-1
+        try {
+            if (camera == null) {
+                _position = UnityEngine.Vector3.one * -1;
+                foreach (var camera1 in UnityEngine.Camera.allCameras) {
+                    _position = getObjectScreePosition(altGameObject, camera1);
+                    cameraId = camera1.GetInstanceID();
+                    if (_position.x > 0 && _position.y > 0 && _position.x < UnityEngine.Screen.width && _position.y < UnityEngine.Screen.height && _position.z >= 0)//Check if camera sees the object
+                    {
+                        break;
+                    }
                 }
+            } else {
+                _position = getObjectScreePosition(altGameObject, camera);
+                cameraId = camera.GetInstanceID();
             }
+        } catch (Exception) {
+            _position = UnityEngine.Vector3.one * -1;
+            cameraId = -1;
         }
-        else
-        {
-            _position = getObjectScreePosition(altGameObject, camera);
-            cameraId = camera.GetInstanceID();
 
-        }
         int parentId = 0;
         if (altGameObject.transform.parent != null)
         {
