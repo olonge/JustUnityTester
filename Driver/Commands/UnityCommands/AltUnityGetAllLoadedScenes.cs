@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Driver.Commands {
-    internal class AltUnityGetAllLoadedScenes : AltBaseCommand {
+    internal class AltUnityGetAllLoadedScenes : BaseCommand {
         public AltUnityGetAllLoadedScenes(SocketSettings socketSettings) : base(socketSettings) {
         }
         public System.Collections.Generic.List<string> Execute() {

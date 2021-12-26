@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityWaitForCurrentSceneToBe : AltBaseCommand {
+    public class AltUnityWaitForCurrentSceneToBe : BaseCommand {
         string sceneName;
         double timeout;
         double interval;

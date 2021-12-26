@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySetKeyPLayerPref : AltBaseCommand {
+    public class AltUnitySetKeyPLayerPref : BaseCommand {
         string keyName;
         int intValue;
         float floatValue;

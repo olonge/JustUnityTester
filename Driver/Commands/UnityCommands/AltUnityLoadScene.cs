@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityLoadScene : AltBaseCommand {
+    public class AltUnityLoadScene : BaseCommand {
         string sceneName;
         bool loadSingle;
 

@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetAllCameras : AltUnityBaseFindObjects {
+    public class AltUnityGetAllCameras : BaseFindObjects {
         public AltUnityGetAllCameras(SocketSettings socketSettings) : base(socketSettings) {
         }
         public System.Collections.Generic.List<TestObject> Execute() {

@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityDeletePlayerPref : AltBaseCommand {
+    public class AltUnityDeletePlayerPref : BaseCommand {
         public AltUnityDeletePlayerPref(SocketSettings socketSettings) : base(socketSettings) {
         }
         public void Execute() {
