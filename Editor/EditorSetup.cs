@@ -48,7 +48,7 @@ namespace JustUnityTester.Editor {
 
             SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
-            var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<AltUnityRunner>();
+            var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<global::TestRunner>();
             if (TesterEditor.Config == null) {
                 component.ShowInputs = false;
                 component.showPopUp = true;

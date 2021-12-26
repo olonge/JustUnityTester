@@ -9,18 +9,18 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            var pieces = methodParameters.Split(new string[] { AltUnityRunner._altUnityRunner.requestSeparatorString }, System.StringSplitOptions.None);
+            var pieces = methodParameters.Split(new string[] { TestRunner._altUnityRunner.requestSeparatorString }, System.StringSplitOptions.None);
             string objectName = pieces[0];
-            AltUnityRunner._altUnityRunner.LogMessage("find object where name contains:" + objectName);
+            TestRunner._altUnityRunner.LogMessage("find object where name contains:" + objectName);
             string cameraName = pieces[1];
-            string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
             UnityEngine.Camera camera = null;
             if (cameraName != null) {
                 camera = UnityEngine.Camera.allCameras.ToList().Find(c => c.name.Equals(cameraName));
             }
             foreach (UnityEngine.GameObject testableObject in UnityEngine.Object.FindObjectsOfType<UnityEngine.GameObject>()) {
                 if (testableObject.name.Contains(objectName)) {
-                    response = Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));
+                    response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));
                     break;
                 }
             }

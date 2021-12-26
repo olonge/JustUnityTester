@@ -11,8 +11,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("call action " + actionString + " for object " + altObjectString);
-            string response = AltUnityRunner._altUnityRunner.errorMethodNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("call action " + actionString + " for object " + altObjectString);
+            string response = TestRunner._altUnityRunner.errorMethodNotFoundMessage;
             System.Reflection.MethodInfo methodInfoToBeInvoked;
             TestObjectAction altAction = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObjectAction>(actionString);
             var componentType = GetType(altAction.Component, altAction.Assembly);
@@ -30,7 +30,7 @@ namespace JustUnityTester.Server.Commands {
                 response = InvokeMethod(methodInfoToBeInvoked, altAction, null, response);
             } else {
                 TestObject altObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(altObjectString);
-                UnityEngine.GameObject gameObject = AltUnityRunner.GetGameObject(altObject);
+                UnityEngine.GameObject gameObject = TestRunner.GetGameObject(altObject);
                 if (componentType == typeof(UnityEngine.GameObject)) {
                     response = InvokeMethod(methodInfoToBeInvoked, altAction, gameObject, response);
                 } else

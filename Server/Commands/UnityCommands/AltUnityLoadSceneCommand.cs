@@ -16,8 +16,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("LoadScene " + scene);
-            string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("LoadScene " + scene);
+            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
 
             var sceneLoadingOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene, mode);
             sceneLoadingOperation.completed += SceneLoaded;
@@ -27,7 +27,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         private void SceneLoaded(UnityEngine.AsyncOperation obj) {
-            AltUnityRunner.logMessage = "Scene Loaded";
+            TestRunner.logMessage = "Scene Loaded";
             handler.SendResponse("Scene Loaded");
         }
     }

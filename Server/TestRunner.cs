@@ -6,14 +6,11 @@ using JustUnityTester.Server;
 using JustUnityTester.Server.Commands;
 using JustUnityTester.Server.UI;
 
-public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
+public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
 {
-    enum FindOption
-    {
-        Name, ContainName, Component
-    }
+    enum FindOption { Name, ContainName, Component }
     
-    public static AltUnityRunner _altUnityRunner;
+    public static TestRunner _altUnityRunner;
     
     public UnityEngine.GameObject AltUnityPopUp;
     public UnityEngine.UI.Image AltUnityIcon;
@@ -537,7 +534,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
     {
         if (logEnabled)
         {
-            AltUnityRunner.logMessage += System.DateTime.Now + ":" + logMessage + System.Environment.NewLine;
+            TestRunner.logMessage += System.DateTime.Now + ":" + logMessage + System.Environment.NewLine;
             FileWriter.WriteLine(System.DateTime.Now + ":" + logMessage);
             UnityEngine.Debug.Log(logMessage);
         }

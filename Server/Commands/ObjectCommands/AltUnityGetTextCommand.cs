@@ -17,10 +17,10 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("Get text from object by name " + altUnityObject.name);
-            var response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("Get text from object by name " + altUnityObject.name);
+            var response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
 
-            var targetObject = AltUnityRunner.GetGameObject(altUnityObject);
+            var targetObject = TestRunner.GetGameObject(altUnityObject);
 
             foreach (var property in TextProperties) {
                 try {
@@ -29,9 +29,9 @@ namespace JustUnityTester.Server.Commands {
                     if (!response.Contains("error:"))
                         break;
                 } catch (Exceptions.PropertyNotFoundException) {
-                    response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
+                    response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
                 } catch (Exceptions.ComponentNotFoundException) {
-                    response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
+                    response = TestRunner._altUnityRunner.errorComponentNotFoundMessage;
                 }
             }
 

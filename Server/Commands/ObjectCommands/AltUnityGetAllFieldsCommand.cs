@@ -14,10 +14,10 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("getAllFields");
+            TestRunner._altUnityRunner.LogMessage("getAllFields");
             UnityEngine.GameObject obj;
 
-            obj = id.Equals("null") ? null : AltUnityRunner.GetGameObject(System.Convert.ToInt32(id));
+            obj = id.Equals("null") ? null : TestRunner.GetGameObject(System.Convert.ToInt32(id));
             System.Type type = GetType(component.componentName, component.assemblyName);
 
             var altObjectComponent = obj.GetComponent(type);

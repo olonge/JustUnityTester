@@ -2,8 +2,8 @@
     class AltUnityDeletePlayerPrefCommand : AltUnityCommand {
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("deletePlayerPref");
-            string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("deletePlayerPref");
+            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
             UnityEngine.PlayerPrefs.DeleteAll();
             response = "Ok";
             return response;

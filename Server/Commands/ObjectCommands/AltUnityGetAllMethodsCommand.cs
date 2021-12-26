@@ -15,7 +15,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("getAllMethods");
+            TestRunner._altUnityRunner.LogMessage("getAllMethods");
             System.Type type = GetType(component.componentName, component.assemblyName);
             MethodInfo[] methodInfos = new MethodInfo[1];
             switch (methodSelection) {

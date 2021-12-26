@@ -15,7 +15,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("HightlightObject wiht id: " + id);
+            TestRunner._altUnityRunner.LogMessage("HightlightObject wiht id: " + id);
             var pieces = ColorAndWidth.Split(new[] { "!-!" }, System.StringSplitOptions.None);
             var piecesColor = pieces[0].Split(new[] { "!!" }, System.StringSplitOptions.None);
             float red = float.Parse(piecesColor[0]);
@@ -25,10 +25,10 @@ namespace JustUnityTester.Server.Commands {
 
             Color color = new Color(red, green, blue, alpha);
             float width = float.Parse(pieces[1]);
-            var gameObject = AltUnityRunner.GetGameObject(id);
+            var gameObject = TestRunner.GetGameObject(id);
 
             if (gameObject != null) {
-                AltUnityRunner._altUnityRunner.StartCoroutine(AltUnityRunner._altUnityRunner.HighLightSelectedObjectCorutine(gameObject, color, width, size, handler));
+                TestRunner._altUnityRunner.StartCoroutine(TestRunner._altUnityRunner.HighLightSelectedObjectCorutine(gameObject, color, width, size, handler));
             } else
                 new AltUnityGetScreenshotCommand(size, handler).Execute();
             return "Ok";

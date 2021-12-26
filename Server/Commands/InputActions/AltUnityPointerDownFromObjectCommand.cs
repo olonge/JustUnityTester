@@ -9,17 +9,17 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("PointerDown object: " + altUnityObject);
-            string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("PointerDown object: " + altUnityObject);
+            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
-            UnityEngine.GameObject gameObject = AltUnityRunner.GetGameObject(altUnityObject);
-            AltUnityRunner._altUnityRunner.LogMessage("GameOBject: " + gameObject);
+            UnityEngine.GameObject gameObject = TestRunner.GetGameObject(altUnityObject);
+            TestRunner._altUnityRunner.LogMessage("GameOBject: " + gameObject);
             UnityEngine.EventSystems.ExecuteEvents.Execute(gameObject, pointerEventData, UnityEngine.EventSystems.ExecuteEvents.pointerDownHandler);
-            var camera = AltUnityRunner._altUnityRunner.FoundCameraById(altUnityObject.idCamera);
+            var camera = TestRunner._altUnityRunner.FoundCameraById(altUnityObject.idCamera);
             if (camera != null) {
-                response = Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject, camera));
+                response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject, camera));
             } else {
-                response = Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject));
+                response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject));
             }
             return response;
         }

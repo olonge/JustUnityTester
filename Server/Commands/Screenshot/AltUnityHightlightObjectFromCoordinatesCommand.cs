@@ -17,7 +17,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("HightlightObject with coordinates: " + screenCoordinates);
+            TestRunner._altUnityRunner.LogMessage("HightlightObject with coordinates: " + screenCoordinates);
             var pieces = ColorAndWidth.Split(new[] { "!-!" }, System.StringSplitOptions.None);
             var piecesColor = pieces[0].Split(new[] { "!!" }, System.StringSplitOptions.None);
             float red = float.Parse(piecesColor[0]);
@@ -37,15 +37,15 @@ namespace JustUnityTester.Server.Commands {
                 System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult> hitUI = new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
                 raycaster.Raycast(pointerEventData, hitUI);
                 foreach (var hit in hitUI) {
-                    handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(hit.gameObject)));
-                    AltUnityRunner._altUnityRunner.StartCoroutine(AltUnityRunner._altUnityRunner.HighLightSelectedObjectCorutine(hit.gameObject, color, width, size, handler));
+                    handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(hit.gameObject)));
+                    TestRunner._altUnityRunner.StartCoroutine(TestRunner._altUnityRunner.HighLightSelectedObjectCorutine(hit.gameObject, color, width, size, handler));
                     return "Ok";
                 }
             }
             hits = Physics.RaycastAll(ray);
             if (hits.Length > 0) {
-                handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(hits[hits.Length - 1].transform.gameObject)));
-                AltUnityRunner._altUnityRunner.StartCoroutine(AltUnityRunner._altUnityRunner.HighLightSelectedObjectCorutine(hits[hits.Length - 1].transform.gameObject, color, width, size, handler));
+                handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(hits[hits.Length - 1].transform.gameObject)));
+                TestRunner._altUnityRunner.StartCoroutine(TestRunner._altUnityRunner.HighLightSelectedObjectCorutine(hits[hits.Length - 1].transform.gameObject, color, width, size, handler));
             } else {
                 handler.SendResponse(Newtonsoft.Json.JsonConvert.SerializeObject(new TestObject("Null")));
                 new AltUnityGetScreenshotCommand(size, handler).Execute();

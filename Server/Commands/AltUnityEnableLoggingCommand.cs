@@ -7,8 +7,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.logEnabled = activateDebug;
-            AltUnityRunner._altUnityRunner.LogMessage("Logging is set to " + activateDebug);
+            TestRunner._altUnityRunner.logEnabled = activateDebug;
+            TestRunner._altUnityRunner.LogMessage("Logging is set to " + activateDebug);
             return "Ok";
         }
     }

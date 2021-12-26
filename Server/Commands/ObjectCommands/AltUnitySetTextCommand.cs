@@ -19,21 +19,21 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("Set text for object by name " + altUnityObject.name);
-            var response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner._altUnityRunner.LogMessage("Set text for object by name " + altUnityObject.name);
+            var response = TestRunner._altUnityRunner.errorNotFoundMessage;
 
-            var targetObject = AltUnityRunner.GetGameObject(altUnityObject);
+            var targetObject = TestRunner.GetGameObject(altUnityObject);
 
             foreach (var property in TextProperties) {
                 try {
                     var memberInfo = GetMemberForObjectComponent(altUnityObject, property);
                     response = SetValueForMember(memberInfo, inputText, targetObject, property);
                     if (!response.Contains("error:"))
-                        return Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(targetObject));
+                        return Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(targetObject));
                 } catch (Exceptions.PropertyNotFoundException) {
-                    response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
+                    response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
                 } catch (Exceptions.ComponentNotFoundException) {
-                    response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
+                    response = TestRunner._altUnityRunner.errorComponentNotFoundMessage;
                 }
             }
 

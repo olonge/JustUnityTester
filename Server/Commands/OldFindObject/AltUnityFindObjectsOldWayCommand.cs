@@ -16,7 +16,7 @@ namespace JustUnityTester.Server.Commands {
                     }
                 }
             }
-            foreach (var destroyOnLoadObject in AltUnityRunner.GetDontDestroyOnLoadObjects()) {
+            foreach (var destroyOnLoadObject in TestRunner.GetDontDestroyOnLoadObjects()) {
                 foundGameObject = CheckPath(destroyOnLoadObject, pathList, 0, enabled);
                 if (foundGameObject != null)
                     return foundGameObject;
@@ -140,7 +140,7 @@ namespace JustUnityTester.Server.Commands {
                         objectsFound.AddRange(listGameObjects);
                 }
             }
-            foreach (var destroyOnLoadObject in AltUnityRunner.GetDontDestroyOnLoadObjects()) {
+            foreach (var destroyOnLoadObject in TestRunner.GetDontDestroyOnLoadObjects()) {
                 System.Collections.Generic.List<UnityEngine.GameObject> listGameObjects = CheckPathForMultipleElements(destroyOnLoadObject.gameObject, pathList, 0, enabled);
                 if (listGameObjects != null)
                     objectsFound.AddRange(listGameObjects);

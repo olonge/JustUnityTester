@@ -307,7 +307,7 @@ namespace JustUnityTester.Server.Commands {
                     objectsToCheck.Add(rootGameObject);
                 }
             }
-            foreach (var destroyOnLoadObject in AltUnityRunner.GetDontDestroyOnLoadObjects()) {
+            foreach (var destroyOnLoadObject in TestRunner.GetDontDestroyOnLoadObjects()) {
                 objectsToCheck.Add(destroyOnLoadObject);
 
             }

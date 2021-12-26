@@ -7,8 +7,8 @@
         }
 
         public override string Execute() {
-            AltUnityRunner._altUnityRunner.LogMessage("SetTimeScale to: " + timeScale);
-            string response = AltUnityRunner._altUnityRunner.errorCouldNotPerformOperationMessage;
+            TestRunner._altUnityRunner.LogMessage("SetTimeScale to: " + timeScale);
+            string response = TestRunner._altUnityRunner.errorCouldNotPerformOperationMessage;
             UnityEngine.Time.timeScale = timeScale;
             response = "Ok";
             return response;
