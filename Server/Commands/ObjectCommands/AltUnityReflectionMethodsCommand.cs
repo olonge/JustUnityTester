@@ -37,7 +37,7 @@ namespace JustUnityTester.Server.Commands {
 
             }
         }
-        protected System.Reflection.MemberInfo GetMemberForObjectComponent(TestObject altUnityObject, AltUnityObjectProperty altUnityObjectProperty) {
+        protected System.Reflection.MemberInfo GetMemberForObjectComponent(TestObject altUnityObject, TestObjectProperty altUnityObjectProperty) {
             System.Type componentType;
             componentType = GetType(altUnityObjectProperty.Component, altUnityObjectProperty.Assembly);
             System.Reflection.PropertyInfo propertyInfo = componentType.GetProperty(altUnityObjectProperty.Property);
@@ -118,7 +118,7 @@ namespace JustUnityTester.Server.Commands {
             return response;
         }
 
-        protected string GetValueForMember(System.Reflection.MemberInfo memberInfo, UnityEngine.GameObject testableObject, AltUnityObjectProperty altProperty) {
+        protected string GetValueForMember(System.Reflection.MemberInfo memberInfo, UnityEngine.GameObject testableObject, TestObjectProperty altProperty) {
             string response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
             if (memberInfo != null) {
                 if (memberInfo.MemberType == System.Reflection.MemberTypes.Property) {
@@ -135,7 +135,7 @@ namespace JustUnityTester.Server.Commands {
             return response;
         }
 
-        protected string SetValueForMember(System.Reflection.MemberInfo memberInfo, string valueString, UnityEngine.GameObject testableObject, AltUnityObjectProperty altProperty) {
+        protected string SetValueForMember(System.Reflection.MemberInfo memberInfo, string valueString, UnityEngine.GameObject testableObject, TestObjectProperty altProperty) {
             string response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
             if (memberInfo != null) {
                 if (memberInfo.MemberType == System.Reflection.MemberTypes.Property) {

@@ -14,7 +14,7 @@ namespace JustUnityTester.Driver.Commands {
         }
         public string Execute() {
             string altObject = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityObject);
-            string propertyInfo = Newtonsoft.Json.JsonConvert.SerializeObject(new AltUnityObjectProperty(componentName, propertyName, assemblyName));
+            string propertyInfo = Newtonsoft.Json.JsonConvert.SerializeObject(new TestObjectProperty(componentName, propertyName, assemblyName));
             Socket.Client.Send(
                  System.Text.Encoding.ASCII.GetBytes(CreateCommand("getObjectComponentProperty", altObject, propertyInfo)));
             string data = Recvall();
