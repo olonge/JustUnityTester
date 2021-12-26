@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net.Sockets;
 using altunitytester.Assets.AltUnityTester.AltUnityServer;
 using Assets.AltUnityTester.AltUnityServer.Commands;
 public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
@@ -177,11 +178,20 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         _socketServer = new AltSocketServer(
             clientSocketHandlerDelegate, SocketPortNumber, maxClients, requestEndingString, encoding);
 
-        _socketServer.StartListeningForConnections();
-        AltUnityPopUpText.text = "Waiting for connection"+System.Environment.NewLine+"on port " + _socketServer.PortNumber + "...";
-        UnityEngine.Debug.Log(string.Format(
-            "AltUnity Server at {0} on port {1}",
-            _socketServer.LocalEndPoint.Address, _socketServer.PortNumber));
+        try {
+            _socketServer.StartListeningForConnections();
+            AltUnityPopUpText.text = "Waiting for connection" + System.Environment.NewLine + "on port " + _socketServer.PortNumber + "...";
+            UnityEngine.Debug.Log(string.Format(
+                "AltUnity Server at {0} on port {1}",
+                _socketServer.LocalEndPoint.Address, _socketServer.PortNumber));
+        } catch (SocketException ex) {
+            if (ex.Message.Contains("Only one usage of each socket address")) {
+                AltUnityPopUpText.text = "Cannot start AltUnity Server. Another process is listening on port " + SocketPortNumber;
+            } else {
+                UnityEngine.Debug.LogError(ex);
+                AltUnityPopUpText.text = "An error occured while starting AltUnity Server.";
+            }
+        }
     }
    
     private UnityEngine.Vector3 getObjectScreePosition(UnityEngine.GameObject gameObject, UnityEngine.Camera camera)
