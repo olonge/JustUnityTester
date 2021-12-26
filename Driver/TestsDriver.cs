@@ -3,14 +3,14 @@ using JustUnityTester.Driver.Commands;
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester {
-    public class AltUnityDriver {
+    public class TestsDriver {
         public System.Net.Sockets.TcpClient Socket;
         public SocketSettings socketSettings;
         public static readonly string VERSION = "1.5.6";
         public static string requestSeparatorString;
         public static string requestEndingString;
 
-        public AltUnityDriver(string tcp_ip = "127.0.0.1", int tcp_port = 13000, string requestSeparator = ";", string requestEnding = "&", bool logFlag = false) {
+        public TestsDriver(string tcp_ip = "127.0.0.1", int tcp_port = 13000, string requestSeparator = ";", string requestEnding = "&", bool logFlag = false) {
 
             int timeout = 10;
             int retryPeriod = 5;

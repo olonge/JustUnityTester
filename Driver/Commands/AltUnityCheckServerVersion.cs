@@ -14,7 +14,7 @@ namespace JustUnityTester.Driver.Commands {
                 HandleErrors(serverVersion);
             }
 
-            if (!AltUnityDriver.VERSION.Equals(serverVersion)) {
+            if (!TestsDriver.VERSION.Equals(serverVersion)) {
                 WriteWarning(false, serverVersion);
                 return "Version mismatch! Server version was:" + serverVersion;
             }
@@ -22,8 +22,9 @@ namespace JustUnityTester.Driver.Commands {
 
         }
         public void WriteWarning(bool isEarlier, string serverVersion = "") {
-            var message = isEarlier ? "Version mismatch. You are using different versions of server and driver. Server version is earlier then 1.5.3 and Driver version: " + AltUnityDriver.VERSION
-                : "Version mismatch. You are using different versions of server and driver. Server version: " + serverVersion + " and Driver version: " + AltUnityDriver.VERSION;
+            var message = isEarlier 
+                ? "Version mismatch. You are using different versions of server and driver. Server version is earlier then 1.5.3 and Driver version: " + TestsDriver.VERSION
+                : "Version mismatch. You are using different versions of server and driver. Server version: " + serverVersion + " and Driver version: " + TestsDriver.VERSION;
 #if UNITY_EDITOR
             UnityEngine.Debug.LogWarning(message);
 #endif
