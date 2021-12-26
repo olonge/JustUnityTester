@@ -29,7 +29,7 @@ namespace JustUnityTester.Server.Commands {
             if (string.IsNullOrEmpty(altObjectString)) {
                 response = InvokeMethod(methodInfoToBeInvoked, altAction, null, response);
             } else {
-                AltUnityObject altObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(altObjectString);
+                TestObject altObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(altObjectString);
                 UnityEngine.GameObject gameObject = AltUnityRunner.GetGameObject(altObject);
                 if (componentType == typeof(UnityEngine.GameObject)) {
                     response = InvokeMethod(methodInfoToBeInvoked, altAction, gameObject, response);

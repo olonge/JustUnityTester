@@ -17,7 +17,7 @@ namespace JustUnityTester.Server.Commands {
             string response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
             AltUnityObjectProperty altProperty =
                 Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObjectProperty>(propertyString);
-            AltUnityObject altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(altObjectString);
+            TestObject altUnityObject = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(altObjectString);
             UnityEngine.GameObject testableObject = AltUnityRunner.GetGameObject(altUnityObject);
             System.Reflection.MemberInfo memberInfo = GetMemberForObjectComponent(altUnityObject, altProperty);
             response = SetValueForMember(memberInfo, valueString, testableObject, altProperty);

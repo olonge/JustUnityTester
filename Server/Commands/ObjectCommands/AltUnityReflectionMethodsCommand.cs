@@ -37,7 +37,7 @@ namespace JustUnityTester.Server.Commands {
 
             }
         }
-        protected System.Reflection.MemberInfo GetMemberForObjectComponent(AltUnityObject altUnityObject, AltUnityObjectProperty altUnityObjectProperty) {
+        protected System.Reflection.MemberInfo GetMemberForObjectComponent(TestObject altUnityObject, AltUnityObjectProperty altUnityObjectProperty) {
             System.Type componentType;
             componentType = GetType(altUnityObjectProperty.Component, altUnityObjectProperty.Assembly);
             System.Reflection.PropertyInfo propertyInfo = componentType.GetProperty(altUnityObjectProperty.Property);
@@ -54,7 +54,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
 
-        private System.Reflection.MethodInfo GetMethodForObjectComponent(AltUnityObject altUnityObject, AltUnityObjectAction altUnityObjectAction) {
+        private System.Reflection.MethodInfo GetMethodForObjectComponent(TestObject altUnityObject, AltUnityObjectAction altUnityObjectAction) {
             System.Type componentType = null;
             componentType = GetType(altUnityObjectAction.Component, altUnityObjectAction.Assembly);
             System.Reflection.MethodInfo methodInfo = componentType.GetMethod(altUnityObjectAction.Method);

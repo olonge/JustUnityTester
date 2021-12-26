@@ -4,10 +4,10 @@ using JustUnityTester.Core;
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllMethods : AltBaseCommand {
         TestComponent testComponent;
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
         AltUnityMethodSelection methodSelection;
 
-        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, AltUnityObject altUnityObject, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) : base(socketSettings) {
+        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) : base(socketSettings) {
             this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
             this.methodSelection = methodSelection;

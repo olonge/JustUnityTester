@@ -29,7 +29,7 @@ namespace JustUnityTester.Driver.Commands {
             this.size = size;
             option = 3;
         }
-        public AltUnityTextureInformation Execute(out AltUnityObject selectedObject) {
+        public AltUnityTextureInformation Execute(out TestObject selectedObject) {
             selectedObject = null;
             switch (option) {
                 case 2:
@@ -41,7 +41,7 @@ namespace JustUnityTester.Driver.Commands {
             }
         }
         public AltUnityTextureInformation Execute() {
-            AltUnityObject selectedObject = null;
+            TestObject selectedObject = null;
             switch (option) {
                 case 2:
                     return GetHighlightObjectScreenshot();
@@ -63,7 +63,7 @@ namespace JustUnityTester.Driver.Commands {
             Socket.Client.Send(toBytes(CreateCommand("hightlightObjectScreenshot", id.ToString(), colorAndWidth, sizeSerialized)));
             return ReceiveImage();
         }
-        private AltUnityTextureInformation GetHighlightObjectFromCoordinatesScreenshot(out AltUnityObject selectedObject) {
+        private AltUnityTextureInformation GetHighlightObjectFromCoordinatesScreenshot(out TestObject selectedObject) {
             var coordinatesSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(coordinates);
             var sizeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(size);
             var colorAndWidth = color.r + "!!" + color.g + "!!" + color.b + "!!" + color.a + "!-!" + width;

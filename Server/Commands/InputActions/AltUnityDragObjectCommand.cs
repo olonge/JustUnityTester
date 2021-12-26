@@ -3,9 +3,9 @@
 namespace JustUnityTester.Server.Commands {
     class AltUnityDragObjectCommand : AltUnityCommand {
         UnityEngine.Vector2 position;
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityDragObjectCommand(UnityEngine.Vector2 position, AltUnityObject altUnityObject) {
+        public AltUnityDragObjectCommand(UnityEngine.Vector2 position, TestObject altUnityObject) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }

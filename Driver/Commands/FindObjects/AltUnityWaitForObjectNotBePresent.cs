@@ -22,7 +22,7 @@ namespace JustUnityTester.Driver.Commands {
             double time = 0;
             bool found = false;
             string path = SetPath(by, value);
-            AltUnityObject altElement;
+            TestObject altElement;
             while (time <= timeout) {
                 found = false;
                 try {

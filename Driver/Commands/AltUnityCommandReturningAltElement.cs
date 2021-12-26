@@ -5,20 +5,20 @@ namespace JustUnityTester.Driver.Commands {
         public AltUnityCommandReturningAltElement(SocketSettings socketSettings) : base(socketSettings) {
         }
 
-        protected AltUnityObject ReceiveAltUnityObject() {
+        protected TestObject ReceiveAltUnityObject() {
             string data = Recvall();
             if (!data.Contains("error:")) {
-                AltUnityObject altElement = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObject>(data);
+                TestObject altElement = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObject>(data);
                 altElement.socketSettings = SocketSettings;
                 return altElement;
             }
             HandleErrors(data);
             return null;
         }
-        protected System.Collections.Generic.List<AltUnityObject> ReceiveListOfAltUnityObjects() {
+        protected System.Collections.Generic.List<TestObject> ReceiveListOfAltUnityObjects() {
             string data = Recvall();
             if (!data.Contains("error:")) {
-                var altElements = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<AltUnityObject>>(data);
+                var altElements = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<TestObject>>(data);
                 foreach (var altElement in altElements) {
                     altElement.socketSettings = SocketSettings;
                 }

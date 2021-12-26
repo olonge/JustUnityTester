@@ -2,9 +2,9 @@ using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityPointerExitObjectCommand : AltUnityCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityPointerExitObjectCommand(AltUnityObject altUnityObject) {
+        public AltUnityPointerExitObjectCommand(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

@@ -2,9 +2,9 @@
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityPointerDownFromObjectCommand : AltUnityCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityPointerDownFromObjectCommand(AltUnityObject altUnityObject) {
+        public AltUnityPointerDownFromObjectCommand(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

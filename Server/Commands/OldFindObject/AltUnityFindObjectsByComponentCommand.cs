@@ -20,7 +20,7 @@ namespace JustUnityTester.Server.Commands {
             if (cameraName != null) {
                 camera = UnityEngine.Camera.allCameras.ToList().Find(c => c.name.Equals(cameraName));
             }
-            System.Collections.Generic.List<AltUnityObject> foundObjects = new System.Collections.Generic.List<AltUnityObject>();
+            System.Collections.Generic.List<TestObject> foundObjects = new System.Collections.Generic.List<TestObject>();
             System.Type componentType = GetType(componentTypeName, assemblyName);
             if (componentType != null) {
                 foreach (UnityEngine.GameObject testableObject in UnityEngine.Object.FindObjectsOfType<UnityEngine.GameObject>()) {

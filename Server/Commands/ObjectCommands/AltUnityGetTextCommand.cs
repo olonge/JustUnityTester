@@ -10,9 +10,9 @@ namespace JustUnityTester.Server.Commands {
             new AltUnityObjectProperty("TMPro.TMP_InputField", "text", "Unity.TextMeshPro")
         };
 
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityGetTextCommand(AltUnityObject altUnityObject) {
+        public AltUnityGetTextCommand(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 

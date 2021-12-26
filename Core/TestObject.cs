@@ -3,7 +3,7 @@ using JustUnityTester.Driver.Commands;
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Core {
-    public class AltUnityObject {
+    public class TestObject {
         public string name;
         public int id;
         public int x;
@@ -20,7 +20,7 @@ namespace JustUnityTester.Core {
         public int transformId;
         [Newtonsoft.Json.JsonIgnore]
         public SocketSettings socketSettings;
-        public AltUnityObject(string name, int id = 0, int x = 0, int y = 0, int z = 0, int mobileY = 0, string type = "", bool enabled = true, float worldX = 0, float worldY = 0, float worldZ = 0, int idCamera = 0, int parentId = 0, int transformId = 0) {
+        public TestObject(string name, int id = 0, int x = 0, int y = 0, int z = 0, int mobileY = 0, string type = "", bool enabled = true, float worldX = 0, float worldY = 0, float worldZ = 0, int idCamera = 0, int parentId = 0, int transformId = 0) {
             this.name = name;
             this.id = id;
             this.x = x;
@@ -51,41 +51,19 @@ namespace JustUnityTester.Core {
         public string CallComponentMethod(string componentName, string methodName, string parameters, string typeOfParameters = "", string assemblyName = null) {
             return new AltUnityCallComponentMethod(socketSettings, componentName, methodName, parameters, typeOfParameters, assemblyName, this).Execute();
         }
-        public string GetText() {
-            return new AltUnityGetText(socketSettings, this).Execute();
-        }
-        public AltUnityObject SetText(string text) {
-            return new AltUnitySetText(socketSettings, this, text).Execute();
-        }
-        public AltUnityObject ClickEvent() {
-            return new AltUnityClickEvent(socketSettings, this).Execute();
-        }
-        public AltUnityObject PointerUpFromObject() {
-            return new AltUnityPointerUpFromObject(socketSettings, this).Execute();
-        }
-        public AltUnityObject PointerDownFromObject() {
-            return new AltUnityPointerDownFromObject(socketSettings, this).Execute();
-        }
-        public AltUnityObject PointerEnterObject() {
-            return new AltUnityPointerEnterObject(socketSettings, this).Execute();
-        }
-        public AltUnityObject PointerExitObject() {
-            return new AltUnityPointerExitObject(socketSettings, this).Execute();
-        }
-        public AltUnityObject Tap() {
-            return new AltUnityTap(socketSettings, this, 1).Execute();
-        }
-        public AltUnityObject DoubleTap() {
-            return new AltUnityTap(socketSettings, this, 2).Execute();
-        }
-        public List<TestComponent> GetAllComponents() {
-            return new AltUnityGetAllComponents(socketSettings, this).Execute();
-        }
-        public List<AltUnityProperty> GetAllProperties(TestComponent altUnityComponent) {
-            return new AltUnityGetAllProperties(socketSettings, altUnityComponent, this).Execute();
-        }
-        public List<string> GetAllMethods(TestComponent altUnityComponent, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) {
-            return new AltUnityGetAllMethods(socketSettings, altUnityComponent, this, methodSelection).Execute();
-        }
+        public string GetText() => new AltUnityGetText(socketSettings, this).Execute();
+        public TestObject SetText(string text) => new AltUnitySetText(socketSettings, this, text).Execute();
+        public TestObject ClickEvent() => new AltUnityClickEvent(socketSettings, this).Execute();
+        public TestObject PointerUpFromObject() => new AltUnityPointerUpFromObject(socketSettings, this).Execute();
+        public TestObject PointerDownFromObject() => new AltUnityPointerDownFromObject(socketSettings, this).Execute();
+        public TestObject PointerEnterObject() => new AltUnityPointerEnterObject(socketSettings, this).Execute();
+        public TestObject PointerExitObject() => new AltUnityPointerExitObject(socketSettings, this).Execute();
+        public TestObject Tap() => new AltUnityTap(socketSettings, this, 1).Execute();
+        public TestObject DoubleTap() => new AltUnityTap(socketSettings, this, 2).Execute();
+        public List<TestComponent> GetAllComponents() => new AltUnityGetAllComponents(socketSettings, this).Execute();
+        public List<AltUnityProperty> GetAllProperties(TestComponent altUnityComponent) =>
+            new AltUnityGetAllProperties(socketSettings, altUnityComponent, this).Execute();
+        public List<string> GetAllMethods(TestComponent testComponent, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) =>
+            new AltUnityGetAllMethods(socketSettings, testComponent, this, methodSelection).Execute();
     }
 }

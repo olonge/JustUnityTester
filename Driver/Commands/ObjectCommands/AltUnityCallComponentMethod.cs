@@ -7,8 +7,8 @@ namespace JustUnityTester.Driver.Commands {
         string parameters;
         string typeOfParameters;
         string assemblyName;
-        AltUnityObject altUnityObject;
-        public AltUnityCallComponentMethod(SocketSettings socketSettings, string componentName, string methodName, string parameters, string typeOfParameters, string assembly, AltUnityObject altUnityObject) : base(socketSettings) {
+        TestObject altUnityObject;
+        public AltUnityCallComponentMethod(SocketSettings socketSettings, string componentName, string methodName, string parameters, string typeOfParameters, string assembly, TestObject altUnityObject) : base(socketSettings) {
             this.componentName = componentName;
             this.methodName = methodName;
             this.parameters = parameters;

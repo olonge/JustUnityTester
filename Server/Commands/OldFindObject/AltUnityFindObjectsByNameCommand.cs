@@ -21,7 +21,7 @@ namespace JustUnityTester.Server.Commands {
                 camera = UnityEngine.Camera.allCameras.ToList().Find(c => c.name.Equals(cameraName));
             }
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
-            System.Collections.Generic.List<AltUnityObject> foundObjects = new System.Collections.Generic.List<AltUnityObject>();
+            System.Collections.Generic.List<TestObject> foundObjects = new System.Collections.Generic.List<TestObject>();
             foreach (UnityEngine.GameObject testableObject in FindObjectsInScene(objectName, enabled)) {
                 foundObjects.Add(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));
             }

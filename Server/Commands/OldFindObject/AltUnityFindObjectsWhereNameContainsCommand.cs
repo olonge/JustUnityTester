@@ -20,7 +20,7 @@ namespace JustUnityTester.Server.Commands {
                 camera = UnityEngine.Camera.allCameras.ToList().Find(c => c.name.Equals(cameraName));
             }
 
-            System.Collections.Generic.List<AltUnityObject> foundObjects = new System.Collections.Generic.List<AltUnityObject>();
+            System.Collections.Generic.List<TestObject> foundObjects = new System.Collections.Generic.List<TestObject>();
             foreach (UnityEngine.GameObject testableObject in UnityEngine.Object.FindObjectsOfType<UnityEngine.GameObject>()) {
                 if (testableObject.name.Contains(objectName)) {
                     foundObjects.Add(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));

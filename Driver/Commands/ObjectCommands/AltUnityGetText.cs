@@ -2,9 +2,9 @@ using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetText : AltBaseCommand {
-        AltUnityObject altUnityObject;
+        TestObject altUnityObject;
 
-        public AltUnityGetText(SocketSettings socketSettings, AltUnityObject altUnityObject) : base(socketSettings) {
+        public AltUnityGetText(SocketSettings socketSettings, TestObject altUnityObject) : base(socketSettings) {
             this.altUnityObject = altUnityObject;
         }
 
