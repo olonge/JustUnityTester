@@ -36,7 +36,7 @@ namespace JustUnityTester.Driver.Commands {
                 }
             }
             if (found)
-                throw new Assets.AltUnityTester.AltUnityDriver.WaitTimeOutException("Element " + path + " still found after " + timeout + " seconds");
+                throw new Exceptions.WaitTimeOutException("Element " + path + " still found after " + timeout + " seconds");
         }
     }
 }

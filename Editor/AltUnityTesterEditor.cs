@@ -585,7 +585,7 @@ namespace JustUnityTester.Editor {
 #else
             System.Reflection.MethodInfo method = typeof(UnityEditor.ProjectWindowUtil).GetMethod("CreateScriptAsset", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             if (method == null)
-                throw new Assets.AltUnityTester.AltUnityDriver.NotFoundException("Method to create Script file was not found");
+                throw new Exceptions.NotFoundException("Method to create Script file was not found");
             method.Invoke(null, new object[2]
             {
              templatePath,

@@ -15,7 +15,7 @@ namespace JustUnityTester.Server.Commands {
                     try {
                         var assembly = System.Reflection.Assembly.Load(assemblyName);
                         if (assembly.GetType(typeName) == null)
-                            throw new Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException("Component not found");
+                            throw new Exceptions.ComponentNotFoundException("Component not found");
                         return assembly.GetType(typeName);
                     } catch (System.Exception e) {
                         AltUnityRunner._altUnityRunner.LogMessage(e.Message);
@@ -23,12 +23,12 @@ namespace JustUnityTester.Server.Commands {
                     }
                 }
 
-                throw new Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException("Component not found");
+                throw new Exceptions.ComponentNotFoundException("Component not found");
             } else {
                 try {
                     var assembly = System.Reflection.Assembly.Load(assemblyName);
                     if (assembly.GetType(typeName) == null)
-                        throw new Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException("Component not found");
+                        throw new Exceptions.ComponentNotFoundException("Component not found");
                     return assembly.GetType(typeName);
                 } catch (System.Exception e) {
                     UnityEngine.Debug.Log(e);
@@ -47,10 +47,10 @@ namespace JustUnityTester.Server.Commands {
                     return propertyInfo;
                 if (fieldInfo != null)
                     return fieldInfo;
-                throw new Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException("Property not found");
+                throw new Exceptions.PropertyNotFoundException("Property not found");
 
             }
-            throw new Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException("Component not found");
+            throw new Exceptions.ComponentNotFoundException("Component not found");
         }
 
 

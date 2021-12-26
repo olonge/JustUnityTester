@@ -24,7 +24,7 @@ namespace JustUnityTester.Driver.Commands {
 
             if (sceneName.Equals(currentScene))
                 return currentScene;
-            throw new Assets.AltUnityTester.AltUnityDriver.WaitTimeOutException("Scene " + sceneName + " not loaded after " + timeout + " seconds");
+            throw new Exceptions.WaitTimeOutException("Scene " + sceneName + " not loaded after " + timeout + " seconds");
 
         }
     }

@@ -584,7 +584,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
             if (gameObject.GetInstanceID() == altUnityObject.id)
                 return gameObject;
         }
-        throw new Assets.AltUnityTester.AltUnityDriver.NotFoundException("Object not found");
+        throw new JustUnityTester.Exceptions.NotFoundException("Object not found");
     }
     
     public static UnityEngine.GameObject GetGameObject(int objectId)
@@ -594,7 +594,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
             if (gameObject.GetInstanceID() == objectId)
                 return gameObject;
         }
-        throw new Assets.AltUnityTester.AltUnityDriver.NotFoundException("Object not found");
+        throw new JustUnityTester.Exceptions.NotFoundException("Object not found");
     }       
 
     public UnityEngine.Camera FoundCameraById(int id)

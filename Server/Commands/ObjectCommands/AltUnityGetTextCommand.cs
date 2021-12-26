@@ -28,9 +28,9 @@ namespace JustUnityTester.Server.Commands {
                     response = GetValueForMember(memberInfo, targetObject, property);
                     if (!response.Contains("error:"))
                         break;
-                } catch (Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException) {
+                } catch (Exceptions.PropertyNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
-                } catch (Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException) {
+                } catch (Exceptions.ComponentNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
                 }
             }

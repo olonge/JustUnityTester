@@ -30,9 +30,9 @@ namespace JustUnityTester.Server.Commands {
                     response = SetValueForMember(memberInfo, inputText, targetObject, property);
                     if (!response.Contains("error:"))
                         return Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(targetObject));
-                } catch (Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException) {
+                } catch (Exceptions.PropertyNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
-                } catch (Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException) {
+                } catch (Exceptions.ComponentNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
                 }
             }

@@ -16,10 +16,10 @@ namespace JustUnityTester.Server.Commands {
                 } catch (Newtonsoft.Json.JsonException e) {
                     UnityEngine.Debug.Log(e);
                     response = AltUnityRunner._altUnityRunner.errorCouldNotParseJsonString;
-                } catch (Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException e) {
+                } catch (Exceptions.ComponentNotFoundException e) {
                     UnityEngine.Debug.Log(e);
                     response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
-                } catch (Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException e) {
+                } catch (Exceptions.PropertyNotFoundException e) {
                     UnityEngine.Debug.Log(e);
                     response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
                 } catch (System.Exception exception) {

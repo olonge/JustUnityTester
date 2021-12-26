@@ -1,170 +1,123 @@
-﻿
-namespace Assets.AltUnityTester.AltUnityDriver
-{
-   public class AltUnityException: System.Exception
-    {
-        public AltUnityException()
-        {
+﻿namespace JustUnityTester.Exceptions {
+    public class AltUnityException : System.Exception {
+        public AltUnityException() {
 
         }
 
-        public AltUnityException(string message) : base(message)
-        {
+        public AltUnityException(string message) : base(message) {
 
         }
     }
 
-    public class NotFoundException : AltUnityException
-    {
-        public NotFoundException()
-        {
+    public class NotFoundException : AltUnityException {
+        public NotFoundException() {
         }
 
-        public NotFoundException(string message) : base(message)
-        {
+        public NotFoundException(string message) : base(message) {
         }
     }
 
-    public class PropertyNotFoundException : AltUnityException
-    {
-        public PropertyNotFoundException()
-        {
+    public class PropertyNotFoundException : AltUnityException {
+        public PropertyNotFoundException() {
         }
 
-        public PropertyNotFoundException(string message) : base(message)
-        {
+        public PropertyNotFoundException(string message) : base(message) {
         }
     }
 
-    public class MethodNotFoundException : AltUnityException
-    {
-        public MethodNotFoundException()
-        {
+    public class MethodNotFoundException : AltUnityException {
+        public MethodNotFoundException() {
         }
 
-        public MethodNotFoundException(string message) : base(message)
-        {
+        public MethodNotFoundException(string message) : base(message) {
         }
     }
 
-    public class ComponentNotFoundException : AltUnityException
-    {
-        public ComponentNotFoundException()
-        {
+    public class ComponentNotFoundException : AltUnityException {
+        public ComponentNotFoundException() {
         }
 
-        public ComponentNotFoundException(string message) : base(message)
-        {
+        public ComponentNotFoundException(string message) : base(message) {
         }
     }
 
-    public class CouldNotPerformOperationException : AltUnityException
-    {
-        public CouldNotPerformOperationException()
-        {
+    public class CouldNotPerformOperationException : AltUnityException {
+        public CouldNotPerformOperationException() {
         }
 
-        public CouldNotPerformOperationException(string message) : base(message)
-        {
+        public CouldNotPerformOperationException(string message) : base(message) {
         }
     }
 
-    public class IncorrectNumberOfParametersException : AltUnityException
-    {
-        public IncorrectNumberOfParametersException()
-        {
+    public class IncorrectNumberOfParametersException : AltUnityException {
+        public IncorrectNumberOfParametersException() {
         }
 
-        public IncorrectNumberOfParametersException(string message) : base(message)
-        {
+        public IncorrectNumberOfParametersException(string message) : base(message) {
         }
     }
 
-    public class CouldNotParseJsonStringException : AltUnityException
-    {
-        public CouldNotParseJsonStringException()
-        {
+    public class CouldNotParseJsonStringException : AltUnityException {
+        public CouldNotParseJsonStringException() {
         }
 
-        public CouldNotParseJsonStringException(string message) : base(message)
-        {
+        public CouldNotParseJsonStringException(string message) : base(message) {
         }
     }
 
-    public class FailedToParseArgumentsException : AltUnityException
-    {
-        public FailedToParseArgumentsException()
-        {
+    public class FailedToParseArgumentsException : AltUnityException {
+        public FailedToParseArgumentsException() {
         }
 
-        public FailedToParseArgumentsException(string message) : base(message)
-        {
+        public FailedToParseArgumentsException(string message) : base(message) {
         }
     }
 
-    public class ObjectWasNotFoundException : AltUnityException
-    {
-        public ObjectWasNotFoundException()
-        {
+    public class ObjectWasNotFoundException : AltUnityException {
+        public ObjectWasNotFoundException() {
         }
 
-        public ObjectWasNotFoundException(string message) : base(message)
-        {
+        public ObjectWasNotFoundException(string message) : base(message) {
         }
     }
 
-    public class PropertyCannotBeSetException : AltUnityException
-    {
-        public PropertyCannotBeSetException()
-        {
+    public class PropertyCannotBeSetException : AltUnityException {
+        public PropertyCannotBeSetException() {
         }
 
-        public PropertyCannotBeSetException(string message) : base(message)
-        {
+        public PropertyCannotBeSetException(string message) : base(message) {
         }
     }
 
-    public class NullReferenceException : AltUnityException
-    {
-        public NullReferenceException()
-        {
+    public class NullReferenceException : AltUnityException {
+        public NullReferenceException() {
         }
 
-        public NullReferenceException(string message) : base(message)
-        {
+        public NullReferenceException(string message) : base(message) {
         }
     }
 
-    public class UnknownErrorException : AltUnityException
-    {
-        public UnknownErrorException()
-        {
+    public class UnknownErrorException : AltUnityException {
+        public UnknownErrorException() {
         }
 
-        public UnknownErrorException(string message) : base(message)
-        {
+        public UnknownErrorException(string message) : base(message) {
         }
     }
 
-    public class FormatException : AltUnityException
-    {
-        public FormatException()
-        {
+    public class FormatException : AltUnityException {
+        public FormatException() {
         }
 
-        public FormatException(string message) : base(message)
-        {
+        public FormatException(string message) : base(message) {
         }
     }
 
-    public class WaitTimeOutException : AltUnityException
-    {
-        public WaitTimeOutException()
-        {
+    public class WaitTimeOutException : AltUnityException {
+        public WaitTimeOutException() {
         }
 
-        public WaitTimeOutException(string message) : base(message)
-        {
+        public WaitTimeOutException(string message) : base(message) {
         }
     }
 

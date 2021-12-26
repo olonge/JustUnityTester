@@ -1,7 +1,7 @@
 #if ALTUNITYTESTER
 
-using Assets.AltUnityTester.AltUnityDriver;
 using JustUnityTester.Core;
+using JustUnityTester.Server.Commands;
 using System.Linq;
 
 namespace JustUnityTester.Server {
@@ -271,7 +271,7 @@ namespace JustUnityTester.Server {
             if (UseCustomInput) {
                 var axis = AxisList.First(axle => axle.name == axisName);
                 if (axis == null) {
-                    throw new NotFoundException("No axis with this name was found");
+                    throw new Exceptions.NotFoundException("No axis with this name was found");
                 }
                 foreach (var keyStructure in keyCodesPressed) {
                     if (axis.positiveButton != "" && keyStructure.KeyCode == ConvertStringToKeyCode(axis.positiveButton) || axis.altPositiveButton != "" && keyStructure.KeyCode == ConvertStringToKeyCode(axis.altPositiveButton)) {
@@ -303,7 +303,7 @@ namespace JustUnityTester.Server {
                 var axis = AxisList.First(axle => axle.name == buttonName);
 
                 if (axis == null) {
-                    throw new NotFoundException("No button with this name was found");
+                    throw new Exceptions.NotFoundException("No button with this name was found");
                 }
 
                 foreach (var keyStructure in keyCodesPressed) {
@@ -327,7 +327,7 @@ namespace JustUnityTester.Server {
             if (UseCustomInput) {
                 var axis = AxisList.First(axle => axle.name == buttonName);
                 if (axis == null) {
-                    throw new NotFoundException("No button with this name was found");
+                    throw new Exceptions.NotFoundException("No button with this name was found");
                 }
                 foreach (var keyStructure in keyCodesPressedDown) {
                     if (keyStructure.KeyCode == ConvertStringToKeyCode(axis.positiveButton) || keyStructure.KeyCode == ConvertStringToKeyCode(axis.altPositiveButton)) {
@@ -351,7 +351,7 @@ namespace JustUnityTester.Server {
             if (UseCustomInput) {
                 var axis = AxisList.First(axle => axle.name == buttonName);
                 if (axis == null) {
-                    throw new NotFoundException("No button with this name was found");
+                    throw new Exceptions.NotFoundException("No button with this name was found");
                 }
                 foreach (var keyStructure in keyCodesPressedUp) {
                     if (keyStructure.KeyCode == ConvertStringToKeyCode(axis.positiveButton) || keyStructure.KeyCode == ConvertStringToKeyCode(axis.altPositiveButton)) {
@@ -814,7 +814,7 @@ namespace JustUnityTester.Server {
                 var splitedString = keyName.Split(' ');
                 var number = int.Parse(splitedString[2]);
                 if (number >= 20) {
-                    throw new NotFoundException("Key not recognized");
+                    throw new Exceptions.NotFoundException("Key not recognized");
                 }
                 return (UnityEngine.KeyCode)System.Enum.Parse(typeof(UnityEngine.KeyCode), "JoystickButton" + number);
             }
@@ -822,11 +822,11 @@ namespace JustUnityTester.Server {
                 var splitedString = keyName.Split(' ');
                 var number = int.Parse(splitedString[3]);
                 if (number >= 20) {
-                    throw new NotFoundException("Key not recognized");
+                    throw new Exceptions.NotFoundException("Key not recognized");
                 }
                 return (UnityEngine.KeyCode)System.Enum.Parse(typeof(UnityEngine.KeyCode), "Joystick" + splitedString[1] + "Button" + number);
             }
-            throw new NotFoundException("Key not recognized");
+            throw new Exceptions.NotFoundException("Key not recognized");
         }
         private static bool IsEnglishLetter(char c) {
             return c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z';

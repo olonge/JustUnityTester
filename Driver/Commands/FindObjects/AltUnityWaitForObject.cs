@@ -34,7 +34,7 @@ namespace JustUnityTester.Driver.Commands {
             }
             if (altElement != null)
                 return altElement;
-            throw new Assets.AltUnityTester.AltUnityDriver.WaitTimeOutException("Element " + value + " not loaded after " + timeout + " seconds");
+            throw new Exceptions.WaitTimeOutException("Element " + value + " not loaded after " + timeout + " seconds");
         }
     }
 }

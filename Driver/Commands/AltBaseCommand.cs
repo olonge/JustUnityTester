@@ -96,31 +96,31 @@ namespace JustUnityTester.Driver.Commands {
             var typeOfException = data.Split(';')[0];
             switch (typeOfException) {
                 case "error:notFound":
-                    throw new Assets.AltUnityTester.AltUnityDriver.NotFoundException(data);
+                    throw new Exceptions.NotFoundException(data);
                 case "error:propertyNotFound":
-                    throw new Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException(data);
+                    throw new Exceptions.PropertyNotFoundException(data);
                 case "error:methodNotFound":
-                    throw new Assets.AltUnityTester.AltUnityDriver.MethodNotFoundException(data);
+                    throw new Exceptions.MethodNotFoundException(data);
                 case "error:componentNotFound":
-                    throw new Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException(data);
+                    throw new Exceptions.ComponentNotFoundException(data);
                 case "error:couldNotPerformOperation":
-                    throw new Assets.AltUnityTester.AltUnityDriver.CouldNotPerformOperationException(data);
+                    throw new Exceptions.CouldNotPerformOperationException(data);
                 case "error:couldNotParseJsonString":
-                    throw new Assets.AltUnityTester.AltUnityDriver.CouldNotParseJsonStringException(data);
+                    throw new Exceptions.CouldNotParseJsonStringException(data);
                 case "error:incorrectNumberOfParameters":
-                    throw new Assets.AltUnityTester.AltUnityDriver.IncorrectNumberOfParametersException(data);
+                    throw new Exceptions.IncorrectNumberOfParametersException(data);
                 case "error:failedToParseMethodArguments":
-                    throw new Assets.AltUnityTester.AltUnityDriver.FailedToParseArgumentsException(data);
+                    throw new Exceptions.FailedToParseArgumentsException(data);
                 case "error:objectNotFound":
-                    throw new Assets.AltUnityTester.AltUnityDriver.ObjectWasNotFoundException(data);
+                    throw new Exceptions.ObjectWasNotFoundException(data);
                 case "error:propertyCannotBeSet":
-                    throw new Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException(data);
+                    throw new Exceptions.PropertyNotFoundException(data);
                 case "error:nullReferenceException":
-                    throw new Assets.AltUnityTester.AltUnityDriver.NullReferenceException(data);
+                    throw new Exceptions.NullReferenceException(data);
                 case "error:unknownError":
-                    throw new Assets.AltUnityTester.AltUnityDriver.UnknownErrorException(data);
+                    throw new Exceptions.UnknownErrorException(data);
                 case "error:formatException":
-                    throw new Assets.AltUnityTester.AltUnityDriver.FormatException(data);
+                    throw new Exceptions.FormatException(data);
             }
         }
         public AltUnityTextureInformation ReceiveImage() {

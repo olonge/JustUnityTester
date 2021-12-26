@@ -30,7 +30,7 @@ namespace JustUnityTester.Driver.Commands {
                     if (altElement.GetText().Equals(text))
                         break;
                     throw new System.Exception("Not the wanted text");
-                } catch (Assets.AltUnityTester.AltUnityDriver.NotFoundException) {
+                } catch (Exceptions.NotFoundException) {
                     System.Threading.Thread.Sleep(System.Convert.ToInt32(interval * 1000));
                     time += interval;
                     System.Diagnostics.Debug.WriteLine("Object " + path + " not found");
@@ -43,7 +43,7 @@ namespace JustUnityTester.Driver.Commands {
             if (altElement != null && altElement.GetText().Equals(text)) {
                 return altElement;
             }
-            throw new Assets.AltUnityTester.AltUnityDriver.WaitTimeOutException("Element with text: " + text + " not loaded after " + timeout + " seconds");
+            throw new Exceptions.WaitTimeOutException("Element with text: " + text + " not loaded after " + timeout + " seconds");
         }
     }
 }
