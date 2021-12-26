@@ -3,7 +3,7 @@ using System.Linq;
 namespace JustUnityTester.Editor {
     public delegate void TestRunDelegate(string name);
 
-    public class AltUnityTestRunner {
+    public class TestRunner {
         public enum TestRunMode { RunAllTest, RunSelectedTest, RunFailedTest }
 
         private static System.Threading.Thread thread;
