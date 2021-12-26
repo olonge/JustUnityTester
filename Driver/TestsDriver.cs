@@ -193,6 +193,6 @@ namespace JustUnityTester {
         public TestTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
             return new AltUnityGetScreenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
         }
-        public void GetPNGScreenshot(string path) => new AltUnityGetPNGScreenshot(socketSettings, path).Execute();
+        public void GetPNGScreenshot(string path) => new PNGScreenshot(socketSettings, path).Execute();
     }
 }
