@@ -25,7 +25,7 @@ namespace JustUnityTester.Editor {
             Assembly assembly = assemblies.FirstOrDefault(assemblyName => assemblyName.GetName().Name.Equals("Assembly-CSharp-Editor"));
 
             var filters = AddTestToBeRun(testMode);
-            NUnit.Framework.Interfaces.ITestListener listener = new AltUnityTestRunListener(CallRunDelegate);
+            NUnit.Framework.Interfaces.ITestListener listener = new TestRunListener(CallRunDelegate);
             var testAssemblyRunner = new NUnit.Framework.Api.NUnitTestAssemblyRunner(new NUnit.Framework.Api.DefaultTestAssemblyBuilder());
 
             testAssemblyRunner.Load(assembly, new Dictionary<string, object>());
@@ -361,7 +361,7 @@ namespace JustUnityTester.Editor {
             var testAssemblyRunner = new NUnit.Framework.Api.NUnitTestAssemblyRunner(new NUnit.Framework.Api.DefaultTestAssemblyBuilder());
             NUnit.Framework.Internal.TestSuite testSuite = null;
             NUnit.Framework.Internal.Filters.OrFilter filter = new NUnit.Framework.Internal.Filters.OrFilter();
-            NUnit.Framework.Interfaces.ITestListener listener = new AltUnityTestRunListener(null);
+            NUnit.Framework.Interfaces.ITestListener listener = new TestRunListener(null);
             Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();
             Assembly assembly = assemblies.FirstOrDefault(assemblyName => assemblyName.GetName().Name.Equals("Assembly-CSharp-Editor"));
             testAssemblyRunner.Load(assembly, new Dictionary<string, object>());

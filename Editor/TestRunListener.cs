@@ -1,8 +1,8 @@
 ﻿namespace JustUnityTester.Editor {
-    public class AltUnityTestRunListener : NUnit.Framework.Interfaces.ITestListener {
+    public class TestRunListener : NUnit.Framework.Interfaces.ITestListener {
         public readonly TestRunDelegate CallRunDelegate;
 
-        public AltUnityTestRunListener(TestRunDelegate callRunDelegate) {
+        public TestRunListener(TestRunDelegate callRunDelegate) {
             CallRunDelegate = callRunDelegate;
         }
 
