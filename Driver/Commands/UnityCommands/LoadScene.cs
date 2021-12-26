@@ -1,9 +1,9 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityLoadScene : BaseCommand {
+    public class LoadScene : BaseCommand {
         string sceneName;
         bool loadSingle;
 
-        public AltUnityLoadScene(SocketSettings socketSettings, string sceneName, bool loadSingle) : base(socketSettings) {
+        public LoadScene(SocketSettings socketSettings, string sceneName, bool loadSingle) : base(socketSettings) {
             this.sceneName = sceneName;
             this.loadSingle = loadSingle;
         }

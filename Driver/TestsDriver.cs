@@ -48,9 +48,9 @@ namespace JustUnityTester {
 
         public void Stop() => new StopCommand(socketSettings).Execute();
         public void LoadScene(string scene, bool loadSingle = true) {
-            new AltUnityLoadScene(socketSettings, scene, loadSingle).Execute();
+            new LoadScene(socketSettings, scene, loadSingle).Execute();
         }
-        public List<string> GetAllLoadedScenes() => new AltUnityGetAllLoadedScenes(socketSettings).Execute();
+        public List<string> GetAllLoadedScenes() => new GetAllLoadedScenes(socketSettings).Execute();
 
         public List<TestObject> FindObjects(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
             return new FindObjects(socketSettings, by, value, cameraBy, cameraPath, enabled).Execute();
@@ -69,42 +69,34 @@ namespace JustUnityTester {
             return new FindObjectWhichContains(socketSettings, by, value, cameraBy, cameraValue, enabled).Execute();
         }
 
-        public void SetTimeScale(float timeScale) {
-            new AltUnitySetTimeScale(socketSettings, timeScale).Execute();
-        }
-        public float GetTimeScale() {
-            return new AltUnityGetTimeScale(socketSettings).Execute();
-        }
+        public void SetTimeScale(float timeScale) => new SetTimeScale(socketSettings, timeScale).Execute();
+        public float GetTimeScale() => new GetTimeScale(socketSettings).Execute();
         public string CallStaticMethods(string typeName, string methodName,
             string parameters, string typeOfParameters = "", string assemblyName = "") {
             return new CallStaticMethods(socketSettings, typeName, methodName, parameters, typeName, assemblyName).Execute();
         }
-        public void DeletePlayerPref() {
-            new AltUnityDeletePlayerPref(socketSettings).Execute();
-        }
-        public void DeleteKeyPlayerPref(string keyName) {
-            new AltUnityDeleteKeyPlayerPref(socketSettings, keyName).Execute();
-        }
+        public void DeletePlayerPref() => new DeletePlayerPref(socketSettings).Execute();
+        public void DeleteKeyPlayerPref(string keyName) => new DeleteKeyPlayerPref(socketSettings, keyName).Execute();
         public void SetKeyPlayerPref(string keyName, int valueName) {
-            new AltUnitySetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
+            new SetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
         }
         public void SetKeyPlayerPref(string keyName, float valueName) {
-            new AltUnitySetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
+            new SetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
         }
         public void SetKeyPlayerPref(string keyName, string valueName) {
-            new AltUnitySetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
+            new SetKeyPLayerPref(socketSettings, keyName, valueName).Execute();
         }
         public int GetIntKeyPlayerPref(string keyName) {
-            return new AltUnityGetIntKeyPLayerPref(socketSettings, keyName).Execute();
+            return new GetIntKeyPLayerPref(socketSettings, keyName).Execute();
         }
         public float GetFloatKeyPlayerPref(string keyName) {
-            return new AltUnityGetFloatKeyPlayerPref(socketSettings, keyName).Execute();
+            return new GetFloatKeyPlayerPref(socketSettings, keyName).Execute();
         }
         public string GetStringKeyPlayerPref(string keyName) {
-            return new AltUnityGetStringKeyPlayerPref(socketSettings, keyName).Execute();
+            return new GetStringKeyPlayerPref(socketSettings, keyName).Execute();
         }
         public string GetCurrentScene() {
-            return new AltUnityGetCurrentScene(socketSettings).Execute();
+            return new GetCurrentScene(socketSettings).Execute();
         }
         public void Swipe(TestVector2 start, TestVector2 end, float duration) {
             new Swipe(socketSettings, start, end, duration).Execute();
@@ -160,7 +152,7 @@ namespace JustUnityTester {
             return new GetAllElements(socketSettings, cameraBy, cameraPath, enabled).Execute();
         }
         public string WaitForCurrentSceneToBe(string sceneName, double timeout = 10, double interval = 1) {
-            return new AltUnityWaitForCurrentSceneToBe(socketSettings, sceneName, timeout, interval).Execute();
+            return new WaitForCurrentSceneToBe(socketSettings, sceneName, timeout, interval).Execute();
         }
 
         public TestObject WaitForObject(By by, string value, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true, double timeout = 20, double interval = 0.5) {
@@ -184,8 +176,8 @@ namespace JustUnityTester {
         public TestObject WaitForObjectWithText(By by, string value, string text, By cameraBy = By.NAME, string cameraPath = "", bool enabled = true, double timeout = 20, double interval = 0.5) {
             return new WaitForObjectWithText(socketSettings, by, value, text, cameraBy, cameraPath, enabled, timeout, interval).Execute();
         }
-        public List<string> GetAllScenes() => new AltUnityGetAllScenes(socketSettings).Execute();
-        public List<TestObject> GetAllCameras() => new AltUnityGetAllCameras(socketSettings).Execute();
+        public List<string> GetAllScenes() => new GetAllScenes(socketSettings).Execute();
+        public List<TestObject> GetAllCameras() => new GetAllCameras(socketSettings).Execute();
         public TestTextureInformation GetScreenshot(TestVector2 size = default) => new Screenshot(socketSettings, size).Execute();
         public TestTextureInformation GetScreenshot(int id, TestyColor color, float width, TestVector2 size = default) {
             return new Screenshot(socketSettings, id, color, width, size).Execute();

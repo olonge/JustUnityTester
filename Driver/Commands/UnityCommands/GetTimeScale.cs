@@ -1,6 +1,6 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetTimeScale : BaseCommand {
-        public AltUnityGetTimeScale(SocketSettings socketSettings) : base(socketSettings) {
+    public class GetTimeScale : BaseCommand {
+        public GetTimeScale(SocketSettings socketSettings) : base(socketSettings) {
         }
         public float Execute() {
             Socket.Client.Send(toBytes(CreateCommand("getTimeScale")));

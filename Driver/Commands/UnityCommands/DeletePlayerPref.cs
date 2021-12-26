@@ -1,6 +1,6 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityDeletePlayerPref : BaseCommand {
-        public AltUnityDeletePlayerPref(SocketSettings socketSettings) : base(socketSettings) {
+    public class DeletePlayerPref : BaseCommand {
+        public DeletePlayerPref(SocketSettings socketSettings) : base(socketSettings) {
         }
         public void Execute() {
             Socket.Client.Send(toBytes(CreateCommand("deletePlayerPref")));

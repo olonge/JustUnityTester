@@ -1,8 +1,8 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetCurrentScene : BaseCommand {
-        public AltUnityGetCurrentScene(SocketSettings socketSettings) : base(socketSettings) {
+    public class GetCurrentScene : BaseCommand {
+        public GetCurrentScene(SocketSettings socketSettings) : base(socketSettings) {
         }
         public string Execute() {
             Socket.Client.Send(toBytes(CreateCommand("getCurrentScene")));

@@ -1,9 +1,9 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityWaitForCurrentSceneToBe : BaseCommand {
+    public class WaitForCurrentSceneToBe : BaseCommand {
         string sceneName;
         double timeout;
         double interval;
-        public AltUnityWaitForCurrentSceneToBe(SocketSettings socketSettings, string sceneName, double timeout, double interval) : base(socketSettings) {
+        public WaitForCurrentSceneToBe(SocketSettings socketSettings, string sceneName, double timeout, double interval) : base(socketSettings) {
             this.sceneName = sceneName;
             this.timeout = timeout;
             this.interval = interval;
@@ -12,7 +12,7 @@ namespace JustUnityTester.Driver.Commands {
             double time = 0;
             string currentScene = "";
             while (time < timeout) {
-                currentScene = new AltUnityGetCurrentScene(SocketSettings).Execute();
+                currentScene = new GetCurrentScene(SocketSettings).Execute();
                 if (!currentScene.Equals(sceneName)) {
                     System.Diagnostics.Debug.WriteLine("Waiting for scene to be " + sceneName + "...");
                     System.Threading.Thread.Sleep(System.Convert.ToInt32(interval * 1000));

@@ -1,7 +1,7 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetFloatKeyPlayerPref : BaseCommand {
+    public class GetFloatKeyPlayerPref : BaseCommand {
         string keyName;
-        public AltUnityGetFloatKeyPlayerPref(SocketSettings socketSettings, string keyName) : base(socketSettings) {
+        public GetFloatKeyPlayerPref(SocketSettings socketSettings, string keyName) : base(socketSettings) {
             this.keyName = keyName;
         }
         public float Execute() {

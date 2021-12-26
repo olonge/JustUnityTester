@@ -1,8 +1,8 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySetTimeScale : BaseCommand {
+    public class SetTimeScale : BaseCommand {
         float timeScale;
 
-        public AltUnitySetTimeScale(SocketSettings socketSettings, float timescale) : base(socketSettings) {
+        public SetTimeScale(SocketSettings socketSettings, float timescale) : base(socketSettings) {
             timeScale = timescale;
         }
         public void Execute() {

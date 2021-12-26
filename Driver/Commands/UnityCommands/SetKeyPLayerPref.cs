@@ -1,21 +1,21 @@
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySetKeyPLayerPref : BaseCommand {
+    public class SetKeyPLayerPref : BaseCommand {
         string keyName;
         int intValue;
         float floatValue;
         string stringValue;
         int option = 0;
-        public AltUnitySetKeyPLayerPref(SocketSettings socketSettings, string keyName, int intValue) : base(socketSettings) {
+        public SetKeyPLayerPref(SocketSettings socketSettings, string keyName, int intValue) : base(socketSettings) {
             this.keyName = keyName;
             this.intValue = intValue;
             option = 1;
         }
-        public AltUnitySetKeyPLayerPref(SocketSettings socketSettings, string keyName, float floatValue) : base(socketSettings) {
+        public SetKeyPLayerPref(SocketSettings socketSettings, string keyName, float floatValue) : base(socketSettings) {
             this.keyName = keyName;
             this.floatValue = floatValue;
             option = 2;
         }
-        public AltUnitySetKeyPLayerPref(SocketSettings socketSettings, string keyName, string stringValue) : base(socketSettings) {
+        public SetKeyPLayerPref(SocketSettings socketSettings, string keyName, string stringValue) : base(socketSettings) {
             this.keyName = keyName;
             this.stringValue = stringValue;
             option = 3;
