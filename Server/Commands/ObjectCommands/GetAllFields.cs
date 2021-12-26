@@ -4,11 +4,11 @@ using JustUnityTester.Core;
 using Newtonsoft.Json;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetAllFieldsCommand : AltUnityReflectionMethodsCommand {
+    class GetAllFields : ReflectionMethods {
         string id;
         TestComponent component;
 
-        public AltUnityGetAllFieldsCommand(string id, TestComponent component) {
+        public GetAllFields(string id, TestComponent component) {
             this.id = id;
             this.component = component;
         }

@@ -1,11 +1,11 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityCallComponentMethodForObjectCommand : AltUnityReflectionMethodsCommand {
+    class CallComponentMethod : ReflectionMethods {
         string altObjectString;
         string actionString;
 
-        public AltUnityCallComponentMethodForObjectCommand(string altObjectString, string actionString) {
+        public CallComponentMethod(string altObjectString, string actionString) {
             this.altObjectString = altObjectString;
             this.actionString = actionString;
         }

@@ -3,10 +3,10 @@ using JustUnityTester.Core;
 using Newtonsoft.Json;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetAllComponentsCommand : AltUnityCommand {
+    class GetAllComponents : AltUnityCommand {
         string objectID;
 
-        public AltUnityGetAllComponentsCommand(string objectID) {
+        public GetAllComponents(string objectID) {
             this.objectID = objectID;
         }
 

@@ -9,7 +9,7 @@
         public override string Execute() {
             TestRunner.Instance.LogMessage("all objects requested");
             var parameters = ";" + methodParameter;
-            return new AltUnityFindObjectsByNameCommand(parameters).Execute();
+            return new FindObjectsByName(parameters).Execute();
         }
     }
 }

@@ -5,11 +5,11 @@ using JustUnityTester.Core;
 using Newtonsoft.Json;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetAllMethodsCommand : AltUnityReflectionMethodsCommand {
+    class GetAllMethods : ReflectionMethods {
         TestComponent component;
         TestMethodSelection methodSelection;
 
-        public AltUnityGetAllMethodsCommand(TestComponent component, TestMethodSelection methodSelection) {
+        public GetAllMethods(TestComponent component, TestMethodSelection methodSelection) {
             this.component = component;
             this.methodSelection = methodSelection;
         }

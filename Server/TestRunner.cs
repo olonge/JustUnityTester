@@ -194,7 +194,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         return camera.WorldToScreenPoint(gameObject.transform.position);
     }
 
-    public TestObject GameObjectToAltUnityObject(UnityEngine.GameObject altGameObject, UnityEngine.Camera camera = null) {
+    public TestObject GameObjectToAltUnityObject(UnityEngine.GameObject obj, UnityEngine.Camera camera = null) {
         int cameraId = -1;
         /// if no camera is given it will iterate through all cameras until one is found one that sees this object.
         /// if no camera sees the object it will return the position from the last camera.
@@ -203,7 +203,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
             if (camera == null) {
                 _position = UnityEngine.Vector3.one * -1;
                 foreach (var camera1 in UnityEngine.Camera.allCameras) {
-                    _position = getObjectScreePosition(altGameObject, camera1);
+                    _position = getObjectScreePosition(obj, camera1);
                     cameraId = camera1.GetInstanceID();
                     if (_position.x > 0 && _position.y > 0 && _position.x < UnityEngine.Screen.width && _position.y < UnityEngine.Screen.height && _position.z >= 0)//Check if camera sees the object
                     {
@@ -211,7 +211,7 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     }
                 }
             } else {
-                _position = getObjectScreePosition(altGameObject, camera);
+                _position = getObjectScreePosition(obj, camera);
                 cameraId = camera.GetInstanceID();
             }
         } catch (Exception) {
@@ -220,33 +220,33 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
         }
 
         int parentId = 0;
-        if (altGameObject.transform.parent != null) {
-            parentId = altGameObject.transform.parent.GetInstanceID();
+        if (obj.transform.parent != null) {
+            parentId = obj.transform.parent.GetInstanceID();
         }
 
 
-        TestObject altObject = new TestObject(name: altGameObject.name,
-                                                      id: altGameObject.GetInstanceID(),
+        TestObject testObject = new TestObject(name: obj.name,
+                                                      id: obj.GetInstanceID(),
                                                       x: Convert.ToInt32(UnityEngine.Mathf.Round(_position.x)),
                                                       y: Convert.ToInt32(UnityEngine.Mathf.Round(_position.y)),
                                                       z: Convert.ToInt32(UnityEngine.Mathf.Round(_position.z)),//if z is negative object is behind the camera
                                                       mobileY: Convert.ToInt32(UnityEngine.Mathf.Round(UnityEngine.Screen.height - _position.y)),
                                                       type: "",
-                                                      enabled: altGameObject.activeSelf,
-                                                      worldX: altGameObject.transform.position.x,
-                                                      worldY: altGameObject.transform.position.y,
-                                                      worldZ: altGameObject.transform.position.z,
+                                                      enabled: obj.activeSelf,
+                                                      worldX: obj.transform.position.x,
+                                                      worldY: obj.transform.position.y,
+                                                      worldZ: obj.transform.position.z,
                                                       idCamera: cameraId,
-                                                      transformId: altGameObject.transform.GetInstanceID(),
+                                                      transformId: obj.transform.GetInstanceID(),
                                                       parentId: parentId);
-        return altObject;
+        return testObject;
     }
 
     public void ClientSocketHandlerDidReadMessage(AltClientSocketHandler handler, string message) {
         string[] separator = new string[] { requestSeparatorString };
         string[] pieces = message.Split(separator, StringSplitOptions.None);
         TestComponent testComponent;
-        TestObject altUnityObject;
+        TestObject testObject;
         string methodParameters;
         UnityEngine.Vector2 size;
         PLayerPrefKeyType option;
@@ -260,54 +260,54 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "findObjectByName":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
-                    command = new AltUnityFindObjectByNameCommand(methodParameters);
+                    command = new FindObjectByName(methodParameters);
                     break;
                 case "findObjectWhereNameContains":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
-                    command = new AltUnityFindObjectWhereNameContainsCommand(methodParameters);
+                    command = new FindObjectWhereNameContains(methodParameters);
                     break;
                 case "tapObject":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
                     var tapCount = 1;
                     if (pieces.Length > 1 && !string.IsNullOrEmpty(pieces[2]))
                         tapCount = JsonConvert.DeserializeObject<int>(pieces[2]);
-                    command = new Tap(altUnityObject, tapCount < 1 ? 1 : tapCount);
+                    command = new Tap(testObject, tapCount < 1 ? 1 : tapCount);
                     break;
                 case "findObjectsByName":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
-                    command = new AltUnityFindObjectsByNameCommand(methodParameters);
+                    command = new FindObjectsByName(methodParameters);
                     break;
                 case "findObjectsWhereNameContains":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3];
-                    command = new AltUnityFindObjectsWhereNameContainsCommand(methodParameters);
+                    command = new FindObjectsWhereNameContains(methodParameters);
                     break;
                 case "getCurrentScene":
                     command = new GetCurrentScene();
                     break;
                 case "findObjectByComponent":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
-                    command = new AltUnityFindObjectByComponentCommand(methodParameters);
+                    command = new FindObjectByComponent(methodParameters);
                     break;
                 case "findObjectsByComponent":
                     methodParameters = pieces[1] + requestSeparatorString + pieces[2] + requestSeparatorString + pieces[3] + requestSeparatorString + pieces[4];
-                    command = new AltUnityFindObjectsByComponentCommand(methodParameters);
+                    command = new FindObjectsByComponent(methodParameters);
                     break;
                 case "getObjectComponentProperty":
-                    command = new AltUnityGetComponentPropertyCommand(pieces[1], pieces[2]);
+                    command = new GetComponentProperty(pieces[1], pieces[2]);
                     break;
                 case "setObjectComponentProperty":
-                    command = new AltUnitySetObjectComponentPropertyCommand(pieces[1], pieces[2], pieces[3]);
+                    command = new SetObjectComponentProperty(pieces[1], pieces[2], pieces[3]);
                     break;
                 case "callComponentMethodForObject":
-                    command = new AltUnityCallComponentMethodForObjectCommand(pieces[1], pieces[2]);
+                    command = new CallComponentMethod(pieces[1], pieces[2]);
                     break;
                 case "closeConnection":
                     UnityEngine.Debug.Log("Socket connection closed!");
                     _socketServer.StartListeningForConnections();
                     break;
                 case "clickEvent":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new ClickEvent(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new ClickEvent(testObject);
                     break;
                 case "tapScreen":
                     command = new ClickOnScreenAtPos(pieces[1], pieces[2]);
@@ -318,29 +318,29 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
                 case "dragObject":
                     UnityEngine.Vector2 positionVector2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
-                    command = new DragObject(positionVector2, altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
+                    command = new DragObject(positionVector2, testObject);
                     break;
                 case "dropObject":
                     UnityEngine.Vector2 positionDropVector2 = JsonConvert.DeserializeObject<UnityEngine.Vector2>(pieces[1]);
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
-                    command = new DropObject(positionDropVector2, altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[2]);
+                    command = new DropObject(positionDropVector2, testObject);
                     break;
                 case "pointerUpFromObject":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new PointerUpFromObject(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new PointerUpFromObject(testObject);
                     break;
                 case "pointerDownFromObject":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new PointerDownFromObject(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new PointerDownFromObject(testObject);
                     break;
                 case "pointerEnterObject":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new PointerEnterObject(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new PointerEnterObject(testObject);
                     break;
                 case "pointerExitObject":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new PointerExitObject(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new PointerExitObject(testObject);
                     break;
                 case "tilt":
                     UnityEngine.Vector3 vector3 = JsonConvert.DeserializeObject<UnityEngine.Vector3>(pieces[1]);
@@ -388,16 +388,16 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     command = new ActionFinished();
                     break;
                 case "getAllComponents":
-                    command = new AltUnityGetAllComponentsCommand(pieces[1]);
+                    command = new GetAllComponents(pieces[1]);
                     break;
                 case "getAllFields":
                     testComponent = JsonConvert.DeserializeObject<TestComponent>(pieces[2]);
-                    command = new AltUnityGetAllFieldsCommand(pieces[1], testComponent);
+                    command = new GetAllFields(pieces[1], testComponent);
                     break;
                 case "getAllMethods":
                     testComponent = JsonConvert.DeserializeObject<TestComponent>(pieces[1]);
                     var methodSelection = (TestMethodSelection)Enum.Parse(typeof(TestMethodSelection), pieces[2], true);
-                    command = new AltUnityGetAllMethodsCommand(testComponent, methodSelection);
+                    command = new GetAllMethods(testComponent, methodSelection);
                     break;
                 case "getAllScenes":
                     command = new GetAllScenes();
@@ -457,12 +457,12 @@ public class TestRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDele
                     break;
 
                 case "getText":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnityGetTextCommand(altUnityObject);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new GetText(testObject);
                     break;
                 case "setText":
-                    altUnityObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
-                    command = new AltUnitySetTextCommand(altUnityObject, pieces[2]);
+                    testObject = JsonConvert.DeserializeObject<TestObject>(pieces[1]);
+                    command = new SetText(testObject, pieces[2]);
                     break;
                 case "getPNGScreenshot":
                     command = new AltUnityGetScreenshotPNGCommand(handler);

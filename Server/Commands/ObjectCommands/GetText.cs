@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Server.Commands {
-    class AltUnityGetTextCommand : AltUnityReflectionMethodsCommand {
+    class GetText : ReflectionMethods {
         static readonly TestObjectProperty[] TextProperties =
         {
             new TestObjectProperty("UnityEngine.UI.Text", "text"),
@@ -12,7 +12,7 @@ namespace JustUnityTester.Server.Commands {
 
         TestObject altUnityObject;
 
-        public AltUnityGetTextCommand(TestObject altUnityObject) {
+        public GetText(TestObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 
