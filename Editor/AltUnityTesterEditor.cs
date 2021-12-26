@@ -61,7 +61,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     // public static System.Collections.Generic.Dictionary<string, int> iosForwards = new System.Collections.Generic.Dictionary<string, int>();
 
     // Add menu item named "My Window" to the Window menu
-    [UnityEditor.MenuItem("Window/AltUnityTester")]
+    [UnityEditor.MenuItem("Window/Just Unity Tester/Inspector")]
     public static void ShowWindow()
     {
         //Show existing window instance. If one doesn't exist, make one.
@@ -235,15 +235,15 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
         UnityEditor.EditorGUILayout.Separator();
 
-        DisplayBuildSettings();
+        //DisplayBuildSettings();
 
-        UnityEditor.EditorGUILayout.Separator();
+        //UnityEditor.EditorGUILayout.Separator();
 
-        DisplayAltUnityServerSettings();
+        //DisplayAltUnityServerSettings();
 
-        UnityEditor.EditorGUILayout.Separator();
+        //UnityEditor.EditorGUILayout.Separator();
 
-        DisplayPortForwarding(leftSide);
+        //DisplayPortForwarding(leftSide);
 
 
         UnityEditor.EditorGUILayout.EndScrollView();
@@ -252,7 +252,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         var rightSide = (screenWidth / 3);
         UnityEditor.EditorGUILayout.BeginVertical();
 
-        UnityEditor.EditorGUILayout.LabelField("Platform", UnityEditor.EditorStyles.boldLabel);
+        /*UnityEditor.EditorGUILayout.LabelField("Platform", UnityEditor.EditorStyles.boldLabel);
         if (rightSide <= 300)
         {
             UnityEditor.EditorGUILayout.BeginVertical();
@@ -314,7 +314,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup = UnityEditor.BuildTargetGroup.iOS;
             }
         }
-#endif
+#endif*/
 
 
         UnityEditor.EditorGUILayout.Separator();
@@ -345,7 +345,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
         }
 
-        UnityEditor.EditorGUILayout.LabelField("Build", UnityEditor.EditorStyles.boldLabel);
+        /*UnityEditor.EditorGUILayout.LabelField("Build", UnityEditor.EditorStyles.boldLabel);
         if (EditorConfiguration.platform != AltUnityPlatform.Editor)
         {
             if (UnityEngine.GUILayout.Button("Build Only"))
@@ -374,7 +374,11 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.BeginDisabledGroup(true);
             UnityEngine.GUILayout.Button("Build Only");
             UnityEditor.EditorGUI.EndDisabledGroup();
-        }
+        }*/
+
+        UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
+        UnindentedLabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
+        UnindentedLabelAndCheckboxHorizontalLayout("Show popup", ref EditorConfiguration.showPopUp);
 
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
@@ -383,9 +387,20 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         UnityEditor.EditorGUILayout.LabelField("Run", UnityEditor.EditorStyles.boldLabel);
         if (EditorConfiguration.platform == AltUnityPlatform.Editor)
         {
-            if (UnityEngine.GUILayout.Button("Play in Editor"))
-            {
+            if (UnityEditor.EditorApplication.isPlaying) {
+                UnityEditor.EditorGUI.BeginDisabledGroup(true);
+                UnityEngine.GUILayout.Button("Play in Editor");
+                UnityEditor.EditorGUI.EndDisabledGroup();
+            } else if (UnityEngine.GUILayout.Button("Play in Editor")) {
                 RunInEditor();
+            }
+
+            if (!UnityEditor.EditorApplication.isPlaying) {
+                UnityEditor.EditorGUI.BeginDisabledGroup(true);
+                UnityEngine.GUILayout.Button("End Tests");
+                UnityEditor.EditorGUI.EndDisabledGroup();
+            } else if (UnityEngine.GUILayout.Button("End Tests")) {
+                UnityEditor.EditorApplication.isPlaying = false;
             }
         }
         else
@@ -395,7 +410,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.EndDisabledGroup();
         }
 
-        if (EditorConfiguration.platform != AltUnityPlatform.Editor)
+        /*if (EditorConfiguration.platform != AltUnityPlatform.Editor)
         {
             if (UnityEngine.GUILayout.Button("Build & Run"))
             {
@@ -420,14 +435,17 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.BeginDisabledGroup(true);
             UnityEngine.GUILayout.Button("Build & Run", UnityEngine.GUILayout.MinWidth(50));
             UnityEditor.EditorGUI.EndDisabledGroup();
-        }
+        }*/
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.LabelField("Run tests", UnityEditor.EditorStyles.boldLabel);
 
-        if (UnityEngine.GUILayout.Button("Run All Tests"))
-        {
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run All Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run All Tests")) {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
                 System.Threading.Thread testThread = new System.Threading.Thread(() => AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest));
@@ -439,7 +457,12 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunAllTest);
             }
         }
-        if (UnityEngine.GUILayout.Button("Run Selected Tests"))
+
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run Selected Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run Selected Tests"))
         {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
@@ -452,7 +475,12 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 AltUnityTestRunner.RunTests(AltUnityTestRunner.TestRunMode.RunSelectedTest);
             }
         }
-        if (UnityEngine.GUILayout.Button("Run Failed Tests"))
+
+        if (!UnityEditor.EditorApplication.isPlaying) {
+            UnityEditor.EditorGUI.BeginDisabledGroup(true);
+            UnityEngine.GUILayout.Button("Run Failed Tests");
+            UnityEditor.EditorGUI.EndDisabledGroup();
+        } else if (UnityEngine.GUILayout.Button("Run Failed Tests"))
         {
             if (EditorConfiguration.platform == AltUnityPlatform.Editor)
             {
@@ -731,7 +759,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
                 DestroyImmediate(altUnityRunner);
 
             }
-            UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
+            //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
             UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
         }
 
@@ -742,7 +770,9 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     {
         AltUnityBuilder.InsertAltUnityInTheActiveScene();
         AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
-        AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
+
+        /// Stops marking the scripts as dirty causing the IDE to recompile them
+        //AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
         UnityEditor.EditorApplication.isPlaying = true;
 
     }
@@ -817,6 +847,16 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
             DisplayScenes();
         }
+    }
+
+    private static void UnindentedLabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable) {
+        UnityEditor.EditorGUILayout.BeginHorizontal();
+        //UnityEditor.EditorGUILayout.LabelField("", UnityEngine.GUILayout.MaxWidth(30));
+        UnityEditor.EditorGUILayout.LabelField(label, UnityEngine.GUILayout.Width(145));
+        editorConfigVariable =
+            UnityEditor.EditorGUILayout.Toggle(editorConfigVariable, UnityEngine.GUILayout.MaxWidth(30));
+        UnityEngine.GUILayout.FlexibleSpace();
+        UnityEditor.EditorGUILayout.EndHorizontal();
     }
 
     private static void LabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable)
@@ -1355,7 +1395,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         return (GetPathForSelectedItem() + "/").Contains("/Editor/");
     }
 
-    [UnityEditor.MenuItem("Window/CreateAltUnityTesterPackage")]
+    [UnityEditor.MenuItem("Window/Just Unity Tester/Create Tester Package")]
     public static void CreateAltUnityTesterPackage()
     {
         UnityEngine.Debug.Log("AltUnityTester - Unity Package creation started...");
@@ -1379,7 +1419,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     {
 
         DestroyImmediate(altUnityRunner);
-        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
+        //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
         UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
         UnityEditor.SceneManagement.EditorSceneManager.OpenScene(AltUnityBuilder.PreviousScenePath);
     }
