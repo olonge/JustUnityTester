@@ -1,3 +1,5 @@
+using JustUnityTester.Server;
+
 public abstract class AltUnityCommand
 {
     public void SendResponse(AltClientSocketHandler handler)

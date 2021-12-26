@@ -1,8 +1,8 @@
 using JustUnityTester.Core;
+using JustUnityTester.Server;
 using UnityEngine;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityHightlightObjectFromCoordinatesCommand :AltUnityCommand
     {
         UnityEngine.Vector2 screenCoordinates;

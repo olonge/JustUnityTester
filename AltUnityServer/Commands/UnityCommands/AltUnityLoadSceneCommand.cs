@@ -1,5 +1,6 @@
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+using JustUnityTester.Server;
+
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityLoadSceneCommand :AltUnityCommand
     {
         string scene;

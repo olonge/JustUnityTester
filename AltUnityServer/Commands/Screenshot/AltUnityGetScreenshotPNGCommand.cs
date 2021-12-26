@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JustUnityTester.Server;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityGetScreenshotPNGCommand :AltUnityCommand
     {
         AltClientSocketHandler handler;

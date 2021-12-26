@@ -1,7 +1,7 @@
+using JustUnityTester.Server;
 using UnityEngine;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
+namespace Assets.AltUnityTester.AltUnityServer.Commands {
     class AltUnityGetScreenshotCommand : AltUnityCommand
     {
         UnityEngine.Vector2 size;

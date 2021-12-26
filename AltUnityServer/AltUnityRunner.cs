@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using altunitytester.Assets.AltUnityTester.AltUnityServer;
 using Assets.AltUnityTester.AltUnityServer.Commands;
 using JustUnityTester.Core;
+using JustUnityTester.Server;
 
 public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate
 {
