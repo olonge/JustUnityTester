@@ -1,10 +1,10 @@
 using System.Linq;
 
-public class AltUnityPortHandler
-{
+namespace JustUnityTester.Editor {
+    public class AltUnityPortHandler {
 
 
-    public static int idIproxyProcess = 0;
+        public static int idIproxyProcess = 0;
 
 #if UNITY_EDITOR_OSX
     public static string ForwardIos(string id="",int localPort=13000,int remotePort=13000) {
@@ -43,158 +43,132 @@ public class AltUnityPortHandler
     }
 #endif
 
-    public static string ForwardAndroid(string deviceId = "", int localPort = 13000, int remotePort = 13000)
-    {
-        string adbFileName;
-        string argument;
-        if (deviceId.Equals(""))
-            argument = "forward tcp:" + localPort + " tcp:" + remotePort;
-        else
-        {
+        public static string ForwardAndroid(string deviceId = "", int localPort = 13000, int remotePort = 13000) {
+            string adbFileName;
+            string argument;
+            if (deviceId.Equals(""))
+                argument = "forward tcp:" + localPort + " tcp:" + remotePort;
+            else {
 
-            argument = "-s " + deviceId + " forward" + " tcp:" + localPort + " tcp:" + remotePort;
+                argument = "-s " + deviceId + " forward" + " tcp:" + localPort + " tcp:" + remotePort;
+            }
+
+
+            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo {
+                WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                FileName = adbFileName,
+                Arguments = argument
+            };
+            process.StartInfo = startInfo;
+            process.Start();
+            string stdout = process.StandardError.ReadToEnd();
+            process.WaitForExit();
+            if (stdout.Length > 0) {
+                return stdout;
+            }
+            return "Ok";
+
         }
 
-
-        adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
-        System.Diagnostics.Process process = new System.Diagnostics.Process();
-        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
-        {
-            WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            FileName = adbFileName,
-            Arguments = argument
-        };
-        process.StartInfo = startInfo;
-        process.Start();
-        string stdout = process.StandardError.ReadToEnd();
-        process.WaitForExit();
-        if (stdout.Length > 0)
-        {
-            return stdout;
-        }
-        return "Ok";
-
-    }
-
-    public static void RemoveForwardAndroid(int localPort = -1, string deviceId = "")
-    {
-        string argument;
-        if (localPort == -1)
-        {
-            argument = "forward --remove-all";
-        }
-        else
-        {
-            argument = "-s " + deviceId + " forward --remove tcp:" + localPort;
-        }
-        string adbFileName;
-        adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
-        var process = new System.Diagnostics.Process();
-        var startInfo = new System.Diagnostics.ProcessStartInfo
-        {
-            WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-            FileName = adbFileName,
-            Arguments = argument
-        };
-        process.StartInfo = startInfo;
-        process.Start();
-        process.WaitForExit();
-    }
-
-
-    public static System.Collections.Generic.List<AltUnityMyDevices> GetDevicesAndroid()
-    {
-        System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
-        try
-        {
+        public static void RemoveForwardAndroid(int localPort = -1, string deviceId = "") {
+            string argument;
+            if (localPort == -1) {
+                argument = "forward --remove-all";
+            } else {
+                argument = "-s " + deviceId + " forward --remove tcp:" + localPort;
+            }
             string adbFileName;
             adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
             var process = new System.Diagnostics.Process();
-            var startInfo = new System.Diagnostics.ProcessStartInfo
-            {
-                CreateNoWindow = true,
+            var startInfo = new System.Diagnostics.ProcessStartInfo {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 FileName = adbFileName,
-                Arguments = "devices"
+                Arguments = argument
             };
             process.StartInfo = startInfo;
             process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                if (line.Length > 0 && !line.StartsWith("List "))
-                {
-                    var parts = line.Split('\t');
-                    string deviceId = parts[0];
-                    devices.Add(new AltUnityMyDevices(deviceId));
-                }
-            }
             process.WaitForExit();
-            string stdout = process.StandardError.ReadToEnd();
         }
-        catch (System.ComponentModel.Win32Exception)
-        {
-            UnityEngine.Debug.LogWarning("The path to adb is not correct or Adb is not installed. If you don't need Android device just ignore this warning");
-        }
-        return devices;
-    }
-    public static System.Collections.Generic.List<AltUnityMyDevices> GetForwardedDevicesAndroid()
-    {
-        System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
-        try
-        {
 
-            string adbFileName;
-            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
-            var process = new System.Diagnostics.Process();
-            var startInfo = new System.Diagnostics.ProcessStartInfo
-            {
-                CreateNoWindow = true,
-                WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                FileName = adbFileName,
-                Arguments = "forward --list"
-            };
-            process.StartInfo = startInfo;
-            process.Start();
-            while (!process.StandardOutput.EndOfStream)
-            {
-                string line = process.StandardOutput.ReadLine();
-                if (line.Length > 0)
-                {
-                    try
-                    {
-                        var parts = line.Split(' ');
+
+        public static System.Collections.Generic.List<AltUnityMyDevices> GetDevicesAndroid() {
+            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+            try {
+                string adbFileName;
+                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                var process = new System.Diagnostics.Process();
+                var startInfo = new System.Diagnostics.ProcessStartInfo {
+                    CreateNoWindow = true,
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    FileName = adbFileName,
+                    Arguments = "devices"
+                };
+                process.StartInfo = startInfo;
+                process.Start();
+                while (!process.StandardOutput.EndOfStream) {
+                    string line = process.StandardOutput.ReadLine();
+                    if (line.Length > 0 && !line.StartsWith("List ")) {
+                        var parts = line.Split('\t');
                         string deviceId = parts[0];
-                        int localPort = int.Parse(parts[1].Split(':')[1]);
-                        int remotePort = int.Parse(parts[2].Split(':')[1]);
-                        devices.Add(new AltUnityMyDevices(deviceId, localPort, remotePort, true));
-                    }
-                    catch (System.FormatException)
-                    {
-                        UnityEngine.Debug.Log("adb forward also has: " + line + " but we did not included in the list");
+                        devices.Add(new AltUnityMyDevices(deviceId));
                     }
                 }
+                process.WaitForExit();
+                string stdout = process.StandardError.ReadToEnd();
+            } catch (System.ComponentModel.Win32Exception) {
+                UnityEngine.Debug.LogWarning("The path to adb is not correct or Adb is not installed. If you don't need Android device just ignore this warning");
             }
-            process.WaitForExit();
+            return devices;
         }
-        catch (System.ComponentModel.Win32Exception)
-        {
-            UnityEngine.Debug.LogWarning("The path to adb is not correct or Adb is not installed. If you don't need Android device just ignore this warning");
+        public static System.Collections.Generic.List<AltUnityMyDevices> GetForwardedDevicesAndroid() {
+            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+            try {
+
+                string adbFileName;
+                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                var process = new System.Diagnostics.Process();
+                var startInfo = new System.Diagnostics.ProcessStartInfo {
+                    CreateNoWindow = true,
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    FileName = adbFileName,
+                    Arguments = "forward --list"
+                };
+                process.StartInfo = startInfo;
+                process.Start();
+                while (!process.StandardOutput.EndOfStream) {
+                    string line = process.StandardOutput.ReadLine();
+                    if (line.Length > 0) {
+                        try {
+                            var parts = line.Split(' ');
+                            string deviceId = parts[0];
+                            int localPort = int.Parse(parts[1].Split(':')[1]);
+                            int remotePort = int.Parse(parts[2].Split(':')[1]);
+                            devices.Add(new AltUnityMyDevices(deviceId, localPort, remotePort, true));
+                        } catch (System.FormatException) {
+                            UnityEngine.Debug.Log("adb forward also has: " + line + " but we did not included in the list");
+                        }
+                    }
+                }
+                process.WaitForExit();
+            } catch (System.ComponentModel.Win32Exception) {
+                UnityEngine.Debug.LogWarning("The path to adb is not correct or Adb is not installed. If you don't need Android device just ignore this warning");
+            }
+            return devices;
         }
-        return devices;
-    }
 #if UNITY_EDITOR_OSX
      public static System.Collections.Generic.List<AltUnityMyDevices> GetConnectediOSDevices()
     {
@@ -269,4 +243,5 @@ public class AltUnityPortHandler
 
 
 
+    }
 }
