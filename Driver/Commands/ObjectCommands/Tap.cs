@@ -1,18 +1,18 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySetText : ReturnedElement {
+    public class Tap : ReturnedElement {
         TestObject altUnityObject;
-        string newText;
+        int count;
 
-        public AltUnitySetText(SocketSettings socketSettings, TestObject altUnityObject, string text) : base(socketSettings) {
+        public Tap(SocketSettings socketSettings, TestObject altUnityObject, int count) : base(socketSettings) {
             this.altUnityObject = altUnityObject;
-            newText = text;
+            this.count = count;
         }
 
         public TestObject Execute() {
             var altObject = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityObject);
-            Socket.Client.Send(System.Text.Encoding.ASCII.GetBytes(CreateCommand("setText", altObject, newText)));
+            Socket.Client.Send(System.Text.Encoding.ASCII.GetBytes(CreateCommand("tapObject", altObject, count.ToString())));
             return ReceiveAltUnityObject();
         }
     }

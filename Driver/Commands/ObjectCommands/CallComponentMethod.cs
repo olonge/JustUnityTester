@@ -1,14 +1,14 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityCallComponentMethod : BaseCommand {
+    public class CallComponentMethod : BaseCommand {
         string componentName;
         string methodName;
         string parameters;
         string typeOfParameters;
         string assemblyName;
         TestObject altUnityObject;
-        public AltUnityCallComponentMethod(SocketSettings socketSettings, string componentName, string methodName, string parameters, string typeOfParameters, string assembly, TestObject altUnityObject) : base(socketSettings) {
+        public CallComponentMethod(SocketSettings socketSettings, string componentName, string methodName, string parameters, string typeOfParameters, string assembly, TestObject altUnityObject) : base(socketSettings) {
             this.componentName = componentName;
             this.methodName = methodName;
             this.parameters = parameters;

@@ -1,12 +1,12 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetComponentProperty : BaseCommand {
+    public class GetComponentProperty : BaseCommand {
         string componentName;
         string propertyName;
         string assemblyName;
         TestObject altUnityObject;
-        public AltUnityGetComponentProperty(SocketSettings socketSettings, string componentName, string propertyName, string assemblyName, TestObject altUnityObject) : base(socketSettings) {
+        public GetComponentProperty(SocketSettings socketSettings, string componentName, string propertyName, string assemblyName, TestObject altUnityObject) : base(socketSettings) {
             this.componentName = componentName;
             this.propertyName = propertyName;
             this.assemblyName = assemblyName;

@@ -77,7 +77,7 @@ namespace JustUnityTester {
         }
         public string CallStaticMethods(string typeName, string methodName,
             string parameters, string typeOfParameters = "", string assemblyName = "") {
-            return new AltUnityCallStaticMethods(socketSettings, typeName, methodName, parameters, typeName, assemblyName).Execute();
+            return new CallStaticMethods(socketSettings, typeName, methodName, parameters, typeName, assemblyName).Execute();
         }
         public void DeletePlayerPref() {
             new AltUnityDeletePlayerPref(socketSettings).Execute();

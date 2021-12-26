@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetAllMethods : BaseCommand {
+    public class GetAllMethods : BaseCommand {
         TestComponent testComponent;
         TestObject altUnityObject;
         TestMethodSelection methodSelection;
 
-        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject, TestMethodSelection methodSelection = TestMethodSelection.ALLMETHODS) : base(socketSettings) {
+        public GetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject, TestMethodSelection methodSelection = TestMethodSelection.ALLMETHODS) : base(socketSettings) {
             this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
             this.methodSelection = methodSelection;

@@ -1,13 +1,13 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityCallStaticMethods : BaseCommand {
+    public class CallStaticMethods : BaseCommand {
         string typeName;
         string methodName;
         string parameters;
         string typeOfParameters;
         string assemblyName;
-        public AltUnityCallStaticMethods(SocketSettings socketSettings, string typeName, string methodName, string parameters, string typeOfParameters, string assemblyName) : base(socketSettings) {
+        public CallStaticMethods(SocketSettings socketSettings, string typeName, string methodName, string parameters, string typeOfParameters, string assemblyName) : base(socketSettings) {
             this.typeName = typeName;
             this.methodName = methodName;
             this.parameters = parameters;

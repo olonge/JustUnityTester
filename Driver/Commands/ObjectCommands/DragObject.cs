@@ -2,10 +2,10 @@ using JustUnityTester.Core;
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityDragObject : ReturnedElement {
+    public class DragObject : ReturnedElement {
         AltUnityVector2 position;
         TestObject altUnityObject;
-        public AltUnityDragObject(SocketSettings socketSettings, AltUnityVector2 position, TestObject altUnityObject) : base(socketSettings) {
+        public DragObject(SocketSettings socketSettings, AltUnityVector2 position, TestObject altUnityObject) : base(socketSettings) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }
