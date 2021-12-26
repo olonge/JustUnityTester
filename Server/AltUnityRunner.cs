@@ -441,7 +441,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     break;
                 case "getAllMethods":
                     testComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<TestComponent>(pieces[1]);
-                    var methodSelection = (AltUnityMethodSelection)Enum.Parse(typeof(AltUnityMethodSelection), pieces[2], true);
+                    var methodSelection = (TestMethodSelection)Enum.Parse(typeof(TestMethodSelection), pieces[2], true);
                     command = new AltUnityGetAllMethodsCommand (testComponent,methodSelection);
                     break;
                 case "getAllScenes":

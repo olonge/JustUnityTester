@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 namespace JustUnityTester.Server.Commands {
     class AltUnityGetAllMethodsCommand : AltUnityReflectionMethodsCommand {
         TestComponent component;
-        AltUnityMethodSelection methodSelection;
+        TestMethodSelection methodSelection;
 
-        public AltUnityGetAllMethodsCommand(TestComponent component, AltUnityMethodSelection methodSelection) {
+        public AltUnityGetAllMethodsCommand(TestComponent component, TestMethodSelection methodSelection) {
             this.component = component;
             this.methodSelection = methodSelection;
         }
@@ -20,17 +20,17 @@ namespace JustUnityTester.Server.Commands {
             MethodInfo[] methodInfos = new MethodInfo[1];
             switch (methodSelection) {
 
-                case AltUnityMethodSelection.CLASSMETHODS:
+                case TestMethodSelection.CLASSMETHODS:
                     methodInfos = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     break;
 
-                case AltUnityMethodSelection.INHERITEDMETHODS:
+                case TestMethodSelection.INHERITEDMETHODS:
                     var allMethods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     var classMethods = type.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     methodInfos = allMethods.Except(classMethods).ToArray();
                     break;
 
-                case AltUnityMethodSelection.ALLMETHODS:
+                case TestMethodSelection.ALLMETHODS:
                     methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
                     break;
             }

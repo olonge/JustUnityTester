@@ -63,7 +63,7 @@ namespace JustUnityTester.Core {
         public List<TestComponent> GetAllComponents() => new AltUnityGetAllComponents(socketSettings, this).Execute();
         public List<AltUnityProperty> GetAllProperties(TestComponent altUnityComponent) =>
             new AltUnityGetAllProperties(socketSettings, altUnityComponent, this).Execute();
-        public List<string> GetAllMethods(TestComponent testComponent, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) =>
+        public List<string> GetAllMethods(TestComponent testComponent, TestMethodSelection methodSelection = TestMethodSelection.ALLMETHODS) =>
             new AltUnityGetAllMethods(socketSettings, testComponent, this, methodSelection).Execute();
     }
 }

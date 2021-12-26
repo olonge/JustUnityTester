@@ -5,9 +5,9 @@ namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllMethods : AltBaseCommand {
         TestComponent testComponent;
         TestObject altUnityObject;
-        AltUnityMethodSelection methodSelection;
+        TestMethodSelection methodSelection;
 
-        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) : base(socketSettings) {
+        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, TestObject altUnityObject, TestMethodSelection methodSelection = TestMethodSelection.ALLMETHODS) : base(socketSettings) {
             this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
             this.methodSelection = methodSelection;

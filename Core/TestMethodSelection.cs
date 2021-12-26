@@ -1,5 +1,5 @@
 namespace JustUnityTester.Core {
-    public enum AltUnityMethodSelection {
+    public enum TestMethodSelection {
         CLASSMETHODS,
         INHERITEDMETHODS,
         ALLMETHODS
