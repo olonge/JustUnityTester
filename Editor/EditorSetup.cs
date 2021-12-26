@@ -3,7 +3,7 @@ using System.IO;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityBuilder {
+    public class EditorSetup {
         public static string PreviousScenePath;
         public static UnityEngine.SceneManagement.Scene SceneWithAltUnityRunner;
         public static string SceneWithAltUnityRunnerPath;

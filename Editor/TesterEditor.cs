@@ -73,7 +73,7 @@ namespace JustUnityTester.Editor {
                 InitEditorConfiguration();
             }
             if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/AltUnityTester")) {
-                AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
+                EditorSetup.CreateJsonFileForInputMappingOfAxis();
             }
             if (failIcon == null) {
                 var findIcon = UnityEditor.AssetDatabase.FindAssets("16px-indicator-fail");
@@ -374,8 +374,8 @@ namespace JustUnityTester.Editor {
 
 
         private void RunInEditor() {
-            AltUnityBuilder.InsertAltUnityInTheActiveScene();
-            AltUnityBuilder.CreateJsonFileForInputMappingOfAxis();
+            EditorSetup.InsertAltUnityInTheActiveScene();
+            EditorSetup.CreateJsonFileForInputMappingOfAxis();
 
             /// Stops marking the scripts as dirty causing the IDE to recompile them
             //AltUnityBuilder.AddAltUnityTesterInScritpingDefineSymbolsGroup(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
