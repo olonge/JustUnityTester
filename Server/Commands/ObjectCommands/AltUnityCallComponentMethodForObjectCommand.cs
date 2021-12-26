@@ -14,7 +14,7 @@ namespace JustUnityTester.Server.Commands {
             AltUnityRunner._altUnityRunner.LogMessage("call action " + actionString + " for object " + altObjectString);
             string response = AltUnityRunner._altUnityRunner.errorMethodNotFoundMessage;
             System.Reflection.MethodInfo methodInfoToBeInvoked;
-            AltUnityObjectAction altAction = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityObjectAction>(actionString);
+            TestObjectAction altAction = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObjectAction>(actionString);
             var componentType = GetType(altAction.Component, altAction.Assembly);
 
             System.Reflection.MethodInfo[] methodInfos = GetMethodInfoWithSpecificName(componentType, altAction.Method);

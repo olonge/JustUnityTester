@@ -1,5 +1,5 @@
 ﻿namespace JustUnityTester.Core {
-    public struct AltUnityObjectAction {
+    public struct TestObjectAction {
 
         public string Component;
         public string Method;
@@ -7,7 +7,7 @@
         public string Parameters;
         public string TypeOfParameters;
 
-        public AltUnityObjectAction(string component = "", string method = "", string parameters = "", string typeOfParameters = "", string assembly = "") {
+        public TestObjectAction(string component = "", string method = "", string parameters = "", string typeOfParameters = "", string assembly = "") {
             Component = component;
             Method = method;
             Parameters = parameters;

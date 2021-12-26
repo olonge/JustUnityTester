@@ -19,7 +19,7 @@ namespace JustUnityTester.Driver.Commands {
         public string Execute() {
             string altObject = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityObject);
             string actionInfo =
-                Newtonsoft.Json.JsonConvert.SerializeObject(new AltUnityObjectAction(componentName, methodName, parameters, typeOfParameters, assemblyName));
+                Newtonsoft.Json.JsonConvert.SerializeObject(new TestObjectAction(componentName, methodName, parameters, typeOfParameters, assemblyName));
             Socket.Client.Send(
                  System.Text.Encoding.ASCII.GetBytes(CreateCommand("callComponentMethodForObject", altObject, actionInfo)));
             string data = Recvall();

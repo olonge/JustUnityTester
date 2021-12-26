@@ -54,7 +54,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
 
-        private System.Reflection.MethodInfo GetMethodForObjectComponent(TestObject altUnityObject, AltUnityObjectAction altUnityObjectAction) {
+        private System.Reflection.MethodInfo GetMethodForObjectComponent(TestObject altUnityObject, TestObjectAction altUnityObjectAction) {
             System.Type componentType = null;
             componentType = GetType(altUnityObjectAction.Component, altUnityObjectAction.Assembly);
             System.Reflection.MethodInfo methodInfo = componentType.GetMethod(altUnityObjectAction.Method);
@@ -66,7 +66,7 @@ namespace JustUnityTester.Server.Commands {
             return methodInfos.Where(method => method.Name.Equals(altActionMethod)).ToArray();
         }
 
-        protected System.Reflection.MethodInfo GetMethodToBeInvoked(System.Reflection.MethodInfo[] methodInfos, AltUnityObjectAction altUnityObjectAction) {
+        protected System.Reflection.MethodInfo GetMethodToBeInvoked(System.Reflection.MethodInfo[] methodInfos, TestObjectAction altUnityObjectAction) {
             var parameter = altUnityObjectAction.Parameters.Split('?');
             var typeOfParametes = altUnityObjectAction.TypeOfParameters.Split('?');
             methodInfos = methodInfos.Where(method => method.GetParameters().Length == parameter.Length).ToArray();
@@ -94,7 +94,7 @@ namespace JustUnityTester.Server.Commands {
             errorMessage += ")";
             throw new System.Exception(errorMessage);
         }
-        protected static string InvokeMethod(System.Reflection.MethodInfo methodInfo, AltUnityObjectAction altAction, object component, string response) {
+        protected static string InvokeMethod(System.Reflection.MethodInfo methodInfo, TestObjectAction altAction, object component, string response) {
             if (methodInfo == null) return response;
             if (altAction.Parameters == "") {
                 response = Newtonsoft.Json.JsonConvert.SerializeObject(methodInfo.Invoke(component, null));
