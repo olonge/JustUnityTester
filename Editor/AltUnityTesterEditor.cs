@@ -50,7 +50,6 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     private bool _foldOutBuildSettings = true;
     private bool _foldOutIosSettings = true;
     private bool _foldOutAltUnityServerSettings = true;
-    private bool _foldOutVisuals = true;
 
     //TestResult after running a test
     public static bool isTestRunResultAvailable = false;
@@ -377,15 +376,11 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUI.EndDisabledGroup();
         }*/
 
-        //UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
-        _foldOutVisuals = UnityEditor.EditorGUILayout.Foldout(_foldOutVisuals, "Visuals");
-        if (_foldOutVisuals) {            
-            LabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
-            LabelAndCheckboxHorizontalLayout("Show popup", ref EditorConfiguration.showPopUp);
+        UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
+        UnindentedLabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
+        UnindentedLabelAndCheckboxHorizontalLayout("Show popup", ref EditorConfiguration.showPopUp);
 
-        }
-
-            UnityEditor.EditorGUILayout.Separator();
+        UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
 
@@ -852,6 +847,16 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
 
             DisplayScenes();
         }
+    }
+
+    private static void UnindentedLabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable) {
+        UnityEditor.EditorGUILayout.BeginHorizontal();
+        //UnityEditor.EditorGUILayout.LabelField("", UnityEngine.GUILayout.MaxWidth(30));
+        UnityEditor.EditorGUILayout.LabelField(label, UnityEngine.GUILayout.Width(145));
+        editorConfigVariable =
+            UnityEditor.EditorGUILayout.Toggle(editorConfigVariable, UnityEngine.GUILayout.MaxWidth(30));
+        UnityEngine.GUILayout.FlexibleSpace();
+        UnityEditor.EditorGUILayout.EndHorizontal();
     }
 
     private static void LabelAndCheckboxHorizontalLayout(string label, ref bool editorConfigVariable)
