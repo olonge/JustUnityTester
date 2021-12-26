@@ -7,8 +7,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("deleteKeyPlayerPref for: " + keyName);
-            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner.Instance.LogMessage("deleteKeyPlayerPref for: " + keyName);
+            string response = TestRunner.Instance.errorNotFoundMessage;
             UnityEngine.PlayerPrefs.DeleteKey(keyName);
             response = "Ok";
             return response;

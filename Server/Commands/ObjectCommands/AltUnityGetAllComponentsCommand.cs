@@ -11,7 +11,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("GetAllComponents");
+            TestRunner.Instance.LogMessage("GetAllComponents");
 
             UnityEngine.GameObject obj = TestRunner.GetGameObject(System.Convert.ToInt32(objectID));
             List<TestComponent> listComponents = new List<TestComponent>();

@@ -9,21 +9,21 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("Screen tapped at X:" + x + " Y:" + y);
+            TestRunner.Instance.LogMessage("Screen tapped at X:" + x + " Y:" + y);
             var clickPosition = new UnityEngine.Vector2(float.Parse(x), float.Parse(y));
-            TestRunner._altUnityRunner.ShowClick(clickPosition);
-            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner.Instance.ShowClick(clickPosition);
+            string response = TestRunner.Instance.errorNotFoundMessage;
             AltUnityMockUpPointerInputModule mockUp = new AltUnityMockUpPointerInputModule();
             UnityEngine.Touch touch = new UnityEngine.Touch { position = clickPosition, phase = UnityEngine.TouchPhase.Began };
             var pointerEventData = mockUp.ExecuteTouchEvent(touch);
             if (pointerEventData.pointerPress == null &&
                 pointerEventData.pointerEnter == null &&
                 pointerEventData.pointerDrag == null) {
-                response = TestRunner._altUnityRunner.errorNotFoundMessage;
+                response = TestRunner.Instance.errorNotFoundMessage;
             } else {
                 UnityEngine.GameObject gameObject = pointerEventData.pointerPress.gameObject;
 
-                TestRunner._altUnityRunner.LogMessage("GameOBject: " + gameObject);
+                TestRunner.Instance.LogMessage("GameOBject: " + gameObject);
 
                 gameObject.SendMessage("OnMouseEnter", UnityEngine.SendMessageOptions.DontRequireReceiver);
                 gameObject.SendMessage("OnMouseDown", UnityEngine.SendMessageOptions.DontRequireReceiver);
@@ -36,7 +36,7 @@ namespace JustUnityTester.Server.Commands {
                 touch.phase = UnityEngine.TouchPhase.Ended;
                 mockUp.ExecuteTouchEvent(touch, pointerEventData);
 
-                response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject, pointerEventData.enterEventCamera));
+                response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner.Instance.GameObjectToAltUnityObject(gameObject, pointerEventData.enterEventCamera));
             }
             return response;
         }

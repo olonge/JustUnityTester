@@ -14,7 +14,7 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("getAllFields");
+            TestRunner.Instance.LogMessage("getAllFields");
             UnityEngine.GameObject obj;
 
             obj = id.Equals("null") ? null : TestRunner.GetGameObject(System.Convert.ToInt32(id));

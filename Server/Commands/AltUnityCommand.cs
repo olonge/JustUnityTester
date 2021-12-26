@@ -7,24 +7,24 @@ namespace JustUnityTester.Server.Commands {
                     response = Execute();
                 } catch (System.NullReferenceException exception) {
                     UnityEngine.Debug.Log(exception);
-                    response = TestRunner._altUnityRunner.errorNullRefferenceMessage;
+                    response = TestRunner.Instance.errorNullRefferenceMessage;
                 } catch (System.ArgumentException exception) {
                     UnityEngine.Debug.Log(exception);
-                    response = TestRunner._altUnityRunner.errorFailedToParseArguments;
+                    response = TestRunner.Instance.errorFailedToParseArguments;
                 } catch (System.Reflection.TargetParameterCountException) {
-                    response = TestRunner._altUnityRunner.errorIncorrectNumberOfParameters;
+                    response = TestRunner.Instance.errorIncorrectNumberOfParameters;
                 } catch (Newtonsoft.Json.JsonException e) {
                     UnityEngine.Debug.Log(e);
-                    response = TestRunner._altUnityRunner.errorCouldNotParseJsonString;
+                    response = TestRunner.Instance.errorCouldNotParseJsonString;
                 } catch (Exceptions.ComponentNotFoundException e) {
                     UnityEngine.Debug.Log(e);
-                    response = TestRunner._altUnityRunner.errorComponentNotFoundMessage;
+                    response = TestRunner.Instance.errorComponentNotFoundMessage;
                 } catch (Exceptions.PropertyNotFoundException e) {
                     UnityEngine.Debug.Log(e);
-                    response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
+                    response = TestRunner.Instance.errorPropertyNotFoundMessage;
                 } catch (System.Exception exception) {
                     UnityEngine.Debug.Log(exception);
-                    response = TestRunner._altUnityRunner.errorUnknownError + TestRunner._altUnityRunner.requestSeparatorString + exception;
+                    response = TestRunner.Instance.errorUnknownError + TestRunner.Instance.requestSeparatorString + exception;
                 } finally {
                     handler.SendResponse(response);
                 }

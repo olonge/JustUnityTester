@@ -10,11 +10,11 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            var pieces = methodParameters.Split(new string[] { TestRunner._altUnityRunner.requestSeparatorString }, System.StringSplitOptions.None);
+            var pieces = methodParameters.Split(new string[] { TestRunner.Instance.requestSeparatorString }, System.StringSplitOptions.None);
             string objectName = pieces[0];
-            TestRunner._altUnityRunner.LogMessage("find objects where name contains:" + objectName);
+            TestRunner.Instance.LogMessage("find objects where name contains:" + objectName);
             string cameraName = pieces[1];
-            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            string response = TestRunner.Instance.errorNotFoundMessage;
             UnityEngine.Camera camera = null;
             if (cameraName != null) {
                 camera = UnityEngine.Camera.allCameras.ToList().Find(c => c.name.Equals(cameraName));
@@ -23,7 +23,7 @@ namespace JustUnityTester.Server.Commands {
             System.Collections.Generic.List<TestObject> foundObjects = new System.Collections.Generic.List<TestObject>();
             foreach (UnityEngine.GameObject testableObject in UnityEngine.Object.FindObjectsOfType<UnityEngine.GameObject>()) {
                 if (testableObject.name.Contains(objectName)) {
-                    foundObjects.Add(TestRunner._altUnityRunner.GameObjectToAltUnityObject(testableObject, camera));
+                    foundObjects.Add(TestRunner.Instance.GameObjectToAltUnityObject(testableObject, camera));
                 }
             }
 

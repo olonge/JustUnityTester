@@ -36,8 +36,8 @@ namespace JustUnityTester.Server.Commands {
 
 
             var screenshotSerialized = screenshot.GetRawTextureData();
-            TestRunner._altUnityRunner.LogMessage(screenshotSerialized.LongLength + " size after Unity Compression");
-            TestRunner._altUnityRunner.LogMessage(System.DateTime.Now + " Start Compression");
+            TestRunner.Instance.LogMessage(screenshotSerialized.LongLength + " size after Unity Compression");
+            TestRunner.Instance.LogMessage(System.DateTime.Now + " Start Compression");
             var screenshotCompressed = TestRunner.CompressScreenshot(screenshotSerialized);
             Debug.Log(System.DateTime.Now + " Finished Compression");
             var length = screenshotCompressed.LongLength;
@@ -55,10 +55,10 @@ namespace JustUnityTester.Server.Commands {
                 StringEscapeHandling = Newtonsoft.Json.StringEscapeHandling.EscapeNonAscii
             });
 
-            TestRunner._altUnityRunner.LogMessage(System.DateTime.Now + " Finished Serialize Screenshot Start serialize response");
-            TestRunner._altUnityRunner.LogMessage(System.DateTime.Now + " Finished send Response");
+            TestRunner.Instance.LogMessage(System.DateTime.Now + " Finished Serialize Screenshot Start serialize response");
+            TestRunner.Instance.LogMessage(System.DateTime.Now + " Finished send Response");
             Object.Destroy(screenshot);
-            TestRunner._altUnityRunner.destroyHightlight = true;
+            TestRunner.Instance.destroyHightlight = true;
             return Newtonsoft.Json.JsonConvert.SerializeObject(fullResponse);
         }
     }

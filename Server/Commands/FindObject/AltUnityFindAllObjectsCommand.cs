@@ -7,7 +7,7 @@
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("all objects requested");
+            TestRunner.Instance.LogMessage("all objects requested");
             var parameters = ";" + methodParameter;
             return new AltUnityFindObjectsByNameCommand(parameters).Execute();
         }

@@ -11,19 +11,19 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("setKeyPlayerPref for: " + keyName);
-            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner.Instance.LogMessage("setKeyPlayerPref for: " + keyName);
+            string response = TestRunner.Instance.errorNotFoundMessage;
             switch (type) {
                 case PLayerPrefKeyType.String:
-                    TestRunner._altUnityRunner.LogMessage("Set Option string ");
+                    TestRunner.Instance.LogMessage("Set Option string ");
                     UnityEngine.PlayerPrefs.SetString(keyName, value);
                     break;
                 case PLayerPrefKeyType.Float:
-                    TestRunner._altUnityRunner.LogMessage("Set Option Float ");
+                    TestRunner.Instance.LogMessage("Set Option Float ");
                     UnityEngine.PlayerPrefs.SetFloat(keyName, float.Parse(value));
                     break;
                 case PLayerPrefKeyType.Int:
-                    TestRunner._altUnityRunner.LogMessage("Set Option Int ");
+                    TestRunner.Instance.LogMessage("Set Option Int ");
                     UnityEngine.PlayerPrefs.SetInt(keyName, int.Parse(value));
                     break;
             }

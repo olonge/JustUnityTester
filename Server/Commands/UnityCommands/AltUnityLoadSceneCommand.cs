@@ -16,8 +16,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("LoadScene " + scene);
-            string response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner.Instance.LogMessage("LoadScene " + scene);
+            string response = TestRunner.Instance.errorNotFoundMessage;
 
             var sceneLoadingOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene, mode);
             sceneLoadingOperation.completed += SceneLoaded;

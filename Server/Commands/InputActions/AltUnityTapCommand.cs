@@ -11,12 +11,12 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("tapped object by name " + altUnityObject.name);
-            TestRunner._altUnityRunner.ShowClick(new UnityEngine.Vector2(altUnityObject.getScreenPosition().x, altUnityObject.getScreenPosition().y));
-            var response = TestRunner._altUnityRunner.errorNotFoundMessage;
+            TestRunner.Instance.LogMessage("tapped object by name " + altUnityObject.name);
+            TestRunner.Instance.ShowClick(new UnityEngine.Vector2(altUnityObject.getScreenPosition().x, altUnityObject.getScreenPosition().y));
+            var response = TestRunner.Instance.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);
             UnityEngine.GameObject gameObject = TestRunner.GetGameObject(altUnityObject);
-            TestRunner._altUnityRunner.LogMessage("GameObject: " + gameObject);
+            TestRunner.Instance.LogMessage("GameObject: " + gameObject);
 
             UnityEngine.EventSystems.ExecuteEvents.ExecuteHierarchy(gameObject, pointerEventData, UnityEngine.EventSystems.ExecuteEvents.pointerEnterHandler);
             gameObject.SendMessage("OnMouseEnter", UnityEngine.SendMessageOptions.DontRequireReceiver);
@@ -27,8 +27,8 @@ namespace JustUnityTester.Server.Commands {
             UnityEngine.EventSystems.ExecuteEvents.ExecuteHierarchy(gameObject, pointerEventData, UnityEngine.EventSystems.ExecuteEvents.pointerExitHandler);
             gameObject.SendMessage("OnMouseExit", UnityEngine.SendMessageOptions.DontRequireReceiver);
 
-            var camera = TestRunner._altUnityRunner.FoundCameraById(altUnityObject.idCamera);
-            response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner._altUnityRunner.GameObjectToAltUnityObject(gameObject, camera));
+            var camera = TestRunner.Instance.FoundCameraById(altUnityObject.idCamera);
+            response = Newtonsoft.Json.JsonConvert.SerializeObject(TestRunner.Instance.GameObjectToAltUnityObject(gameObject, camera));
 
             return response;
         }

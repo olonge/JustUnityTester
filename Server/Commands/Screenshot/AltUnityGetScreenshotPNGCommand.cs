@@ -13,8 +13,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("getScreenshotPNG");
-            TestRunner._altUnityRunner.StartCoroutine(TestRunner._altUnityRunner.TakeScreenshot(handler));
+            TestRunner.Instance.LogMessage("getScreenshotPNG");
+            TestRunner.Instance.StartCoroutine(TestRunner.Instance.TakeScreenshot(handler));
             return "Ok";
         }
     }

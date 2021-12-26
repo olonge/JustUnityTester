@@ -6,7 +6,7 @@
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("getAllLoadedScenes");
+            TestRunner.Instance.LogMessage("getAllLoadedScenes");
             for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++) {
 
                 var sceneName = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i).name;

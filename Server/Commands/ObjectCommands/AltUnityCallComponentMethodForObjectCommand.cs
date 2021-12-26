@@ -11,8 +11,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("call action " + actionString + " for object " + altObjectString);
-            string response = TestRunner._altUnityRunner.errorMethodNotFoundMessage;
+            TestRunner.Instance.LogMessage("call action " + actionString + " for object " + altObjectString);
+            string response = TestRunner.Instance.errorMethodNotFoundMessage;
             System.Reflection.MethodInfo methodInfoToBeInvoked;
             TestObjectAction altAction = Newtonsoft.Json.JsonConvert.DeserializeObject<TestObjectAction>(actionString);
             var componentType = GetType(altAction.Component, altAction.Assembly);

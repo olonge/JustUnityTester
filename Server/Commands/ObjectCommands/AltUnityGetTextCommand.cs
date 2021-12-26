@@ -17,8 +17,8 @@ namespace JustUnityTester.Server.Commands {
         }
 
         public override string Execute() {
-            TestRunner._altUnityRunner.LogMessage("Get text from object by name " + altUnityObject.name);
-            var response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
+            TestRunner.Instance.LogMessage("Get text from object by name " + altUnityObject.name);
+            var response = TestRunner.Instance.errorPropertyNotFoundMessage;
 
             var targetObject = TestRunner.GetGameObject(altUnityObject);
 
@@ -29,9 +29,9 @@ namespace JustUnityTester.Server.Commands {
                     if (!response.Contains("error:"))
                         break;
                 } catch (Exceptions.PropertyNotFoundException) {
-                    response = TestRunner._altUnityRunner.errorPropertyNotFoundMessage;
+                    response = TestRunner.Instance.errorPropertyNotFoundMessage;
                 } catch (Exceptions.ComponentNotFoundException) {
-                    response = TestRunner._altUnityRunner.errorComponentNotFoundMessage;
+                    response = TestRunner.Instance.errorComponentNotFoundMessage;
                 }
             }
 
