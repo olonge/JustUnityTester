@@ -20,7 +20,7 @@ namespace JustUnityTester.Editor {
 
             if (axisArray.arraySize == 0)
                 UnityEngine.Debug.Log("No Axes");
-            List<Axis> axisList = new List<Axis>();
+            List<TestAxis> axisList = new List<TestAxis>();
             for (int i = 0; i < axisArray.arraySize; ++i) {
                 var axis = axisArray.GetArrayElementAtIndex(i);
 
@@ -30,7 +30,7 @@ namespace JustUnityTester.Editor {
                 var positiveButton = axis.FindPropertyRelative("positiveButton").stringValue;
                 var altPositiveButton = axis.FindPropertyRelative("altPositiveButton").stringValue;
                 var altNegativeButton = axis.FindPropertyRelative("altNegativeButton").stringValue;
-                axisList.Add(new Axis(name, negativeButton, positiveButton, altPositiveButton, altNegativeButton));
+                axisList.Add(new TestAxis(name, negativeButton, positiveButton, altPositiveButton, altNegativeButton));
             }
 
             string dataAsJson = Newtonsoft.Json.JsonConvert.SerializeObject(axisList);
