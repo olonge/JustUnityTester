@@ -23,13 +23,13 @@ namespace JustUnityTester.Server.Commands {
             var altObjectComponent = obj.GetComponent(type);
             var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-            var listFields = new List<AltUnityField>();
+            var listFields = new List<TestField>();
 
             foreach (var fieldInfo in fieldInfos) {
                 var value = fieldInfo.GetValue(altObjectComponent);
-                var field = new AltUnityField(fieldInfo.Name, value == null ? "null" : value.ToString());
+                var field = new TestField(fieldInfo.Name, value == null ? "null" : value.ToString());
 
-                listFields.Add( field);
+                listFields.Add(field);
             }
             return JsonConvert.SerializeObject(listFields);
         }

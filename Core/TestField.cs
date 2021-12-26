@@ -1,9 +1,9 @@
 ﻿namespace JustUnityTester.Core {
-    public struct AltUnityField {
+    public struct TestField {
         public string name;
         public string value;
 
-        public AltUnityField(string name, string value) {
+        public TestField(string name, string value) {
             this.name = name;
             this.value = value;
         }
