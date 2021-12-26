@@ -99,8 +99,8 @@ namespace JustUnityTester.Editor {
         }
 
 
-        public static System.Collections.Generic.List<AltUnityMyDevices> GetDevicesAndroid() {
-            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+        public static System.Collections.Generic.List<MyDevices> GetDevicesAndroid() {
+            System.Collections.Generic.List<MyDevices> devices = new System.Collections.Generic.List<MyDevices>();
             try {
                 string adbFileName;
                 adbFileName = TesterEditor.Config.AdbPath;
@@ -121,7 +121,7 @@ namespace JustUnityTester.Editor {
                     if (line.Length > 0 && !line.StartsWith("List ")) {
                         var parts = line.Split('\t');
                         string deviceId = parts[0];
-                        devices.Add(new AltUnityMyDevices(deviceId));
+                        devices.Add(new MyDevices(deviceId));
                     }
                 }
                 process.WaitForExit();
@@ -131,8 +131,8 @@ namespace JustUnityTester.Editor {
             }
             return devices;
         }
-        public static System.Collections.Generic.List<AltUnityMyDevices> GetForwardedDevicesAndroid() {
-            System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
+        public static System.Collections.Generic.List<MyDevices> GetForwardedDevicesAndroid() {
+            System.Collections.Generic.List<MyDevices> devices = new System.Collections.Generic.List<MyDevices>();
             try {
 
                 string adbFileName;
@@ -157,7 +157,7 @@ namespace JustUnityTester.Editor {
                             string deviceId = parts[0];
                             int localPort = int.Parse(parts[1].Split(':')[1]);
                             int remotePort = int.Parse(parts[2].Split(':')[1]);
-                            devices.Add(new AltUnityMyDevices(deviceId, localPort, remotePort, true));
+                            devices.Add(new MyDevices(deviceId, localPort, remotePort, true));
                         } catch (System.FormatException) {
                             UnityEngine.Debug.Log("adb forward also has: " + line + " but we did not included in the list");
                         }

@@ -50,7 +50,7 @@ namespace JustUnityTester.Editor {
         public static int reportTestFailed;
         public static double timeTestRan;
 
-        public static List<AltUnityMyDevices> devices = new List<AltUnityMyDevices>();
+        public static List<MyDevices> devices = new List<MyDevices>();
         // public static System.Collections.Generic.Dictionary<string, int> iosForwards = new System.Collections.Generic.Dictionary<string, int>();
 
         // Add menu item named "My Window" to the Window menu
