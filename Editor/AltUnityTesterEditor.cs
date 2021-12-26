@@ -383,8 +383,11 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         UnityEditor.EditorGUILayout.LabelField("Run", UnityEditor.EditorStyles.boldLabel);
         if (EditorConfiguration.platform == AltUnityPlatform.Editor)
         {
-            if (UnityEngine.GUILayout.Button("Play in Editor"))
-            {
+            if (UnityEditor.EditorApplication.isPlaying) {
+                UnityEditor.EditorGUI.BeginDisabledGroup(true);
+                UnityEngine.GUILayout.Button("Play in Editor");
+                UnityEditor.EditorGUI.EndDisabledGroup();
+            } else if (UnityEngine.GUILayout.Button("Play in Editor")) {
                 RunInEditor();
             }
         }
