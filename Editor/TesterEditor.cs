@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityTesterEditor : UnityEditor.EditorWindow {
+    public class TesterEditor : UnityEditor.EditorWindow {
 
         public static bool needsRepaiting = false;
 
         public static AltUnityEditorConfiguration EditorConfiguration;
-        public static AltUnityTesterEditor _window;
+        public static TesterEditor _window;
 
         public static NUnit.Framework.Internal.TestSuite _testSuite;
 
@@ -56,11 +56,11 @@ namespace JustUnityTester.Editor {
         // Add menu item named "My Window" to the Window menu
         [UnityEditor.MenuItem("Window/Just Unity Tester/Inspector")]
         public static void ShowWindow() {
-            //Show existing window instance. If one doesn't exist, make one.
-            _window = (AltUnityTesterEditor)GetWindow(typeof(AltUnityTesterEditor));
+            /// Show existing window instance. If one doesn't exist, make one.
+            _window = (TesterEditor)GetWindow(typeof(TesterEditor));
+            _window.titleContent = new UnityEngine.GUIContent("Just Unity Tester");
             _window.minSize = new UnityEngine.Vector2(600, 100);
             _window.Show();
-
         }
 
 

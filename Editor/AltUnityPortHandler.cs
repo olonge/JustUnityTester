@@ -54,7 +54,7 @@ namespace JustUnityTester.Editor {
             }
 
 
-            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+            adbFileName = TesterEditor.EditorConfiguration.AdbPath;
             System.Diagnostics.Process process = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
@@ -83,7 +83,7 @@ namespace JustUnityTester.Editor {
                 argument = "-s " + deviceId + " forward --remove tcp:" + localPort;
             }
             string adbFileName;
-            adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+            adbFileName = TesterEditor.EditorConfiguration.AdbPath;
             var process = new System.Diagnostics.Process();
             var startInfo = new System.Diagnostics.ProcessStartInfo {
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
@@ -103,7 +103,7 @@ namespace JustUnityTester.Editor {
             System.Collections.Generic.List<AltUnityMyDevices> devices = new System.Collections.Generic.List<AltUnityMyDevices>();
             try {
                 string adbFileName;
-                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                adbFileName = TesterEditor.EditorConfiguration.AdbPath;
                 var process = new System.Diagnostics.Process();
                 var startInfo = new System.Diagnostics.ProcessStartInfo {
                     CreateNoWindow = true,
@@ -136,7 +136,7 @@ namespace JustUnityTester.Editor {
             try {
 
                 string adbFileName;
-                adbFileName = AltUnityTesterEditor.EditorConfiguration.AdbPath;
+                adbFileName = TesterEditor.EditorConfiguration.AdbPath;
                 var process = new System.Diagnostics.Process();
                 var startInfo = new System.Diagnostics.ProcessStartInfo {
                     CreateNoWindow = true,
