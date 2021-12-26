@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityPointerExitObject : AltUnityCommandReturningAltElement {
+    public class AltUnityPointerExitObject : ReturnedElement {
         TestObject altUnityObject;
 
         public AltUnityPointerExitObject(SocketSettings socketSettings, TestObject altUnityObject) : base(socketSettings) {

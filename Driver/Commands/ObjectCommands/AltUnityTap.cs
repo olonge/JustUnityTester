@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityTap : AltUnityCommandReturningAltElement {
+    public class AltUnityTap : ReturnedElement {
         TestObject altUnityObject;
         int count;
 

@@ -2,7 +2,7 @@ using JustUnityTester.Core;
 using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityGetScreenshot : AltUnityCommandReturningAltElement {
+    public class AltUnityGetScreenshot : ReturnedElement {
         int id;
         AltUnityColor color;
         float width;

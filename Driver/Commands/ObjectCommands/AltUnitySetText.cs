@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnitySetText : AltUnityCommandReturningAltElement {
+    public class AltUnitySetText : ReturnedElement {
         TestObject altUnityObject;
         string newText;
 

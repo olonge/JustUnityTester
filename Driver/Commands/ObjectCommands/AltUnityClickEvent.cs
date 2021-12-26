@@ -1,7 +1,7 @@
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
-    public class AltUnityClickEvent : AltUnityCommandReturningAltElement {
+    public class AltUnityClickEvent : ReturnedElement {
         TestObject altUnityObject;
         public AltUnityClickEvent(SocketSettings socketSettings, TestObject altUnityObject) : base(socketSettings) {
             this.altUnityObject = altUnityObject;
