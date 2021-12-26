@@ -1,4 +1,6 @@
-﻿using JustUnityTester.Core;
+﻿using System.Collections.Generic;
+using JustUnityTester.Core;
+using Newtonsoft.Json;
 
 namespace JustUnityTester.Server.Commands {
     class AltUnityGetAllComponentsCommand : AltUnityCommand {
@@ -10,24 +12,27 @@ namespace JustUnityTester.Server.Commands {
 
         public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("GetAllComponents");
-            UnityEngine.GameObject altObject = AltUnityRunner.GetGameObject(System.Convert.ToInt32(objectID));
-            System.Collections.Generic.List<AltUnityComponent> listComponents = new System.Collections.Generic.List<AltUnityComponent>();
-            foreach (var component in altObject.GetComponents<UnityEngine.Component>()) {
+
+            UnityEngine.GameObject obj = AltUnityRunner.GetGameObject(System.Convert.ToInt32(objectID));
+            List<TestComponent> listComponents = new List<TestComponent>();
+
+            foreach (var component in obj.GetComponents<UnityEngine.Component>()) {
                 try {
                     var a = component.GetType();
                     var componentName = a.FullName;
                     var assemblyName = a.Assembly.GetName().Name;
-                    listComponents.Add(new AltUnityComponent(componentName, assemblyName));
+                    listComponents.Add(new TestComponent(componentName, assemblyName));
+
                 } catch (System.NullReferenceException e) {
+
                     if (e.Source != null)
                         UnityEngine.Debug.LogError("NullReferenceException source: " + e.Source);
                     else
                         UnityEngine.Debug.LogError("NullReferenceException unknown source");
                 }
-
             }
 
-            var response = Newtonsoft.Json.JsonConvert.SerializeObject(listComponents);
+            var response = JsonConvert.SerializeObject(listComponents);
             return response;
         }
     }

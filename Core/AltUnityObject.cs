@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using JustUnityTester.Driver.Commands;
 using JustUnityTester.Driver.Primitives;
 
@@ -77,13 +78,13 @@ namespace JustUnityTester.Core {
         public AltUnityObject DoubleTap() {
             return new AltUnityTap(socketSettings, this, 2).Execute();
         }
-        public System.Collections.Generic.List<AltUnityComponent> GetAllComponents() {
+        public List<TestComponent> GetAllComponents() {
             return new AltUnityGetAllComponents(socketSettings, this).Execute();
         }
-        public System.Collections.Generic.List<AltUnityProperty> GetAllProperties(AltUnityComponent altUnityComponent) {
+        public List<AltUnityProperty> GetAllProperties(TestComponent altUnityComponent) {
             return new AltUnityGetAllProperties(socketSettings, altUnityComponent, this).Execute();
         }
-        public System.Collections.Generic.List<string> GetAllMethods(AltUnityComponent altUnityComponent, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) {
+        public List<string> GetAllMethods(TestComponent altUnityComponent, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) {
             return new AltUnityGetAllMethods(socketSettings, altUnityComponent, this, methodSelection).Execute();
         }
     }

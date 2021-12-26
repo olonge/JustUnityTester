@@ -288,7 +288,7 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
         {
         string[] separator = new string[] { requestSeparatorString };
         string[] pieces = message.Split(separator, System.StringSplitOptions.None);
-        AltUnityComponent altComponent;
+        TestComponent testComponent;
         AltUnityObject altUnityObject;
         string methodParameters;
         UnityEngine.Vector2 size;
@@ -436,13 +436,13 @@ public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandler
                     command = new AltUnityGetAllComponentsCommand(pieces[1]);
                     break;
                 case "getAllFields":
-                    altComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityComponent>(pieces[2]);
-                    command = new AltUnityGetAllFieldsCommand(pieces[1], altComponent);
+                    testComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<TestComponent>(pieces[2]);
+                    command = new AltUnityGetAllFieldsCommand(pieces[1], testComponent);
                     break;
                 case "getAllMethods":
-                    altComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityComponent>(pieces[1]);
+                    testComponent = Newtonsoft.Json.JsonConvert.DeserializeObject<TestComponent>(pieces[1]);
                     var methodSelection = (AltUnityMethodSelection)Enum.Parse(typeof(AltUnityMethodSelection), pieces[2], true);
-                    command = new AltUnityGetAllMethodsCommand (altComponent,methodSelection);
+                    command = new AltUnityGetAllMethodsCommand (testComponent,methodSelection);
                     break;
                 case "getAllScenes":
                     command = new AltUnityGetAllScenesCommand();

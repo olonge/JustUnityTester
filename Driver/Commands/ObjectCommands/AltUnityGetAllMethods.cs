@@ -1,21 +1,25 @@
+using System.Collections.Generic;
 using JustUnityTester.Core;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllMethods : AltBaseCommand {
-        AltUnityComponent altUnityComponent;
+        TestComponent testComponent;
         AltUnityObject altUnityObject;
         AltUnityMethodSelection methodSelection;
 
-        public AltUnityGetAllMethods(SocketSettings socketSettings, AltUnityComponent altUnityComponent, AltUnityObject altUnityObject, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) : base(socketSettings) {
-            this.altUnityComponent = altUnityComponent;
+        public AltUnityGetAllMethods(SocketSettings socketSettings, TestComponent altUnityComponent, AltUnityObject altUnityObject, AltUnityMethodSelection methodSelection = AltUnityMethodSelection.ALLMETHODS) : base(socketSettings) {
+            this.testComponent = altUnityComponent;
             this.altUnityObject = altUnityObject;
             this.methodSelection = methodSelection;
         }
-        public System.Collections.Generic.List<string> Execute() {
-            var altComponent = Newtonsoft.Json.JsonConvert.SerializeObject(altUnityComponent);
+        public List<string> Execute() {
+            var altComponent = Newtonsoft.Json.JsonConvert.SerializeObject(testComponent);
             Socket.Client.Send(System.Text.Encoding.ASCII.GetBytes(CreateCommand("getAllMethods", altComponent, methodSelection.ToString())));
             string data = Recvall();
-            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<string>>(data);
+
+            if (!data.Contains("error:"))
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(data);
+
             HandleErrors(data);
             return null;
         }

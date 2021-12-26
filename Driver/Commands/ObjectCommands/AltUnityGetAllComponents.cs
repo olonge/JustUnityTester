@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using JustUnityTester.Core;
+using Newtonsoft.Json;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetAllComponents : AltBaseCommand {
@@ -7,10 +9,13 @@ namespace JustUnityTester.Driver.Commands {
         public AltUnityGetAllComponents(SocketSettings socketSettings, AltUnityObject altUnityObject) : base(socketSettings) {
             AltUnityObject = altUnityObject;
         }
-        public System.Collections.Generic.List<AltUnityComponent> Execute() {
+        public List<TestComponent> Execute() {
             Socket.Client.Send(System.Text.Encoding.ASCII.GetBytes(CreateCommand("getAllComponents", AltUnityObject.id.ToString())));
             string data = Recvall();
-            if (!data.Contains("error:")) return Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.List<AltUnityComponent>>(data);
+
+            if (!data.Contains("error:")) 
+                return JsonConvert.DeserializeObject<List<TestComponent>>(data);
+
             HandleErrors(data);
             return null;
         }
