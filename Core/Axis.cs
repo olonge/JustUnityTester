@@ -1,13 +1,13 @@
 ﻿namespace JustUnityTester.Core {
     [System.Serializable]
-    public class AltUnityAxis {
+    public class Axis {
         public string name;
         public string negativeButton;
         public string positiveButton;
         public string altPositiveButton;
         public string altNegativeButton;
 
-        public AltUnityAxis(string name, string negativeButton, string positiveButton, string altPositiveButton, string altNegativeButton) {
+        public Axis(string name, string negativeButton, string positiveButton, string altPositiveButton, string altNegativeButton) {
             this.name = name;
             this.negativeButton = negativeButton;
             this.positiveButton = positiveButton;
