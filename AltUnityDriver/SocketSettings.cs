@@ -1,4 +1,6 @@
-﻿public struct SocketSettings {
+﻿public enum PLayerPrefKeyType { Int = 1, String, Float }
+
+public struct SocketSettings {
     public System.Net.Sockets.TcpClient socket;
     public string requestSeparator;
     public string requestEnding;

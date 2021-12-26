@@ -1,3 +1,5 @@
+using JustUnityTester;
+
 public class AltUnityCheckServerVersion : AltBaseCommand
 {
     public AltUnityCheckServerVersion(SocketSettings socketSettings) : base(socketSettings)
