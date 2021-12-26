@@ -242,18 +242,15 @@ namespace JustUnityTester.Editor {
             return 1;
         }
 
-        public static void SetUpListTest() {
-            var reload = TesterEditor.Config.MyTests == null;
-            if (!reload) {
-                foreach (var test in TesterEditor.Config.MyTests) {
-                    if (test.Type == null) {
-                        reload = true;
-                    }
-                }
+        public static void LoadTests() {
+            var loaded = TesterEditor.Config.MyTests != null;
+            if (loaded) {
+                foreach (var test in TesterEditor.Config.MyTests)
+                    if (test.Type == null)
+                        loaded = false;
             }
-            if (reload == false) {
+            if (loaded)
                 return;
-            }
 
             var myTests = new System.Collections.Generic.List<MyTest>();
             System.Reflection.Assembly[] assemblies = System.AppDomain.CurrentDomain.GetAssemblies();

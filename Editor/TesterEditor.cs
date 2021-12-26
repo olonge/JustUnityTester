@@ -120,7 +120,7 @@ namespace JustUnityTester.Editor {
             }
 
             AddScenesToConfig();
-            TestRunner.SetUpListTest();
+            TestRunner.LoadTests();
         }
 
         private void AddScenesToConfig() {
