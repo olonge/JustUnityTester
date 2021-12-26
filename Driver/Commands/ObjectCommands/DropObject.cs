@@ -3,9 +3,9 @@ using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class DropObject : ReturnedElement {
-        AltUnityVector2 position;
+        TestVector2 position;
         TestObject altUnityObject;
-        public DropObject(SocketSettings socketSettings, AltUnityVector2 position, TestObject altUnityObject) : base(socketSettings) {
+        public DropObject(SocketSettings socketSettings, TestVector2 position, TestObject altUnityObject) : base(socketSettings) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }

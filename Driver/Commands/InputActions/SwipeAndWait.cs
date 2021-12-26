@@ -2,10 +2,10 @@ using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class SwipeAndWait : BaseCommand {
-        AltUnityVector2 start;
-        AltUnityVector2 end;
+        TestVector2 start;
+        TestVector2 end;
         float duration;
-        public SwipeAndWait(SocketSettings socketSettings, AltUnityVector2 start, AltUnityVector2 end, float duration) : base(socketSettings) {
+        public SwipeAndWait(SocketSettings socketSettings, TestVector2 start, TestVector2 end, float duration) : base(socketSettings) {
             this.start = start;
             this.end = end;
             this.duration = duration;

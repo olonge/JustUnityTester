@@ -83,13 +83,13 @@ namespace JustUnityTester.Driver.Commands {
         protected string fromBytes(byte[] text) {
             return System.Text.Encoding.UTF8.GetString(text);
         }
-        protected string PositionToJson(AltUnityVector2 position) {
+        protected string PositionToJson(TestVector2 position) {
             return Newtonsoft.Json.JsonConvert.SerializeObject(position, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.JsonSerializerSettings {
                 ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             });
         }
         protected string PositionToJson(float x, float y) {
-            return PositionToJson(new AltUnityVector2(x, y));
+            return PositionToJson(new TestVector2(x, y));
         }
 
         public static void HandleErrors(string data) {
@@ -144,9 +144,9 @@ namespace JustUnityTester.Driver.Commands {
 
             var length = screenshotInfo[1];
             var textureFormatString = screenshotInfo[2];
-            var textureFormat = (AltUnityTextureFormat)System.Enum.Parse(typeof(AltUnityTextureFormat), textureFormatString);
+            var textureFormat = (TestTextureFormat)System.Enum.Parse(typeof(TestTextureFormat), textureFormatString);
             var textSizeString = screenshotInfo[3];
-            var textSizeVector3 = Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityVector3>(textSizeString);
+            var textSizeVector3 = Newtonsoft.Json.JsonConvert.DeserializeObject<TestVector3>(textSizeString);
 
             byte[] imageCompressed = Newtonsoft.Json.JsonConvert.DeserializeObject<byte[]>(screenshotInfo[4], new Newtonsoft.Json.JsonSerializerSettings {
                 StringEscapeHandling = Newtonsoft.Json.StringEscapeHandling.EscapeNonAscii
@@ -154,7 +154,7 @@ namespace JustUnityTester.Driver.Commands {
 
             byte[] imageDecompressed = DeCompressScreenshot(imageCompressed);
 
-            return new TestTextureInformation(imageDecompressed, Newtonsoft.Json.JsonConvert.DeserializeObject<AltUnityVector2>(scaleDifference), textSizeVector3, textureFormat);
+            return new TestTextureInformation(imageDecompressed, Newtonsoft.Json.JsonConvert.DeserializeObject<TestVector2>(scaleDifference), textSizeVector3, textureFormat);
         }
         public static byte[] DeCompressScreenshot(byte[] screenshotCompressed) {
 

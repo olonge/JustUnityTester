@@ -2,10 +2,10 @@ using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class PressKey : BaseCommand {
-        AltUnityKeyCode keyCode;
+        TestKeyCode keyCode;
         float power;
         float duration;
-        public PressKey(SocketSettings socketSettings, AltUnityKeyCode keyCode, float power, float duration) : base(socketSettings) {
+        public PressKey(SocketSettings socketSettings, TestKeyCode keyCode, float power, float duration) : base(socketSettings) {
             this.keyCode = keyCode;
             this.power = power;
             this.duration = duration;

@@ -5,25 +5,25 @@ using Newtonsoft.Json;
 namespace JustUnityTester.Driver.Commands {
     public class Screenshot : ReturnedElement {
         int id;
-        AltUnityColor color;
+        TestyColor color;
         float width;
-        AltUnityVector2 size;
-        AltUnityVector2 coordinates;
+        TestVector2 size;
+        TestVector2 coordinates;
 
         int option = 0;
 
-        public Screenshot(SocketSettings socketSettings, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, TestVector2 size) : base(socketSettings) {
             this.size = size;
             option = 1;
         }
-        public Screenshot(SocketSettings socketSettings, int id, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, int id, TestyColor color, float width, TestVector2 size) : base(socketSettings) {
             this.size = size;
             this.color = color;
             this.width = width;
             this.id = id;
             option = 2;
         }
-        public Screenshot(SocketSettings socketSettings, AltUnityVector2 coordinates, AltUnityColor color, float width, AltUnityVector2 size) : base(socketSettings) {
+        public Screenshot(SocketSettings socketSettings, TestVector2 coordinates, TestyColor color, float width, TestVector2 size) : base(socketSettings) {
             this.coordinates = coordinates;
             this.color = color;
             this.width = width;

@@ -2,9 +2,9 @@ using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class Tilt : BaseCommand {
-        AltUnityVector3 acceleration;
+        TestVector3 acceleration;
         float duration;
-        public Tilt(SocketSettings socketSettings, AltUnityVector3 acceleration, float duration) : base(socketSettings) {
+        public Tilt(SocketSettings socketSettings, TestVector3 acceleration, float duration) : base(socketSettings) {
             this.acceleration = acceleration;
             this.duration = duration;
         }

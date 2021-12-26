@@ -1,5 +1,5 @@
 namespace JustUnityTester.Driver.Primitives {
-    public enum AltUnityKeyCode {
+    public enum TestKeyCode {
         None = 0,
         Backspace = 8,
         Tab = 9,

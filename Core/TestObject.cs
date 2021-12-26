@@ -36,12 +36,9 @@ namespace JustUnityTester.Core {
             this.parentId = parentId;
             this.transformId = transformId;
         }
-        public AltUnityVector2 getScreenPosition() {
-            return new AltUnityVector2(x, y);
-        }
-        public AltUnityVector3 getWorldPosition() {
-            return new AltUnityVector3(worldX, worldY, worldZ);
-        }
+        public TestVector2 getScreenPosition() => new TestVector2(x, y);
+        public TestVector3 getWorldPosition() => new TestVector3(worldX, worldY, worldZ);
+
         public string GetComponentProperty(string componentName, string propertyName, string assemblyName = null) {
             return new GetComponentProperty(socketSettings, componentName, propertyName, assemblyName, this).Execute();
         }

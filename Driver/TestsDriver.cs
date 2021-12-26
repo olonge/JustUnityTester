@@ -106,35 +106,35 @@ namespace JustUnityTester {
         public string GetCurrentScene() {
             return new AltUnityGetCurrentScene(socketSettings).Execute();
         }
-        public void Swipe(AltUnityVector2 start, AltUnityVector2 end, float duration) {
+        public void Swipe(TestVector2 start, TestVector2 end, float duration) {
             new Swipe(socketSettings, start, end, duration).Execute();
         }
-        public void SwipeAndWait(AltUnityVector2 start, AltUnityVector2 end, float duration) {
+        public void SwipeAndWait(TestVector2 start, TestVector2 end, float duration) {
             new SwipeAndWait(socketSettings, start, end, duration).Execute();
         }
-        public void MultipointSwipe(AltUnityVector2[] positions, float duration) {
+        public void MultipointSwipe(TestVector2[] positions, float duration) {
             new MultiPointSwipe(socketSettings, positions, duration).Execute();
         }
-        public void MultipointSwipeAndWait(AltUnityVector2[] positions, float duration) {
+        public void MultipointSwipeAndWait(TestVector2[] positions, float duration) {
             new MultiPointSwipeAndWait(socketSettings, positions, duration).Execute();
         }
-        public void HoldButton(AltUnityVector2 position, float duration) {
+        public void HoldButton(TestVector2 position, float duration) {
             Swipe(position, position, duration);
         }
-        public void HoldButtonAndWait(AltUnityVector2 position, float duration) {
+        public void HoldButtonAndWait(TestVector2 position, float duration) {
             SwipeAndWait(position, position, duration);
         }
-        public void PressKey(AltUnityKeyCode keyCode, float power = 1, float duration = 1) {
+        public void PressKey(TestKeyCode keyCode, float power = 1, float duration = 1) {
             new PressKey(socketSettings, keyCode, power, duration).Execute();
         }
-        public void PressKeyAndWait(AltUnityKeyCode keyCode, float power = 1, float duration = 1) {
+        public void PressKeyAndWait(TestKeyCode keyCode, float power = 1, float duration = 1) {
             new PressKeyAndWait(socketSettings, keyCode, power, duration).Execute();
         }
-        public void MoveMouse(AltUnityVector2 location, float duration = 0) {
+        public void MoveMouse(TestVector2 location, float duration = 0) {
             new MoveMouse(socketSettings, location, duration).Execute();
         }
 
-        public void MoveMouseAndWait(AltUnityVector2 location, float duration = 0) {
+        public void MoveMouseAndWait(TestVector2 location, float duration = 0) {
             new MoveMouseAndWait(socketSettings, location, duration).Execute();
         }
 
@@ -150,10 +150,10 @@ namespace JustUnityTester {
         public void TapCustom(float x, float y, int count, float interval = 0.1f) {
             new TapCustom(socketSettings, x, y, count, interval).Execute();
         }
-        public void Tilt(AltUnityVector3 acceleration, float duration = 0) {
+        public void Tilt(TestVector3 acceleration, float duration = 0) {
             new Tilt(socketSettings, acceleration, duration).Execute();
         }
-        public void TiltAndWait(AltUnityVector3 acceleration, float duration = 0) {
+        public void TiltAndWait(TestVector3 acceleration, float duration = 0) {
             new TiltAndWait(socketSettings, acceleration, duration).Execute();
         }
         public List<TestObject> GetAllElements(By cameraBy = By.NAME, string cameraPath = "", bool enabled = true) {
@@ -186,11 +186,11 @@ namespace JustUnityTester {
         }
         public List<string> GetAllScenes() => new AltUnityGetAllScenes(socketSettings).Execute();
         public List<TestObject> GetAllCameras() => new AltUnityGetAllCameras(socketSettings).Execute();
-        public TestTextureInformation GetScreenshot(AltUnityVector2 size = default) => new Screenshot(socketSettings, size).Execute();
-        public TestTextureInformation GetScreenshot(int id, AltUnityColor color, float width, AltUnityVector2 size = default) {
+        public TestTextureInformation GetScreenshot(TestVector2 size = default) => new Screenshot(socketSettings, size).Execute();
+        public TestTextureInformation GetScreenshot(int id, TestyColor color, float width, TestVector2 size = default) {
             return new Screenshot(socketSettings, id, color, width, size).Execute();
         }
-        public TestTextureInformation GetScreenshot(AltUnityVector2 coordinates, AltUnityColor color, float width, out TestObject selectedObject, AltUnityVector2 size = default) {
+        public TestTextureInformation GetScreenshot(TestVector2 coordinates, TestyColor color, float width, out TestObject selectedObject, TestVector2 size = default) {
             return new Screenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
         }
         public void GetPNGScreenshot(string path) => new PNGScreenshot(socketSettings, path).Execute();
