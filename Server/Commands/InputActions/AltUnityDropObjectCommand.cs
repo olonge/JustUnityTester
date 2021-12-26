@@ -1,19 +1,16 @@
 ﻿using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands {
-    class AltUnityDropObjectCommand : AltUnityCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityDropObjectCommand : AltUnityCommand {
         UnityEngine.Vector2 position;
         AltUnityObject altUnityObject;
 
-        public AltUnityDropObjectCommand (UnityEngine.Vector2 position, AltUnityObject altUnityObject)
-        {
+        public AltUnityDropObjectCommand(UnityEngine.Vector2 position, AltUnityObject altUnityObject) {
             this.position = position;
             this.altUnityObject = altUnityObject;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("Drop object: " + altUnityObject);
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);

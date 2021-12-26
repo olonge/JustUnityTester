@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
 using System.Net.Sockets;
-using altunitytester.Assets.AltUnityTester.AltUnityServer;
-using Assets.AltUnityTester.AltUnityServer.Commands;
 using JustUnityTester.Core;
 using JustUnityTester.Server;
+using JustUnityTester.Server.Commands;
 using JustUnityTester.Server.UI;
 
 public class AltUnityRunner : UnityEngine.MonoBehaviour, AltIClientSocketHandlerDelegate

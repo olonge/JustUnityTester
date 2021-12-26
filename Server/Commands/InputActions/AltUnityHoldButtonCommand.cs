@@ -1,22 +1,18 @@
 ﻿using UnityEngine;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    class AltUnityHoldButtonCommand : AltUnityCommand
-    {
-        UnityEngine.KeyCode keyCode;
+namespace JustUnityTester.Server.Commands {
+    class AltUnityHoldButtonCommand : AltUnityCommand {
+        KeyCode keyCode;
         float power;
         float duration;
 
-        public AltUnityHoldButtonCommand (KeyCode keyCode, float power, float duration)
-        {
+        public AltUnityHoldButtonCommand(KeyCode keyCode, float power, float duration) {
             this.keyCode = keyCode;
             this.power = power;
             this.duration = duration;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
 #if ALTUNITYTESTER
             AltUnityRunner._altUnityRunner.LogMessage("pressKeyboardKey: " + keyCode);
             var powerClamped = UnityEngine.Mathf.Clamp01(power);

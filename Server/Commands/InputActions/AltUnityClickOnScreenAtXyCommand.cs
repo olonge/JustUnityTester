@@ -1,33 +1,26 @@
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    class AltUnityClickOnScreenAtXyCommand : AltUnityCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityClickOnScreenAtXyCommand : AltUnityCommand {
         string x;
         string y;
 
-        public AltUnityClickOnScreenAtXyCommand(string x, string y)
-        {
+        public AltUnityClickOnScreenAtXyCommand(string x, string y) {
             this.x = x;
             this.y = y;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("Screen tapped at X:" + x + " Y:" + y);
             var clickPosition = new UnityEngine.Vector2(float.Parse(x), float.Parse(y));
             AltUnityRunner._altUnityRunner.ShowClick(clickPosition);
-            string response =  AltUnityRunner._altUnityRunner.errorNotFoundMessage;
+            string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
             AltUnityMockUpPointerInputModule mockUp = new AltUnityMockUpPointerInputModule();
             UnityEngine.Touch touch = new UnityEngine.Touch { position = clickPosition, phase = UnityEngine.TouchPhase.Began };
             var pointerEventData = mockUp.ExecuteTouchEvent(touch);
             if (pointerEventData.pointerPress == null &&
                 pointerEventData.pointerEnter == null &&
-                pointerEventData.pointerDrag == null)
-            {
+                pointerEventData.pointerDrag == null) {
                 response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
-            }
-            else
-            {
+            } else {
                 UnityEngine.GameObject gameObject = pointerEventData.pointerPress.gameObject;
 
                 AltUnityRunner._altUnityRunner.LogMessage("GameOBject: " + gameObject);

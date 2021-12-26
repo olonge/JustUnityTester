@@ -1,17 +1,14 @@
 ﻿using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands {
-    class AltUnityPointerUpFromObjectCommand :AltUnityCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityPointerUpFromObjectCommand : AltUnityCommand {
         AltUnityObject altUnityObject;
 
-        public AltUnityPointerUpFromObjectCommand (AltUnityObject altUnityObject)
-        {
+        public AltUnityPointerUpFromObjectCommand(AltUnityObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("PointerUp object: " + altUnityObject);
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);

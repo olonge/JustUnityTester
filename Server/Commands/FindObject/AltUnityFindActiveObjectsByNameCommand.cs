@@ -1,18 +1,14 @@
 using System.Linq;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    class AltUnityFindActiveObjectsByNameCommand : AltUnityBaseClassFindObjectsCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityFindActiveObjectsByNameCommand : AltUnityBaseClassFindObjectsCommand {
         string methodParameters;
 
-        public AltUnityFindActiveObjectsByNameCommand(string stringSent)
-        {
-            this.methodParameters = stringSent;
+        public AltUnityFindActiveObjectsByNameCommand(string stringSent) {
+            methodParameters = stringSent;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             var pieces = methodParameters.Split(new string[] { AltUnityRunner._altUnityRunner.requestSeparatorString }, System.StringSplitOptions.None);
             string objectName = pieces[0];
             AltUnityRunner._altUnityRunner.LogMessage("findActiveObjectByName for: " + objectName);
@@ -23,12 +19,10 @@ namespace Assets.AltUnityTester.AltUnityServer.Commands
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
 
             var foundGameObject = UnityEngine.GameObject.Find(objectName);
-            if (foundGameObject != null)
-            {
+            if (foundGameObject != null) {
 
                 UnityEngine.Camera camera = null;
-                if (!cameraPath.Equals("//"))
-                {
+                if (!cameraPath.Equals("//")) {
                     camera = GetCamera(cameraBy, cameraPath);
                     if (camera == null)
                         return AltUnityRunner._altUnityRunner.errorCameraNotFound;

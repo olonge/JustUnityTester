@@ -1,8 +1,7 @@
 using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands {
-    class AltUnitySetTextCommand : AltUnityReflectionMethodsCommand 
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnitySetTextCommand : AltUnityReflectionMethodsCommand {
         static readonly AltUnityObjectProperty[] TextProperties =
         {
             new AltUnityObjectProperty("UnityEngine.UI.Text", "text"),
@@ -14,34 +13,26 @@ namespace Assets.AltUnityTester.AltUnityServer.Commands {
         AltUnityObject altUnityObject;
         string inputText;
 
-        public AltUnitySetTextCommand(AltUnityObject altUnityObject, string text)
-        {
+        public AltUnitySetTextCommand(AltUnityObject altUnityObject, string text) {
             this.altUnityObject = altUnityObject;
-            this.inputText = text;
+            inputText = text;
         }
 
-        public override string Execute()
-        {
-            AltUnityRunner._altUnityRunner.LogMessage("Set text for object by name " + this.altUnityObject.name);
+        public override string Execute() {
+            AltUnityRunner._altUnityRunner.LogMessage("Set text for object by name " + altUnityObject.name);
             var response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
 
             var targetObject = AltUnityRunner.GetGameObject(altUnityObject);
 
-            foreach (var property in TextProperties)
-            {
-                try
-                {
+            foreach (var property in TextProperties) {
+                try {
                     var memberInfo = GetMemberForObjectComponent(altUnityObject, property);
                     response = SetValueForMember(memberInfo, inputText, targetObject, property);
                     if (!response.Contains("error:"))
                         return Newtonsoft.Json.JsonConvert.SerializeObject(AltUnityRunner._altUnityRunner.GameObjectToAltUnityObject(targetObject));
-                }
-                catch(Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException)
-                {
+                } catch (Assets.AltUnityTester.AltUnityDriver.PropertyNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorPropertyNotFoundMessage;
-                }
-                catch (Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException)
-                {
+                } catch (Assets.AltUnityTester.AltUnityDriver.ComponentNotFoundException) {
                     response = AltUnityRunner._altUnityRunner.errorComponentNotFoundMessage;
                 }
             }

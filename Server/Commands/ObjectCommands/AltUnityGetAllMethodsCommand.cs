@@ -1,25 +1,21 @@
 using System.Linq;
 using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands {
-    class AltUnityGetAllMethodsCommand : AltUnityReflectionMethodsCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityGetAllMethodsCommand : AltUnityReflectionMethodsCommand {
         AltUnityComponent component;
         AltUnityMethodSelection methodSelection;
 
-        public AltUnityGetAllMethodsCommand(AltUnityComponent component, AltUnityMethodSelection methodSelection)
-        {
+        public AltUnityGetAllMethodsCommand(AltUnityComponent component, AltUnityMethodSelection methodSelection) {
             this.component = component;
             this.methodSelection = methodSelection;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("getAllMethods");
             System.Type type = GetType(component.componentName, component.assemblyName);
             System.Reflection.MethodInfo[] methodInfos = new System.Reflection.MethodInfo[1];
-            switch (methodSelection)
-            {
+            switch (methodSelection) {
                 case AltUnityMethodSelection.CLASSMETHODS:
                     methodInfos = type.GetMethods(System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static);
                     break;
@@ -35,8 +31,7 @@ namespace Assets.AltUnityTester.AltUnityServer.Commands {
 
             System.Collections.Generic.List<string> listMethods = new System.Collections.Generic.List<string>();
 
-            foreach (var methodInfo in methodInfos)
-            {
+            foreach (var methodInfo in methodInfos) {
                 listMethods.Add(methodInfo.ToString());
             }
             return Newtonsoft.Json.JsonConvert.SerializeObject(listMethods);

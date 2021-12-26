@@ -1,17 +1,14 @@
 using JustUnityTester.Core;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands {
-    class AltUnityPointerExitObjectCommand :AltUnityCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    class AltUnityPointerExitObjectCommand : AltUnityCommand {
         AltUnityObject altUnityObject;
 
-        public AltUnityPointerExitObjectCommand (AltUnityObject altUnityObject)
-        {
+        public AltUnityPointerExitObjectCommand(AltUnityObject altUnityObject) {
             this.altUnityObject = altUnityObject;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("PointerExit object: " + altUnityObject);
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
             var pointerEventData = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current);

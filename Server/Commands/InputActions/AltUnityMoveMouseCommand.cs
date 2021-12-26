@@ -1,20 +1,16 @@
 using UnityEngine;
 
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    class AltUnityMoveMouseCommand :AltUnityCommand
-    {
-        UnityEngine.Vector2 location;
+namespace JustUnityTester.Server.Commands {
+    class AltUnityMoveMouseCommand : AltUnityCommand {
+        Vector2 location;
         float duration;
 
-        public AltUnityMoveMouseCommand (Vector2 location, float duration)
-        {
+        public AltUnityMoveMouseCommand(Vector2 location, float duration) {
             this.location = location;
             this.duration = duration;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
 #if ALTUNITYTESTER
                 AltUnityRunner._altUnityRunner.LogMessage("moveMouse to: " + location);
                 Input.MoveMouse(location, duration);

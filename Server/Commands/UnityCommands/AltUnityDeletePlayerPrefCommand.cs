@@ -1,11 +1,7 @@
-﻿
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    class AltUnityDeletePlayerPrefCommand :  AltUnityCommand
-    {
+﻿namespace JustUnityTester.Server.Commands {
+    class AltUnityDeletePlayerPrefCommand : AltUnityCommand {
 
-        public override string Execute()
-        {
+        public override string Execute() {
             AltUnityRunner._altUnityRunner.LogMessage("deletePlayerPref");
             string response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
             UnityEngine.PlayerPrefs.DeleteAll();

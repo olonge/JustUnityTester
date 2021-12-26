@@ -1,20 +1,16 @@
-namespace Assets.AltUnityTester.AltUnityServer.Commands
-{
-    public class AltUnityClickOnScreenCustom : AltUnityCommand
-    {
+namespace JustUnityTester.Server.Commands {
+    public class AltUnityClickOnScreenCustom : AltUnityCommand {
         UnityEngine.Vector2 position;
         string count;
         string interval;
 
-        public AltUnityClickOnScreenCustom(UnityEngine.Vector2 position, string count, string interval)
-        {
+        public AltUnityClickOnScreenCustom(UnityEngine.Vector2 position, string count, string interval) {
             this.position = position;
             this.count = count;
             this.interval = interval;
         }
 
-        public override string Execute()
-        {
+        public override string Execute() {
 #if ALTUNITYTESTER
             AltUnityRunner._altUnityRunner.LogMessage("Custom click at: " + position);
             var response = AltUnityRunner._altUnityRunner.errorNotFoundMessage;
