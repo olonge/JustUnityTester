@@ -46,7 +46,7 @@ namespace JustUnityTester {
             return new CheckServerVersion(socketSettings).Execute();
         }
         private void EnableLogging() {
-            new AltUnityEnableLogging(socketSettings).Execute();
+            new EnableLogging(socketSettings).Execute();
         }
 
         public void Stop() {
