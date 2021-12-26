@@ -1,5 +1,5 @@
-using Assets.AltUnityTester.AltUnityDriver.UnityStruct;
 using JustUnityTester.Core;
+using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityGetScreenshot : AltUnityCommandReturningAltElement {

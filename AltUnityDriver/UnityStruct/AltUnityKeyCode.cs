@@ -1,8 +1,5 @@
-
-namespace Assets.AltUnityTester.AltUnityDriver.UnityStruct
-{
-    public enum AltUnityKeyCode
-    {
+namespace JustUnityTester.Driver.Primitives {
+    public enum AltUnityKeyCode {
         None = 0,
         Backspace = 8,
         Tab = 9,

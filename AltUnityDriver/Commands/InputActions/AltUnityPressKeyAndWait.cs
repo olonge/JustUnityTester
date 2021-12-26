@@ -1,9 +1,11 @@
+using JustUnityTester.Driver.Primitives;
+
 namespace JustUnityTester.Driver.Commands {
     public class AltUnityPressKeyAndWait : AltBaseCommand {
-        Assets.AltUnityTester.AltUnityDriver.UnityStruct.AltUnityKeyCode keyCode;
+        AltUnityKeyCode keyCode;
         float power;
         float duration;
-        public AltUnityPressKeyAndWait(SocketSettings socketSettings, Assets.AltUnityTester.AltUnityDriver.UnityStruct.AltUnityKeyCode keyCode, float power, float duration) : base(socketSettings) {
+        public AltUnityPressKeyAndWait(SocketSettings socketSettings, AltUnityKeyCode keyCode, float power, float duration) : base(socketSettings) {
             this.keyCode = keyCode;
             this.power = power;
             this.duration = duration;

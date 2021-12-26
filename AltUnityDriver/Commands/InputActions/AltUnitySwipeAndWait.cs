@@ -1,4 +1,4 @@
-using Assets.AltUnityTester.AltUnityDriver.UnityStruct;
+using JustUnityTester.Driver.Primitives;
 
 namespace JustUnityTester.Driver.Commands {
     public class AltUnitySwipeAndWait : AltBaseCommand {

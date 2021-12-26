@@ -1,32 +1,26 @@
-
-namespace Assets.AltUnityTester.AltUnityDriver.UnityStruct
-{
-    public struct AltUnityVector2
-    {
+namespace JustUnityTester.Driver.Primitives {
+    public struct AltUnityVector2 {
         public float x;
         public float y;
 
-        public AltUnityVector2(float x, float y)
-        {
+        public AltUnityVector2(float x, float y) {
             this.x = x;
             this.y = y;
         }
     }
-    public struct AltUnityVector3
-    {
+
+    public struct AltUnityVector3 {
         public float x;
         public float y;
         public float z;
 
-        public AltUnityVector3(float x, float y,float z)
-        {
+        public AltUnityVector3(float x, float y, float z) {
             this.x = x;
             this.y = y;
             this.z = z;
         }
-        
-        public AltUnityVector3(float x, float y) : this(x, y, 0)
-        {
+
+        public AltUnityVector3(float x, float y) : this(x, y, 0) {
         }
     }
 }
