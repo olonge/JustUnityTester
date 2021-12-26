@@ -1,7 +1,7 @@
 using System.Linq;
 
 namespace JustUnityTester.Editor {
-    public class AltUnityPortHandler {
+    public class TestPortHandler {
 
 
         public static int idIproxyProcess = 0;
