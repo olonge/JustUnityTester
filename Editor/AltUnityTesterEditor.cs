@@ -3,8 +3,6 @@ using System.Linq;
 
 public class AltUnityTesterEditor : UnityEditor.EditorWindow
 {
-    private UnityEngine.UI.Button _android;
-    UnityEngine.Object _obj;
 
     public static bool needsRepaiting = false;
 
@@ -45,11 +43,6 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     UnityEngine.Vector2 _scrollPosition;
     private UnityEngine.Vector2 _scrollPositonTestResult;
 
-
-    private bool _foldOutScenes = true;
-    private bool _foldOutBuildSettings = true;
-    private bool _foldOutIosSettings = true;
-    private bool _foldOutAltUnityServerSettings = true;
 
     //TestResult after running a test
     public static bool isTestRunResultAvailable = false;
@@ -241,29 +234,6 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         UnityEditor.EditorGUILayout.Separator();
         UnityEditor.EditorGUILayout.Separator();
 
-        
-        if (AltUnityBuilder.built)
-        {
-            var found = false;
-
-            UnityEngine.SceneManagement.Scene scene = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(AltUnityBuilder.GetFirstSceneWhichWillBeBuilt());
-            if (scene.path.Equals(AltUnityBuilder.GetFirstSceneWhichWillBeBuilt()))
-            {
-                if (scene.GetRootGameObjects()
-                    .Any(gameObject => gameObject.name.Equals("AltUnityRunnerPrefab")))
-                {
-                    UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
-                    var altunityRunner = scene.GetRootGameObjects()
-                        .First(a => a.name.Equals("AltUnityRunnerPrefab"));
-                    DestroyAltUnityRunner(altunityRunner);
-                    found = true;
-                }
-
-                if (found == false)
-                    AltUnityBuilder.built = false;
-            }
-
-        }
 
         UnityEditor.EditorGUILayout.LabelField("Visuals", UnityEditor.EditorStyles.boldLabel);
         UnindentedLabelAndCheckboxHorizontalLayout("Input visualizer:", ref EditorConfiguration.inputVisualizer);
@@ -432,7 +402,7 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
     private void AfterExitPlayMode()
     {
         RemoveAltUnityRunnerPrefab();
-        AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
+        //AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
         EditorConfiguration.ranInEditor = false;
     }
 
@@ -474,15 +444,6 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
             UnityEditor.EditorGUILayout.Toggle(editorConfigVariable, UnityEngine.GUILayout.MaxWidth(30));
         UnityEngine.GUILayout.FlexibleSpace();
         UnityEditor.EditorGUILayout.EndHorizontal();
-    }
-
-    public static void SelectAllScenes()
-    {
-        foreach (var scene in EditorConfiguration.Scenes)
-        {
-            scene.ToBeBuilt = true;
-        }
-        UnityEditor.EditorBuildSettings.scenes = PathFromTheSceneInCurrentList();
     }
 
 
@@ -761,14 +722,4 @@ public class AltUnityTesterEditor : UnityEditor.EditorWindow
         }
         return path;
     }
-
-    private static void DestroyAltUnityRunner(UnityEngine.Object altUnityRunner)
-    {
-
-        DestroyImmediate(altUnityRunner);
-        //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
-        UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
-        UnityEditor.SceneManagement.EditorSceneManager.OpenScene(AltUnityBuilder.PreviousScenePath);
-    }
-
 }
