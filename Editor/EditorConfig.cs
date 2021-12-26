@@ -13,7 +13,7 @@ namespace JustUnityTester.Editor {
         public string SigningTeamId;
         public int BuildNumber = 0;
         public List<AltUnityMyTest> MyTests = new List<AltUnityMyTest>();
-        public List<AltUnityMyScenes> Scenes = new List<AltUnityMyScenes>();
+        public List<MyScenes> Scenes = new List<MyScenes>();
         public AltUnityPlatform platform = AltUnityPlatform.Editor;
         public UnityEditor.BuildTarget standaloneTarget = UnityEditor.BuildTarget.StandaloneWindows;
         public bool ranInEditor = false;

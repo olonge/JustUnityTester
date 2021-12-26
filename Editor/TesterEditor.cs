@@ -126,9 +126,9 @@ namespace JustUnityTester.Editor {
         }
 
         private void GetListOfSceneFromEditor() {
-            List<AltUnityMyScenes> newSceneses = new List<AltUnityMyScenes>();
+            List<MyScenes> newSceneses = new List<MyScenes>();
             foreach (var scene in UnityEditor.EditorBuildSettings.scenes) {
-                newSceneses.Add(new AltUnityMyScenes(scene.enabled, scene.path, 0));
+                newSceneses.Add(new MyScenes(scene.enabled, scene.path, 0));
             }
 
             Config.Scenes = newSceneses;
@@ -539,10 +539,10 @@ namespace JustUnityTester.Editor {
 
         public static void AddAllScenes() {
             var scenesToBeAddedGuid = UnityEditor.AssetDatabase.FindAssets("t:SceneAsset");
-            Config.Scenes = new List<AltUnityMyScenes>();
+            Config.Scenes = new List<MyScenes>();
             foreach (var sceneGuid in scenesToBeAddedGuid) {
                 var scenePath = UnityEditor.AssetDatabase.GUIDToAssetPath(sceneGuid);
-                Config.Scenes.Add(new AltUnityMyScenes(false, scenePath, 0));
+                Config.Scenes.Add(new MyScenes(false, scenePath, 0));
 
             }
 
