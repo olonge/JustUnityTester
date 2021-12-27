@@ -54,7 +54,7 @@ namespace JustUnityTester.Editor {
         // public static System.Collections.Generic.Dictionary<string, int> iosForwards = new System.Collections.Generic.Dictionary<string, int>();
 
         // Add menu item named "My Window" to the Window menu
-        [UnityEditor.MenuItem("Window/Just Unity Tester/Inspector")]
+        [UnityEditor.MenuItem("Window/Just Unity Tester")]
         public static void ShowWindow() {
             /// Show existing window instance. If one doesn't exist, make one.
             _window = (TesterEditor)GetWindow(typeof(TesterEditor));
@@ -72,7 +72,8 @@ namespace JustUnityTester.Editor {
             if (Config == null) {
                 InitEditorConfiguration();
             }
-            if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/AltUnityTester")) {
+
+            if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/JustUnityTester")) {
                 EditorSetup.CreateJsonFileForInputMappingOfAxis();
             }
             if (failIcon == null) {
@@ -593,14 +594,14 @@ namespace JustUnityTester.Editor {
             return (GetPathForSelectedItem() + "/").Contains("/Editor/");
         }
 
-        [UnityEditor.MenuItem("Window/Just Unity Tester/Create Tester Package")]
+        /*[UnityEditor.MenuItem("Window/Just Unity Tester/Create Tester Package")]
         public static void CreateAltUnityTesterPackage() {
             UnityEngine.Debug.Log("AltUnityTester - Unity Package creation started...");
             string packageName = "AltUnityTester.unitypackage";
             string assetPathNames = "Assets/AltUnityTester";
             UnityEditor.AssetDatabase.ExportPackage(assetPathNames, packageName, UnityEditor.ExportPackageOptions.Recurse);
             UnityEngine.Debug.Log("AltUnityTester - Unity Package done.");
-        }
+        }*/
 
         private static string GetPathForSelectedItem() {
             string path = UnityEditor.AssetDatabase.GetAssetPath(UnityEditor.Selection.activeObject);

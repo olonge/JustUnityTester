@@ -12,7 +12,7 @@ namespace JustUnityTester.Editor {
 
 
         public static void CreateJsonFileForInputMappingOfAxis() {
-            string gameDataProjectFilePath = "/Resources/AltUnityTester/AltUnityTesterInputAxisData.json";
+            string gameDataProjectFilePath = "/Resources/JustUnityTester/JustUnityTesterInputAxisData.json";
             var inputManager = UnityEditor.AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/InputManager.asset")[0];
             UnityEditor.SerializedObject obj = new UnityEditor.SerializedObject(inputManager);
 
@@ -35,10 +35,13 @@ namespace JustUnityTester.Editor {
 
             string dataAsJson = Newtonsoft.Json.JsonConvert.SerializeObject(axisList);
             string filePath = UnityEngine.Application.dataPath + gameDataProjectFilePath;
-            if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/AltUnityTester")) {
+
+            if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources"))
                 UnityEditor.AssetDatabase.CreateFolder("Assets", "Resources");
-                UnityEditor.AssetDatabase.CreateFolder("Assets/Resources", "AltUnityTester");
-            }
+
+            if (!UnityEditor.AssetDatabase.IsValidFolder("Assets/Resources/JustUnityTester"))
+                UnityEditor.AssetDatabase.CreateFolder("Assets/Resources", "JustUnityTester");
+
             File.WriteAllText(filePath, dataAsJson);
         }
 
