@@ -570,12 +570,12 @@ namespace JustUnityTester.Editor {
 
 
 
-        [UnityEditor.MenuItem("Assets/Create/AltUnityTest", false, 80)]
+        [UnityEditor.MenuItem("Assets/Create/JustUnityTest", false, 80)]
         public static void CreateAltUnityTest() {
 
             var templatePath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("DefaultTestExample")[0]);
             string folderPath = GetPathForSelectedItem();
-            string newFilePath = System.IO.Path.Combine(folderPath, "NewAltUnityTest.cs");
+            string newFilePath = System.IO.Path.Combine(folderPath, "NewJustUnityTest.cs");
 #if UNITY_2019_1_OR_NEWER
         UnityEditor.ProjectWindowUtil.CreateScriptAssetFromTemplateFile(templatePath, newFilePath);
 #else
@@ -590,7 +590,7 @@ namespace JustUnityTester.Editor {
 #endif
         }
 
-        [UnityEditor.MenuItem("Assets/Create/AltUnityTest", true, 80)]
+        [UnityEditor.MenuItem("Assets/Create/JustUnityTest", true, 80)]
         public static bool CanCreateAltUnityTest() {
             return (GetPathForSelectedItem() + "/").Contains("/Editor/");
         }

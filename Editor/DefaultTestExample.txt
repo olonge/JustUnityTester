@@ -1,26 +1,30 @@
 using NUnit.Framework;
+using JustUnityTester;
 
-public class #SCRIPTNAME#
-{
-    public AltUnityDriver AltUnityDriver;
-    //Before any test it connects with the socket
-    [OneTimeSetUp]
-    public void SetUp()
-    {
-        AltUnityDriver =new AltUnityDriver();
-    }
+public class #SCRIPTNAME# {
+    public TestsDriver driver;
+    
+    [OneTimeSetUp]  // Initialise driver before any tests
+    public void OneTimeSetUp() => driver = new TestsDriver();
+    
+    [OneTimeTearDown]  // Gracefully stop driver after all tests
+    public void OneTimeTearDown() => driver.Stop();
 
-    //At the end of the test closes the connection with the socket
-    [OneTimeTearDown]
-    public void TearDown()
-    {
-        AltUnityDriver.Stop();
+    [SetUp]  // If needed, add pre-test setup code in here
+    public void SetUp() { }
+
+    [TearDown]  // If needed, add post test cleanup code i here
+    public void TearDown() { }
+
+    [Test]
+    public void Test_01() {
+        // Enter your tests here..
+        Assert.IsTrue(1 + 1 == 2);
     }
 
     [Test]
-    public void Test()
-    {
-	//Here you can write the test
+    public void Test_02() {
+        // Remember, one assertion per test
+        Assert.IsFalse(1 + 1 == 11);
     }
-
 }
