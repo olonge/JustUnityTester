@@ -5,9 +5,9 @@ using JustUnityTester.Core;
 namespace JustUnityTester.Editor {
     public class EditorSetup {
         public static string PreviousScenePath;
-        public static UnityEngine.SceneManagement.Scene SceneWithAltUnityRunner;
-        public static string SceneWithAltUnityRunnerPath;
-        public static UnityEngine.Object AltUnityRunner;
+        public static UnityEngine.SceneManagement.Scene ActiveScene;
+        public static string scenePath;
+        public static UnityEngine.Object RunnerObj;
         public static UnityEngine.SceneManagement.Scene copyScene;
 
         public static string PrefabName = "TestsRunnerPrefab";
@@ -55,12 +55,12 @@ namespace JustUnityTester.Editor {
         public static void InsertRunnerPrefabIntoScene(string scene, int port = 13000) {
             UnityEngine.Debug.Log("Adding Tests-Runner Prefab into the [" + scene + "] scene.");
 
-            var altUnityRunner = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets(PrefabName)[0]));
+            var runnerPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets(PrefabName)[0]));
 
-            SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
-            AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
+            ActiveScene = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
+            RunnerObj = UnityEditor.PrefabUtility.InstantiatePrefab(runnerPrefab);
 
-            var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<global::TestRunner>();
+            var component = ((UnityEngine.GameObject)RunnerObj).GetComponent<global::TestRunner>();
             if (TesterEditor.Config == null) {
                 component.ShowInputs = false;
                 component.showPopUp = true;

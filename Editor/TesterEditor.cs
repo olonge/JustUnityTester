@@ -351,18 +351,20 @@ namespace JustUnityTester.Editor {
         }
 
         private void AfterExitPlayMode() {
-            RemoveAltUnityRunnerPrefab();
+            RemoveRunnerPrefab();
             //AltUnityBuilder.RemoveAltUnityTesterFromScriptingDefineSymbols(UnityEditor.BuildPipeline.GetBuildTargetGroup(UnityEditor.EditorUserBuildSettings.activeBuildTarget));
             Config.ranInEditor = false;
         }
 
-        private static void RemoveAltUnityRunnerPrefab() {
+        private static void RemoveRunnerPrefab() {
             var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-            var altUnityRunners = activeScene.GetRootGameObjects()
+
+            var runners = activeScene.GetRootGameObjects()
                 .Where(gameObject => gameObject.name.Equals(EditorSetup.PrefabName)).ToList();
-            if (altUnityRunners.Count != 0) {
-                foreach (var altUnityRunner in altUnityRunners)
-                    DestroyImmediate(altUnityRunner);
+
+            if (runners.Count != 0) {
+                foreach (var runner in runners)
+                    DestroyImmediate(runner);
 
                 //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
                 //UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
