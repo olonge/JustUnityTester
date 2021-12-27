@@ -361,12 +361,11 @@ namespace JustUnityTester.Editor {
             var altUnityRunners = activeScene.GetRootGameObjects()
                 .Where(gameObject => gameObject.name.Equals(EditorSetup.PrefabName)).ToList();
             if (altUnityRunners.Count != 0) {
-                foreach (var altUnityRunner in altUnityRunners) {
+                foreach (var altUnityRunner in altUnityRunners)
                     DestroyImmediate(altUnityRunner);
 
-                }
                 //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
-                UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
+                //UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
             }
         }
 

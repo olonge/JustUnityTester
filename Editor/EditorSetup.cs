@@ -54,10 +54,12 @@ namespace JustUnityTester.Editor {
         }
         public static void InsertRunnerPrefabIntoScene(string scene, int port = 13000) {
             UnityEngine.Debug.Log("Adding Tests-Runner Prefab into the [" + scene + "] scene.");
+
             var altUnityRunner = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets(PrefabName)[0]));
 
             SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
+
             var component = ((UnityEngine.GameObject)AltUnityRunner).GetComponent<global::TestRunner>();
             if (TesterEditor.Config == null) {
                 component.ShowInputs = false;
@@ -70,10 +72,9 @@ namespace JustUnityTester.Editor {
             }
 
             //UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
-            UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
-            UnityEngine.Debug.Log("Scene successfully modified.");
+            //UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
+            //UnityEngine.Debug.Log("Scene successfully modified.");
         }
-
 
         public enum InputType {
             KeyOrMouseButton,
