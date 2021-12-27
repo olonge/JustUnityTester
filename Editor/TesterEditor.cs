@@ -359,7 +359,7 @@ namespace JustUnityTester.Editor {
         private static void RemoveAltUnityRunnerPrefab() {
             var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             var altUnityRunners = activeScene.GetRootGameObjects()
-                .Where(gameObject => gameObject.name.Equals("AltUnityRunnerPrefab")).ToList();
+                .Where(gameObject => gameObject.name.Equals(EditorSetup.PrefabName)).ToList();
             if (altUnityRunners.Count != 0) {
                 foreach (var altUnityRunner in altUnityRunners) {
                     DestroyImmediate(altUnityRunner);
@@ -372,7 +372,7 @@ namespace JustUnityTester.Editor {
 
 
         private void RunInEditor() {
-            EditorSetup.InsertAltUnityInTheActiveScene();
+            EditorSetup.InsertRunnerPrefabIntoScene();
             EditorSetup.CreateJsonFileForInputMappingOfAxis();
 
             /// Stops marking the scripts as dirty causing the IDE to recompile them

@@ -10,6 +10,8 @@ namespace JustUnityTester.Editor {
         public static UnityEngine.Object AltUnityRunner;
         public static UnityEngine.SceneManagement.Scene copyScene;
 
+        public static string PrefabName = "TestsRunnerPrefab";
+
 
         public static void CreateJsonFileForInputMappingOfAxis() {
             string gameDataProjectFilePath = "/Resources/JustUnityTester/JustUnityTesterInputAxisData.json";
@@ -45,9 +47,14 @@ namespace JustUnityTester.Editor {
             File.WriteAllText(filePath, dataAsJson);
         }
 
-        public static void InsertAltUnityInScene(string scene, int port = 13000) {
-            UnityEngine.Debug.Log("Adding AltUnityRunnerPrefab into the [" + scene + "] scene.");
-            var altUnityRunner = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityRunnerPrefab")[0]));
+
+        public static void InsertRunnerPrefabIntoScene() {
+            var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path;
+            InsertRunnerPrefabIntoScene(activeScene);
+        }
+        public static void InsertRunnerPrefabIntoScene(string scene, int port = 13000) {
+            UnityEngine.Debug.Log("Adding Tests-Runner Prefab into the [" + scene + "] scene.");
+            var altUnityRunner = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets(PrefabName)[0]));
 
             SceneWithAltUnityRunner = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene);
             AltUnityRunner = UnityEditor.PrefabUtility.InstantiatePrefab(altUnityRunner);
@@ -66,10 +73,7 @@ namespace JustUnityTester.Editor {
             UnityEditor.SceneManagement.EditorSceneManager.SaveOpenScenes();
             UnityEngine.Debug.Log("Scene successfully modified.");
         }
-        public static void InsertAltUnityInTheActiveScene() {
-            var activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().path;
-            InsertAltUnityInScene(activeScene);
-        }
+
 
         public enum InputType {
             KeyOrMouseButton,
