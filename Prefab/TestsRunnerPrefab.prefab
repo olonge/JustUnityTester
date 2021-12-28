@@ -442,7 +442,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114722884502503420}
+      - m_Target: {fileID: 0}
         m_MethodName: ServerRestartPressed
         m_Mode: 1
         m_Arguments:
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114722884502503420}
+      - m_Target: {fileID: 0}
         m_MethodName: IconPressed
         m_Mode: 1
         m_Arguments:
@@ -663,9 +663,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224346032034650108}
-  - component: {fileID: 114722884502503420}
+  - component: {fileID: 569817282247206098}
   m_Layer: 0
-  m_Name: AltUnityRunnerPrefab
+  m_Name: TestsRunnerPrefab
   m_TagString: AltUnityRunner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,7 +692,7 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: 540}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &114722884502503420
+--- !u!114 &569817282247206098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1863605383834476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d64f576b163a84c53be56deef13c731f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a1c9003401f5e647b994553a8db5998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PopUp: {fileID: 1166850336722808}
@@ -709,9 +709,9 @@ MonoBehaviour:
   PopUpText: {fileID: 114299953858491160}
   IsIconPressed: 0
   logEnabled: 0
-  _showInputs: 0
+  _showInputs: 1
   _inputsVisualiser: {fileID: 114264291789795184}
-  showPopUp: 0
+  showPopUp: 1
   PopUpCanvas: {fileID: 1984498899790160}
   destroyHightlight: 0
   SocketPortNumber: 13000
