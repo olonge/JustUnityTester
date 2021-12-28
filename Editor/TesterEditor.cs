@@ -133,20 +133,21 @@ namespace JustUnityTester.Editor {
 
 
         public static void InitEditorConfiguration() {
-            if (UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings").Length == 0) {
+            var defaultSettingsName = "JustUnityTesterEditorSettings"; 
+            if (UnityEditor.AssetDatabase.FindAssets(defaultSettingsName).Length == 0) {
 
-                var folderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditor")[0]);
-                folderPath = folderPath.Substring(0, folderPath.Length - 24);
+                var folderPath = UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("TesterEditor")[0]);                
+                folderPath = folderPath.Substring(0, folderPath.Length - 36);  // JustUnityTesterEditorSettings.asset + 10 = 36
 
                 Config = CreateInstance<EditorConfig>();
                 Config.MyTests = null;
 
-                UnityEditor.AssetDatabase.CreateAsset(Config, folderPath + "/AltUnityTesterEditorSettings.asset");
+                UnityEditor.AssetDatabase.CreateAsset(Config, $"{folderPath}/{defaultSettingsName}.asset");
                 UnityEditor.AssetDatabase.SaveAssets();
 
             } else {
                 Config = UnityEditor.AssetDatabase.LoadAssetAtPath<EditorConfig>(
-                    UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets("AltUnityTesterEditorSettings")[0]));
+                    UnityEditor.AssetDatabase.GUIDToAssetPath(UnityEditor.AssetDatabase.FindAssets(defaultSettingsName)[0]));
             }
             UnityEditor.EditorUtility.SetDirty(Config);
         }
