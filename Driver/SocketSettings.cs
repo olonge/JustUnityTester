@@ -11,5 +11,5 @@
             this.requestEnding = requestEnding;
             this.logFlag = logFlag;
         }
-    }
+    }    
 }
