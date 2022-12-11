@@ -146,10 +146,10 @@ namespace JustUnityTester {
         }
 
         public TestTextureInformation GetScreenshot(TestVector2 size = default) => new Screenshot(socketSettings, size).Execute();
-        public TestTextureInformation GetScreenshot(int id, TestyColor color, float width, TestVector2 size = default) {
+        public TestTextureInformation GetScreenshot(int id, TestColor color, float width, TestVector2 size = default) {
             return new Screenshot(socketSettings, id, color, width, size).Execute();
         }
-        public TestTextureInformation GetScreenshot(TestVector2 coordinates, TestyColor color, float width, out TestObject selectedObject, TestVector2 size = default) {
+        public TestTextureInformation GetScreenshot(TestVector2 coordinates, TestColor color, float width, out TestObject selectedObject, TestVector2 size = default) {
             return new Screenshot(socketSettings, coordinates, color, width, size).Execute(out selectedObject);
         }
         public void GetPNGScreenshot(string path) => new PNGScreenshot(socketSettings, path).Execute();
