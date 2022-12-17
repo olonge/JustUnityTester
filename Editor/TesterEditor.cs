@@ -220,22 +220,22 @@ namespace JustUnityTester.Editor {
             if (Config.platform == TestPlatform.Editor) {
                 if (UnityEditor.EditorApplication.isPlaying) {
                     UnityEditor.EditorGUI.BeginDisabledGroup(true);
-                    UnityEngine.GUILayout.Button("Play in Editor");
+                    UnityEngine.GUILayout.Button("(Play) Start Test Server");
                     UnityEditor.EditorGUI.EndDisabledGroup();
-                } else if (UnityEngine.GUILayout.Button("Play in Editor")) {
+                } else if (UnityEngine.GUILayout.Button("(Play) Start Test Server")) {
                     RunInEditor();
                 }
 
                 if (!UnityEditor.EditorApplication.isPlaying) {
                     UnityEditor.EditorGUI.BeginDisabledGroup(true);
-                    UnityEngine.GUILayout.Button("End Tests");
+                    UnityEngine.GUILayout.Button("End Test Server");
                     UnityEditor.EditorGUI.EndDisabledGroup();
-                } else if (UnityEngine.GUILayout.Button("End Tests")) {
+                } else if (UnityEngine.GUILayout.Button("End Test Server")) {
                     UnityEditor.EditorApplication.isPlaying = false;
                 }
             } else {
                 UnityEditor.EditorGUI.BeginDisabledGroup(true);
-                UnityEngine.GUILayout.Button("Play in Editor");
+                UnityEngine.GUILayout.Button("(Play) Start Test Server");
                 UnityEditor.EditorGUI.EndDisabledGroup();
             }
 
